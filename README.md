@@ -173,5 +173,9 @@ DFT study it validates against.
 
 ## License
 
-MIT for the code. Literature-derived values in `data/` remain the property of their original
-publications and are redistributed here only as extracted numerical values with DOI attribution.
+Code is MIT — see [LICENSE](LICENSE).
+
+Values under `data/` are extracted from published first-principles studies and from the public
+JARVIS-DFT database. They are redistributed here as numerical values with DOI attribution (see the
+`doi` column of `data/a3bx3_literature.csv`). Copyright in the original publications remains with
+their respective publishers.
