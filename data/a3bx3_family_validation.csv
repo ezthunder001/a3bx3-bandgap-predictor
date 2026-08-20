@@ -1,0 +1,4 @@
+formula,ML_pred_eV,sigma,paper_DFT_eV,error_eV
+Sr3BiI3,1.168,0.143,1.324,-0.156
+Sr3BiBr3,1.392,0.138,1.512,-0.12
+Sr3BiCl3,1.527,0.138,1.731,-0.204

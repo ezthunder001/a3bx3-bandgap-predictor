@@ -1,0 +1,8 @@
+numpy>=1.26.0
+scipy>=1.11.0
+scikit-learn>=1.4.0
+matplotlib>=3.8.0
+
+# Only needed to re-fetch the JARVIS-DFT subset (data/a3bx3_jarvis.csv is committed,
+# so training runs without it).
+jarvis-tools>=2024.1.1

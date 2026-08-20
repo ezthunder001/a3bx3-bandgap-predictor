@@ -1,0 +1,23 @@
+.venv/
+__pycache__/
+*.py[cod]
+
+# Credentials — this repo needs none. If a .env ever appears here, something was copied wrong.
+.env
+.env.*
+
+# Publisher PDFs and extracted text: copyrighted, never redistribute. Cite DOIs instead.
+*.pdf
+pdf_extract.txt
+
+# Pickled models: version-fragile and an arbitrary-code-execution vector on load.
+# Ship the training scripts, not the artifacts.
+*.pkl
+*.joblib
+
+# Regenerable from the public JARVIS API — bloat, not evidence.
+data/jarvis_perovskites_raw.csv
+data/processed_features.csv
+data/raw_perovskite_data.csv
+
+*.log

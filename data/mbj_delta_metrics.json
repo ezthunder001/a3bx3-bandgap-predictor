@@ -1,0 +1,96 @@
+{
+  "training": {
+    "n": 50,
+    "unique_formulas": 28,
+    "delta_mean": 0.9197,
+    "delta_std": 0.4404,
+    "cv": "GroupKFold(5) by formula"
+  },
+  "models": {
+    "RF": {
+      "delta_MAE": 0.3303,
+      "delta_R2": 0.0777,
+      "corrected_gap_MAE": 0.3303,
+      "corrected_gap_R2": 0.8932
+    },
+    "RF+pbegap": {
+      "delta_MAE": 0.275,
+      "delta_R2": 0.3443,
+      "corrected_gap_MAE": 0.275,
+      "corrected_gap_R2": 0.9241
+    },
+    "GBR": {
+      "delta_MAE": 0.3844,
+      "delta_R2": -0.1995,
+      "corrected_gap_MAE": 0.3844,
+      "corrected_gap_R2": 0.8612
+    },
+    "GBR+pbegap": {
+      "delta_MAE": 0.2993,
+      "delta_R2": 0.2073,
+      "corrected_gap_MAE": 0.2993,
+      "corrected_gap_R2": 0.9082
+    }
+  },
+  "best": "RF+pbegap",
+  "caveat": "delta model trained on ABX3 halide perovskites; A3BX3 application is a cross-stoichiometry transfer",
+  "sr3bix3": {
+    "corrected_vs_HSE_MAE": 0.3123,
+    "raw_PBE_vs_HSE_MAE": 0.661,
+    "per_compound": [
+      {
+        "formula": "Sr3BiI3",
+        "Eg_PBE_eV": 1.324,
+        "delta_pred_eV": 0.32,
+        "Eg_corrected_eV": 1.644,
+        "sigma_trees": 0.221,
+        "Eg_HSE_ref_eV": 1.878,
+        "error_vs_HSE_eV": -0.234
+      },
+      {
+        "formula": "Sr3BiBr3",
+        "Eg_PBE_eV": 1.512,
+        "delta_pred_eV": 0.303,
+        "Eg_corrected_eV": 1.815,
+        "sigma_trees": 0.247,
+        "Eg_HSE_ref_eV": 2.245,
+        "error_vs_HSE_eV": -0.43
+      },
+      {
+        "formula": "Sr3BiCl3",
+        "Eg_PBE_eV": 1.731,
+        "delta_pred_eV": 0.423,
+        "Eg_corrected_eV": 2.154,
+        "sigma_trees": 0.304,
+        "Eg_HSE_ref_eV": 2.427,
+        "error_vs_HSE_eV": -0.273
+      }
+    ]
+  },
+  "forward_ba3bix3": [
+    {
+      "formula": "Ba3BiI3",
+      "a_est_A": 6.963,
+      "Eg_PBE_family_eV": 0.74,
+      "delta_pred_eV": 0.344,
+      "Eg_corrected_eV": 1.084,
+      "sigma_total": 0.271
+    },
+    {
+      "formula": "Ba3BiBr3",
+      "a_est_A": 6.733,
+      "Eg_PBE_family_eV": 0.836,
+      "delta_pred_eV": 0.369,
+      "Eg_corrected_eV": 1.205,
+      "sigma_total": 0.328
+    },
+    {
+      "formula": "Ba3BiCl3",
+      "a_est_A": 6.606,
+      "Eg_PBE_family_eV": 0.916,
+      "delta_pred_eV": 0.401,
+      "Eg_corrected_eV": 1.317,
+      "sigma_total": 0.348
+    }
+  ]
+}

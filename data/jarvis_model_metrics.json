@@ -1,0 +1,74 @@
+{
+  "bandgap": {
+    "target": "optb88vdw_bandgap_eV",
+    "cv": "GroupKFold(5) by formula",
+    "models": {
+      "GradientBoosting": {
+        "MAE": 0.5363,
+        "RMSE": 0.7539,
+        "R2": 0.5521,
+        "n": 103
+      },
+      "RandomForest": {
+        "MAE": 0.559,
+        "RMSE": 0.7631,
+        "R2": 0.5411,
+        "n": 103
+      },
+      "GPR": {
+        "MAE": 0.5258,
+        "RMSE": 0.6847,
+        "R2": 0.6306,
+        "n": 103
+      }
+    },
+    "models_random_kfold_leaky": {
+      "GradientBoosting": {
+        "MAE": 0.4407,
+        "RMSE": 0.6291,
+        "R2": 0.6881,
+        "n": 103
+      },
+      "RandomForest": {
+        "MAE": 0.4916,
+        "RMSE": 0.6762,
+        "R2": 0.6397,
+        "n": 103
+      },
+      "GPR": {
+        "MAE": 0.3884,
+        "RMSE": 0.5639,
+        "R2": 0.7495,
+        "n": 103
+      }
+    },
+    "best": "GPR"
+  },
+  "elastic": {
+    "target": "Cij_GPa",
+    "cv": "GroupKFold(5) by formula",
+    "models": {
+      "RandomForest": {
+        "C11": {
+          "MAE": 20.7698,
+          "RMSE": 34.0868,
+          "R2": 0.0906,
+          "n": 50
+        },
+        "C12": {
+          "MAE": 10.1585,
+          "RMSE": 16.7843,
+          "R2": -0.2174,
+          "n": 50
+        },
+        "C44": {
+          "MAE": 7.1996,
+          "RMSE": 11.9478,
+          "R2": 0.0379,
+          "n": 50
+        }
+      }
+    },
+    "n": 50
+  }
+}

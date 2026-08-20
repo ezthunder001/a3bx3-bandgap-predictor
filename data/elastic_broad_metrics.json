@@ -1,0 +1,71 @@
+{
+  "cv": "GroupKFold(5) by formula",
+  "Cij_RandomForest": {
+    "C11": {
+      "MAE": 26.87,
+      "RMSE": 47.563,
+      "R2": 0.39,
+      "n": 254
+    },
+    "C12": {
+      "MAE": 10.602,
+      "RMSE": 19.114,
+      "R2": 0.33,
+      "n": 254
+    },
+    "C44": {
+      "MAE": 11.169,
+      "RMSE": 19.698,
+      "R2": 0.094,
+      "n": 254
+    }
+  },
+  "Moduli_GradientBoosting": {
+    "BulkModulus_K": {
+      "MAE": 9.761,
+      "RMSE": 14.804,
+      "R2": 0.731,
+      "n": 247
+    },
+    "ShearModulus_G": {
+      "MAE": 6.688,
+      "RMSE": 10.514,
+      "R2": 0.405,
+      "n": 247
+    }
+  },
+  "top_features": [
+    [
+      "lattice_c",
+      0.2726
+    ],
+    [
+      "cell_vol",
+      0.1053
+    ],
+    [
+      "cat_absdiff_X",
+      0.0776
+    ],
+    [
+      "lattice_b",
+      0.0762
+    ],
+    [
+      "spg_number",
+      0.0644
+    ],
+    [
+      "cat_mean_X",
+      0.0404
+    ],
+    [
+      "cat_absdiff_valence",
+      0.0365
+    ],
+    [
+      "lattice_a",
+      0.0321
+    ]
+  ]
+}

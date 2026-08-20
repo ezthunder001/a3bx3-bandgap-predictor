@@ -1,0 +1,121 @@
+{
+  "loo": {
+    "MAE": 0.1512,
+    "R2": 0.7396,
+    "n": 23
+  },
+  "lobo": {
+    "MAE": 0.1458,
+    "per_B": {
+      "As": 0.1651,
+      "Bi": 0.1011,
+      "P": 0.198,
+      "Sb": 0.1061
+    },
+    "cv": "leave-one-B-family-out"
+  },
+  "sr3bix3_validation": {
+    "MAE": 0.16,
+    "per_compound": [
+      {
+        "formula": "Sr3BiI3",
+        "ML_pred_eV": 1.168,
+        "sigma": 0.143,
+        "paper_DFT_eV": 1.324,
+        "error_eV": -0.156
+      },
+      {
+        "formula": "Sr3BiBr3",
+        "ML_pred_eV": 1.392,
+        "sigma": 0.138,
+        "paper_DFT_eV": 1.512,
+        "error_eV": -0.12
+      },
+      {
+        "formula": "Sr3BiCl3",
+        "ML_pred_eV": 1.527,
+        "sigma": 0.138,
+        "paper_DFT_eV": 1.731,
+        "error_eV": -0.204
+      }
+    ]
+  },
+  "elastic_family": {
+    "C11": {
+      "MAE": 16.37,
+      "n": 11
+    },
+    "C12": {
+      "MAE": 10.56,
+      "n": 11
+    },
+    "C44": {
+      "MAE": 3.21,
+      "n": 11
+    },
+    "sr3bix3": [
+      {
+        "formula": "Sr3BiI3",
+        "C11_pred": 64.5,
+        "C12_pred": 16.6,
+        "C44_pred": 14.2,
+        "C11_DFT": 60.324,
+        "C12_DFT": 9.446,
+        "B_GPa": 32.5,
+        "G_GPa": 18.1,
+        "E_GPa": 45.8,
+        "poisson": 0.265
+      },
+      {
+        "formula": "Sr3BiBr3",
+        "C11_pred": 74.0,
+        "C12_pred": 12.8,
+        "C44_pred": 16.7,
+        "C11_DFT": null,
+        "C12_DFT": 10.4,
+        "B_GPa": 33.2,
+        "G_GPa": 22.3,
+        "E_GPa": 54.6,
+        "poisson": 0.225
+      },
+      {
+        "formula": "Sr3BiCl3",
+        "C11_pred": 70.3,
+        "C12_pred": 10.5,
+        "C44_pred": 14.7,
+        "C11_DFT": null,
+        "C12_DFT": 11.51,
+        "B_GPa": 30.4,
+        "G_GPa": 20.8,
+        "E_GPa": 50.8,
+        "poisson": 0.222
+      }
+    ]
+  },
+  "forward_ba3bix3": [
+    {
+      "formula": "Ba3BiI3",
+      "Eg_pred_eV": 0.74,
+      "sigma": 0.151,
+      "C11": 62.9,
+      "C12": 14.2,
+      "C44": 12.8
+    },
+    {
+      "formula": "Ba3BiBr3",
+      "Eg_pred_eV": 0.836,
+      "sigma": 0.16,
+      "C11": 73.4,
+      "C12": 12.4,
+      "C44": 16.3
+    },
+    {
+      "formula": "Ba3BiCl3",
+      "Eg_pred_eV": 0.916,
+      "sigma": 0.172,
+      "C11": 69.5,
+      "C12": 10.3,
+      "C44": 14.3
+    }
+  ]
+}
