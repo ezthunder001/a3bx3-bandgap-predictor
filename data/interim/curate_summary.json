@@ -1,0 +1,19 @@
+{
+  "doi_status_counts": {
+    "not a DOI (citation string)": 6,
+    "ok": 19,
+    "truncated DOI": 1
+  },
+  "n_conflicts": 0,
+  "n_duplicates_within_threshold": 0,
+  "n_excluded": 0,
+  "n_family": 23,
+  "n_holdout": 3,
+  "n_raw": 26,
+  "oqmd_overlap": 11,
+  "soc_counts": {
+    "no": 0,
+    "unknown": 23,
+    "yes": 0
+  }
+}

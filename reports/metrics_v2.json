@@ -1,0 +1,1859 @@
+{
+  "_readme": "Every model score sits beside every named baseline on the SAME folds. Numbers are out-of-fold (held-out); nothing here is in-sample. Headline = leave-one-B-family-out. The Sr3BiX3 holdout is scored once, fit on the whole family, and used for no choice.",
+  "bootstrap": {
+    "ci": 0.95,
+    "n": 2000,
+    "paired": "same resample indices for every model within a split",
+    "unit": "rows (formulas)"
+  },
+  "data": {
+    "config_sha256": "2b9def7da825e07dd0a2e91d88076e8bc76cb46b0aaa83685d6b7b624d6b8d62",
+    "family_csv_sha256": "92cd6967ab2d8251f7442d4570885669108b525e6a480479bc5737988e252797",
+    "holdout_csv_sha256": "aacdda05a5d2f3161debdaf852a5afe52508357264a6dc036b0e8ca25ea1c591",
+    "n_family": 23,
+    "n_holdout": 3
+  },
+  "environment": {
+    "matminer": "0.10.1",
+    "numpy": "2.4.6",
+    "pymatgen": "2026.9.24",
+    "scikit-learn": "1.9.1",
+    "scipy": "1.17.1",
+    "xgboost": "3.2.0"
+  },
+  "headline": {
+    "model": "gpr_physics9",
+    "split": "lobo"
+  },
+  "models": {
+    "gpr_physics9": {
+      "description": "StandardScaler + GPR, ARD Matern(5/2) + white noise (v1 kernel)",
+      "feature_set": "physics9",
+      "role": "model"
+    },
+    "halide_rule": {
+      "description": "training-fold mean per halide X",
+      "feature_set": "physics9",
+      "role": "baseline"
+    },
+    "mean": {
+      "description": "training-fold mean",
+      "feature_set": "physics9",
+      "role": "baseline"
+    },
+    "rf_magpie": {
+      "description": "RandomForest, grid by inner grouped CV",
+      "feature_set": "magpie",
+      "role": "model"
+    },
+    "rf_physics9": {
+      "description": "RandomForest, grid by inner grouped CV",
+      "feature_set": "physics9",
+      "role": "model"
+    },
+    "ridge_magpie": {
+      "description": "VarianceThreshold + StandardScaler + SelectKBest(f_regression) + Ridge on Magpie; k, alpha by inner grouped CV",
+      "feature_set": "magpie",
+      "role": "baseline"
+    },
+    "ridge_physics9": {
+      "description": "StandardScaler + RidgeCV(alphas 1e-3..1e3) on physics-9 (as v1)",
+      "feature_set": "physics9",
+      "role": "baseline"
+    },
+    "xgb_magpie": {
+      "description": "XGBoost (shallow), grid by inner grouped CV",
+      "feature_set": "magpie",
+      "role": "model"
+    },
+    "xgb_physics9": {
+      "description": "XGBoost (shallow), grid by inner grouped CV",
+      "feature_set": "physics9",
+      "role": "model"
+    }
+  },
+  "results": {
+    "gkf": {
+      "best_baseline": "ridge_magpie",
+      "best_model": "gpr_physics9",
+      "models": {
+        "gpr_physics9": {
+          "MAE": 0.2166,
+          "MAE_CI95": [
+            0.1449,
+            0.2935
+          ],
+          "MAE_repeat_sd": 0.041,
+          "R2": 0.4125,
+          "RMSE": 0.3121,
+          "feature_set": "physics9",
+          "n_repeats": 10,
+          "n_rows": 23,
+          "per_A": {
+            "Ba": 0.2407,
+            "Ca": 0.163,
+            "Mg": 0.492,
+            "Sr": 0.0841
+          },
+          "per_B": {
+            "As": 0.2441,
+            "Bi": 0.221,
+            "P": 0.2541,
+            "Sb": 0.1463
+          },
+          "role": "model",
+          "sigma_coverage": {
+            "nominal": [
+              0.6827,
+              0.9545
+            ],
+            "within_1sigma": 0.4783,
+            "within_2sigma": 0.6522
+          },
+          "vs_baseline": {
+            "mean": {
+              "MAE_diff": -0.11,
+              "MAE_diff_CI95": [
+                -0.2138,
+                -0.0091
+              ],
+              "skill": 0.337
+            },
+            "ridge_physics9": {
+              "MAE_diff": -0.0235,
+              "MAE_diff_CI95": [
+                -0.0693,
+                0.0246
+              ],
+              "skill": 0.098
+            }
+          }
+        },
+        "halide_rule": {
+          "MAE": 0.2715,
+          "MAE_CI95": [
+            0.1783,
+            0.3759
+          ],
+          "MAE_repeat_sd": 0.0097,
+          "R2": 0.2172,
+          "RMSE": 0.3652,
+          "feature_set": "physics9",
+          "n_repeats": 10,
+          "n_rows": 23,
+          "per_A": {
+            "Ba": 0.5814,
+            "Ca": 0.2494,
+            "Mg": 0.284,
+            "Sr": 0.0931
+          },
+          "per_B": {
+            "As": 0.3693,
+            "Bi": 0.1218,
+            "P": 0.3233,
+            "Sb": 0.2545
+          },
+          "role": "baseline",
+          "vs_baseline": {
+            "mean": {
+              "MAE_diff": -0.0551,
+              "MAE_diff_CI95": [
+                -0.135,
+                0.0283
+              ],
+              "skill": 0.169
+            },
+            "ridge_physics9": {
+              "MAE_diff": 0.0314,
+              "MAE_diff_CI95": [
+                -0.0499,
+                0.1068
+              ],
+              "skill": -0.131
+            }
+          }
+        },
+        "mean": {
+          "MAE": 0.3266,
+          "MAE_CI95": [
+            0.2162,
+            0.4513
+          ],
+          "MAE_repeat_sd": 0.0101,
+          "R2": -0.1022,
+          "RMSE": 0.4333,
+          "feature_set": "physics9",
+          "n_repeats": 10,
+          "n_rows": 23,
+          "per_A": {
+            "Ba": 0.7587,
+            "Ca": 0.2659,
+            "Mg": 0.4055,
+            "Sr": 0.1057
+          },
+          "per_B": {
+            "As": 0.3582,
+            "Bi": 0.2721,
+            "P": 0.3058,
+            "Sb": 0.3701
+          },
+          "role": "baseline",
+          "vs_baseline": {
+            "ridge_physics9": {
+              "MAE_diff": 0.0865,
+              "MAE_diff_CI95": [
+                -0.021,
+                0.1842
+              ],
+              "skill": -0.36
+            }
+          }
+        },
+        "rf_magpie": {
+          "MAE": 0.2311,
+          "MAE_CI95": [
+            0.1575,
+            0.3147
+          ],
+          "MAE_repeat_sd": 0.0111,
+          "R2": 0.4491,
+          "RMSE": 0.3061,
+          "feature_set": "magpie",
+          "n_repeats": 10,
+          "n_rows": 23,
+          "per_A": {
+            "Ba": 0.484,
+            "Ca": 0.1681,
+            "Mg": 0.3935,
+            "Sr": 0.0678
+          },
+          "per_B": {
+            "As": 0.3087,
+            "Bi": 0.1944,
+            "P": 0.2474,
+            "Sb": 0.1779
+          },
+          "role": "model",
+          "vs_baseline": {
+            "mean": {
+              "MAE_diff": -0.0956,
+              "MAE_diff_CI95": [
+                -0.1611,
+                -0.0267
+              ],
+              "skill": 0.293
+            },
+            "ridge_physics9": {
+              "MAE_diff": -0.0091,
+              "MAE_diff_CI95": [
+                -0.0596,
+                0.0406
+              ],
+              "skill": 0.038
+            }
+          }
+        },
+        "rf_physics9": {
+          "MAE": 0.2397,
+          "MAE_CI95": [
+            0.1626,
+            0.3279
+          ],
+          "MAE_repeat_sd": 0.0202,
+          "R2": 0.3896,
+          "RMSE": 0.3219,
+          "feature_set": "physics9",
+          "n_repeats": 10,
+          "n_rows": 23,
+          "per_A": {
+            "Ba": 0.507,
+            "Ca": 0.1637,
+            "Mg": 0.3549,
+            "Sr": 0.1524
+          },
+          "per_B": {
+            "As": 0.3031,
+            "Bi": 0.1576,
+            "P": 0.3014,
+            "Sb": 0.1836
+          },
+          "role": "model",
+          "vs_baseline": {
+            "mean": {
+              "MAE_diff": -0.0869,
+              "MAE_diff_CI95": [
+                -0.1534,
+                -0.0138
+              ],
+              "skill": 0.266
+            },
+            "ridge_physics9": {
+              "MAE_diff": -0.0004,
+              "MAE_diff_CI95": [
+                -0.0529,
+                0.0514
+              ],
+              "skill": 0.002
+            }
+          }
+        },
+        "ridge_magpie": {
+          "MAE": 0.2374,
+          "MAE_CI95": [
+            0.155,
+            0.3288
+          ],
+          "MAE_repeat_sd": 0.1221,
+          "R2": -0.0878,
+          "RMSE": 0.3478,
+          "feature_set": "magpie",
+          "n_repeats": 10,
+          "n_rows": 23,
+          "per_A": {
+            "Ba": 0.3122,
+            "Ca": 0.1345,
+            "Mg": 0.6187,
+            "Sr": 0.109
+          },
+          "per_B": {
+            "As": 0.2791,
+            "Bi": 0.3066,
+            "P": 0.2567,
+            "Sb": 0.1225
+          },
+          "role": "baseline",
+          "vs_baseline": {
+            "mean": {
+              "MAE_diff": -0.0892,
+              "MAE_diff_CI95": [
+                -0.2047,
+                0.0288
+              ],
+              "skill": 0.273
+            },
+            "ridge_physics9": {
+              "MAE_diff": -0.0027,
+              "MAE_diff_CI95": [
+                -0.0471,
+                0.0364
+              ],
+              "skill": 0.011
+            }
+          }
+        },
+        "ridge_physics9": {
+          "MAE": 0.2401,
+          "MAE_CI95": [
+            0.1607,
+            0.3305
+          ],
+          "MAE_repeat_sd": 0.0629,
+          "R2": 0.239,
+          "RMSE": 0.3408,
+          "feature_set": "physics9",
+          "n_repeats": 10,
+          "n_rows": 23,
+          "per_A": {
+            "Ba": 0.3033,
+            "Ca": 0.1601,
+            "Mg": 0.5455,
+            "Sr": 0.1274
+          },
+          "per_B": {
+            "As": 0.2552,
+            "Bi": 0.2428,
+            "P": 0.2968,
+            "Sb": 0.1592
+          },
+          "role": "baseline",
+          "vs_baseline": {
+            "mean": {
+              "MAE_diff": -0.0865,
+              "MAE_diff_CI95": [
+                -0.1842,
+                0.021
+              ],
+              "skill": 0.265
+            }
+          }
+        },
+        "xgb_magpie": {
+          "MAE": 0.2335,
+          "MAE_CI95": [
+            0.1638,
+            0.311
+          ],
+          "MAE_repeat_sd": 0.0183,
+          "R2": 0.4583,
+          "RMSE": 0.3032,
+          "feature_set": "magpie",
+          "n_repeats": 10,
+          "n_rows": 23,
+          "per_A": {
+            "Ba": 0.3896,
+            "Ca": 0.1759,
+            "Mg": 0.4278,
+            "Sr": 0.095
+          },
+          "per_B": {
+            "As": 0.2959,
+            "Bi": 0.1943,
+            "P": 0.2717,
+            "Sb": 0.1695
+          },
+          "role": "model",
+          "vs_baseline": {
+            "mean": {
+              "MAE_diff": -0.0931,
+              "MAE_diff_CI95": [
+                -0.1791,
+                -0.0051
+              ],
+              "skill": 0.285
+            },
+            "ridge_physics9": {
+              "MAE_diff": -0.0066,
+              "MAE_diff_CI95": [
+                -0.0506,
+                0.0357
+              ],
+              "skill": 0.028
+            }
+          }
+        },
+        "xgb_physics9": {
+          "MAE": 0.2536,
+          "MAE_CI95": [
+            0.1891,
+            0.3251
+          ],
+          "MAE_repeat_sd": 0.018,
+          "R2": 0.4175,
+          "RMSE": 0.3145,
+          "feature_set": "physics9",
+          "n_repeats": 10,
+          "n_rows": 23,
+          "per_A": {
+            "Ba": 0.492,
+            "Ca": 0.1805,
+            "Mg": 0.4141,
+            "Sr": 0.1336
+          },
+          "per_B": {
+            "As": 0.3509,
+            "Bi": 0.2138,
+            "P": 0.2763,
+            "Sb": 0.1793
+          },
+          "role": "model",
+          "vs_baseline": {
+            "mean": {
+              "MAE_diff": -0.073,
+              "MAE_diff_CI95": [
+                -0.1523,
+                0.0092
+              ],
+              "skill": 0.224
+            },
+            "ridge_physics9": {
+              "MAE_diff": 0.0135,
+              "MAE_diff_CI95": [
+                -0.0316,
+                0.0561
+              ],
+              "skill": -0.056
+            }
+          }
+        }
+      }
+    },
+    "loao": {
+      "best_baseline": "halide_rule",
+      "best_model": "xgb_magpie",
+      "models": {
+        "gpr_physics9": {
+          "MAE": 0.3329,
+          "MAE_CI95": [
+            0.236,
+            0.4386
+          ],
+          "R2": 0.0044,
+          "RMSE": 0.412,
+          "feature_set": "physics9",
+          "n_repeats": 1,
+          "n_rows": 23,
+          "per_A": {
+            "Ba": 0.516,
+            "Ca": 0.345,
+            "Mg": 0.3773,
+            "Sr": 0.1146
+          },
+          "per_B": {
+            "As": 0.3351,
+            "Bi": 0.2828,
+            "P": 0.3311,
+            "Sb": 0.3747
+          },
+          "role": "model",
+          "sigma_coverage": {
+            "nominal": [
+              0.6827,
+              0.9545
+            ],
+            "within_1sigma": 0.7826,
+            "within_2sigma": 1.0
+          },
+          "vs_baseline": {
+            "mean": {
+              "MAE_diff": -0.043,
+              "MAE_diff_CI95": [
+                -0.0947,
+                -0.0002
+              ],
+              "skill": 0.114
+            },
+            "ridge_physics9": {
+              "MAE_diff": -0.2716,
+              "MAE_diff_CI95": [
+                -0.5058,
+                -0.0745
+              ],
+              "skill": 0.449
+            }
+          }
+        },
+        "halide_rule": {
+          "MAE": 0.3547,
+          "MAE_CI95": [
+            0.2451,
+            0.47
+          ],
+          "R2": -0.1755,
+          "RMSE": 0.4477,
+          "feature_set": "physics9",
+          "n_repeats": 1,
+          "n_rows": 23,
+          "per_A": {
+            "Ba": 0.6482,
+            "Ca": 0.3851,
+            "Mg": 0.301,
+            "Sr": 0.0972
+          },
+          "per_B": {
+            "As": 0.4657,
+            "Bi": 0.2022,
+            "P": 0.3697,
+            "Sb": 0.3719
+          },
+          "role": "baseline",
+          "vs_baseline": {
+            "mean": {
+              "MAE_diff": -0.0211,
+              "MAE_diff_CI95": [
+                -0.1268,
+                0.1027
+              ],
+              "skill": 0.056
+            },
+            "ridge_physics9": {
+              "MAE_diff": -0.2497,
+              "MAE_diff_CI95": [
+                -0.5039,
+                -0.0503
+              ],
+              "skill": 0.413
+            }
+          }
+        },
+        "mean": {
+          "MAE": 0.3758,
+          "MAE_CI95": [
+            0.2544,
+            0.5059
+          ],
+          "R2": -0.3668,
+          "RMSE": 0.4827,
+          "feature_set": "physics9",
+          "n_repeats": 1,
+          "n_rows": 23,
+          "per_A": {
+            "Ba": 0.8317,
+            "Ca": 0.345,
+            "Mg": 0.3875,
+            "Sr": 0.1146
+          },
+          "per_B": {
+            "As": 0.4471,
+            "Bi": 0.2836,
+            "P": 0.3364,
+            "Sb": 0.4393
+          },
+          "role": "baseline",
+          "vs_baseline": {
+            "ridge_physics9": {
+              "MAE_diff": -0.2286,
+              "MAE_diff_CI95": [
+                -0.4807,
+                -0.0157
+              ],
+              "skill": 0.378
+            }
+          }
+        },
+        "rf_magpie": {
+          "MAE": 0.2956,
+          "MAE_CI95": [
+            0.21,
+            0.3817
+          ],
+          "R2": 0.2238,
+          "RMSE": 0.3638,
+          "feature_set": "magpie",
+          "n_repeats": 1,
+          "n_rows": 23,
+          "per_A": {
+            "Ba": 0.6657,
+            "Ca": 0.283,
+            "Mg": 0.2987,
+            "Sr": 0.0525
+          },
+          "per_B": {
+            "As": 0.3771,
+            "Bi": 0.2689,
+            "P": 0.2351,
+            "Sb": 0.3205
+          },
+          "role": "model",
+          "vs_baseline": {
+            "mean": {
+              "MAE_diff": -0.0802,
+              "MAE_diff_CI95": [
+                -0.1539,
+                -0.0052
+              ],
+              "skill": 0.214
+            },
+            "ridge_physics9": {
+              "MAE_diff": -0.3088,
+              "MAE_diff_CI95": [
+                -0.5395,
+                -0.1231
+              ],
+              "skill": 0.511
+            }
+          }
+        },
+        "rf_physics9": {
+          "MAE": 0.3187,
+          "MAE_CI95": [
+            0.2343,
+            0.4133
+          ],
+          "R2": 0.1163,
+          "RMSE": 0.3882,
+          "feature_set": "physics9",
+          "n_repeats": 1,
+          "n_rows": 23,
+          "per_A": {
+            "Ba": 0.7192,
+            "Ca": 0.2597,
+            "Mg": 0.2632,
+            "Sr": 0.2508
+          },
+          "per_B": {
+            "As": 0.447,
+            "Bi": 0.1602,
+            "P": 0.3415,
+            "Sb": 0.3172
+          },
+          "role": "model",
+          "vs_baseline": {
+            "mean": {
+              "MAE_diff": -0.0571,
+              "MAE_diff_CI95": [
+                -0.1451,
+                0.0401
+              ],
+              "skill": 0.152
+            },
+            "ridge_physics9": {
+              "MAE_diff": -0.2857,
+              "MAE_diff_CI95": [
+                -0.5204,
+                -0.0903
+              ],
+              "skill": 0.473
+            }
+          }
+        },
+        "ridge_magpie": {
+          "MAE": 0.5993,
+          "MAE_CI95": [
+            0.3207,
+            0.9588
+          ],
+          "R2": -4.6592,
+          "RMSE": 0.9823,
+          "feature_set": "magpie",
+          "n_repeats": 1,
+          "n_rows": 23,
+          "per_A": {
+            "Ba": 0.5527,
+            "Ca": 0.2358,
+            "Mg": 2.2456,
+            "Sr": 0.0784
+          },
+          "per_B": {
+            "As": 0.2938,
+            "Bi": 1.0319,
+            "P": 0.7932,
+            "Sb": 0.2672
+          },
+          "role": "baseline",
+          "vs_baseline": {
+            "mean": {
+              "MAE_diff": 0.2235,
+              "MAE_diff_CI95": [
+                -0.0651,
+                0.5795
+              ],
+              "skill": -0.595
+            },
+            "ridge_physics9": {
+              "MAE_diff": -0.0051,
+              "MAE_diff_CI95": [
+                -0.1457,
+                0.1744
+              ],
+              "skill": 0.008
+            }
+          }
+        },
+        "ridge_physics9": {
+          "MAE": 0.6044,
+          "MAE_CI95": [
+            0.4141,
+            0.8375
+          ],
+          "R2": -2.767,
+          "RMSE": 0.8014,
+          "feature_set": "physics9",
+          "n_repeats": 1,
+          "n_rows": 23,
+          "per_A": {
+            "Ba": 0.7212,
+            "Ca": 0.3941,
+            "Mg": 1.6189,
+            "Sr": 0.1334
+          },
+          "per_B": {
+            "As": 0.466,
+            "Bi": 0.8861,
+            "P": 0.7176,
+            "Sb": 0.3531
+          },
+          "role": "baseline",
+          "vs_baseline": {
+            "mean": {
+              "MAE_diff": 0.2286,
+              "MAE_diff_CI95": [
+                0.0157,
+                0.4807
+              ],
+              "skill": -0.608
+            }
+          }
+        },
+        "xgb_magpie": {
+          "MAE": 0.2679,
+          "MAE_CI95": [
+            0.1827,
+            0.3546
+          ],
+          "R2": 0.3101,
+          "RMSE": 0.343,
+          "feature_set": "magpie",
+          "n_repeats": 1,
+          "n_rows": 23,
+          "per_A": {
+            "Ba": 0.6065,
+            "Ca": 0.2472,
+            "Mg": 0.266,
+            "Sr": 0.078
+          },
+          "per_B": {
+            "As": 0.3828,
+            "Bi": 0.2133,
+            "P": 0.1866,
+            "Sb": 0.3126
+          },
+          "role": "model",
+          "vs_baseline": {
+            "mean": {
+              "MAE_diff": -0.1079,
+              "MAE_diff_CI95": [
+                -0.1925,
+                -0.0116
+              ],
+              "skill": 0.287
+            },
+            "ridge_physics9": {
+              "MAE_diff": -0.3365,
+              "MAE_diff_CI95": [
+                -0.5616,
+                -0.1521
+              ],
+              "skill": 0.557
+            }
+          }
+        },
+        "xgb_physics9": {
+          "MAE": 0.306,
+          "MAE_CI95": [
+            0.2244,
+            0.3972
+          ],
+          "R2": 0.1779,
+          "RMSE": 0.3744,
+          "feature_set": "physics9",
+          "n_repeats": 1,
+          "n_rows": 23,
+          "per_A": {
+            "Ba": 0.683,
+            "Ca": 0.2767,
+            "Mg": 0.2578,
+            "Sr": 0.1596
+          },
+          "per_B": {
+            "As": 0.4428,
+            "Bi": 0.2269,
+            "P": 0.2644,
+            "Sb": 0.3066
+          },
+          "role": "model",
+          "vs_baseline": {
+            "mean": {
+              "MAE_diff": -0.0698,
+              "MAE_diff_CI95": [
+                -0.198,
+                0.056
+              ],
+              "skill": 0.186
+            },
+            "ridge_physics9": {
+              "MAE_diff": -0.2984,
+              "MAE_diff_CI95": [
+                -0.5192,
+                -0.1071
+              ],
+              "skill": 0.494
+            }
+          }
+        }
+      }
+    },
+    "lobo": {
+      "best_baseline": "ridge_magpie",
+      "best_model": "gpr_physics9",
+      "models": {
+        "gpr_physics9": {
+          "MAE": 0.1458,
+          "MAE_CI95": [
+            0.0875,
+            0.2058
+          ],
+          "R2": 0.7545,
+          "RMSE": 0.2046,
+          "feature_set": "physics9",
+          "n_repeats": 1,
+          "n_rows": 23,
+          "per_A": {
+            "Ba": 0.1041,
+            "Ca": 0.1673,
+            "Mg": 0.1859,
+            "Sr": 0.0726
+          },
+          "per_B": {
+            "As": 0.1651,
+            "Bi": 0.1011,
+            "P": 0.198,
+            "Sb": 0.1061
+          },
+          "role": "model",
+          "sigma_coverage": {
+            "nominal": [
+              0.6827,
+              0.9545
+            ],
+            "within_1sigma": 0.6957,
+            "within_2sigma": 0.7826
+          },
+          "vs_baseline": {
+            "mean": {
+              "MAE_diff": -0.1832,
+              "MAE_diff_CI95": [
+                -0.2958,
+                -0.0774
+              ],
+              "skill": 0.557
+            },
+            "ridge_physics9": {
+              "MAE_diff": -0.0488,
+              "MAE_diff_CI95": [
+                -0.1089,
+                0.0088
+              ],
+              "skill": 0.251
+            }
+          }
+        },
+        "halide_rule": {
+          "MAE": 0.2736,
+          "MAE_CI95": [
+            0.1769,
+            0.3855
+          ],
+          "R2": 0.1852,
+          "RMSE": 0.3727,
+          "feature_set": "physics9",
+          "n_repeats": 1,
+          "n_rows": 23,
+          "per_A": {
+            "Ba": 0.5769,
+            "Ca": 0.2453,
+            "Mg": 0.2976,
+            "Sr": 0.1072
+          },
+          "per_B": {
+            "As": 0.4237,
+            "Bi": 0.1084,
+            "P": 0.3223,
+            "Sb": 0.2294
+          },
+          "role": "baseline",
+          "vs_baseline": {
+            "mean": {
+              "MAE_diff": -0.0554,
+              "MAE_diff_CI95": [
+                -0.144,
+                0.0325
+              ],
+              "skill": 0.168
+            },
+            "ridge_physics9": {
+              "MAE_diff": 0.079,
+              "MAE_diff_CI95": [
+                0.0171,
+                0.1402
+              ],
+              "skill": -0.406
+            }
+          }
+        },
+        "mean": {
+          "MAE": 0.329,
+          "MAE_CI95": [
+            0.2135,
+            0.462
+          ],
+          "R2": -0.1643,
+          "RMSE": 0.4455,
+          "feature_set": "physics9",
+          "n_repeats": 1,
+          "n_rows": 23,
+          "per_A": {
+            "Ba": 0.7605,
+            "Ca": 0.2616,
+            "Mg": 0.4052,
+            "Sr": 0.1316
+          },
+          "per_B": {
+            "As": 0.3442,
+            "Bi": 0.249,
+            "P": 0.3436,
+            "Sb": 0.366
+          },
+          "role": "baseline",
+          "vs_baseline": {
+            "ridge_physics9": {
+              "MAE_diff": 0.1344,
+              "MAE_diff_CI95": [
+                0.0338,
+                0.2416
+              ],
+              "skill": -0.691
+            }
+          }
+        },
+        "rf_magpie": {
+          "MAE": 0.2319,
+          "MAE_CI95": [
+            0.1497,
+            0.322
+          ],
+          "R2": 0.4323,
+          "RMSE": 0.3111,
+          "feature_set": "magpie",
+          "n_repeats": 1,
+          "n_rows": 23,
+          "per_A": {
+            "Ba": 0.5187,
+            "Ca": 0.1832,
+            "Mg": 0.3386,
+            "Sr": 0.0564
+          },
+          "per_B": {
+            "As": 0.328,
+            "Bi": 0.1758,
+            "P": 0.2149,
+            "Sb": 0.2185
+          },
+          "role": "model",
+          "vs_baseline": {
+            "mean": {
+              "MAE_diff": -0.0971,
+              "MAE_diff_CI95": [
+                -0.1694,
+                -0.0263
+              ],
+              "skill": 0.295
+            },
+            "ridge_physics9": {
+              "MAE_diff": 0.0374,
+              "MAE_diff_CI95": [
+                -0.0189,
+                0.0942
+              ],
+              "skill": -0.192
+            }
+          }
+        },
+        "rf_physics9": {
+          "MAE": 0.2437,
+          "MAE_CI95": [
+            0.138,
+            0.3584
+          ],
+          "R2": 0.2389,
+          "RMSE": 0.3602,
+          "feature_set": "physics9",
+          "n_repeats": 1,
+          "n_rows": 23,
+          "per_A": {
+            "Ba": 0.5678,
+            "Ca": 0.1889,
+            "Mg": 0.3481,
+            "Sr": 0.0603
+          },
+          "per_B": {
+            "As": 0.3958,
+            "Bi": 0.1971,
+            "P": 0.2422,
+            "Sb": 0.1575
+          },
+          "role": "model",
+          "vs_baseline": {
+            "mean": {
+              "MAE_diff": -0.0853,
+              "MAE_diff_CI95": [
+                -0.1512,
+                -0.0236
+              ],
+              "skill": 0.259
+            },
+            "ridge_physics9": {
+              "MAE_diff": 0.0491,
+              "MAE_diff_CI95": [
+                -0.0242,
+                0.1212
+              ],
+              "skill": -0.252
+            }
+          }
+        },
+        "ridge_magpie": {
+          "MAE": 0.1896,
+          "MAE_CI95": [
+            0.1227,
+            0.2613
+          ],
+          "R2": 0.6126,
+          "RMSE": 0.257,
+          "feature_set": "magpie",
+          "n_repeats": 1,
+          "n_rows": 23,
+          "per_A": {
+            "Ba": 0.2992,
+            "Ca": 0.1442,
+            "Mg": 0.316,
+            "Sr": 0.1172
+          },
+          "per_B": {
+            "As": 0.3184,
+            "Bi": 0.1699,
+            "P": 0.1756,
+            "Sb": 0.115
+          },
+          "role": "baseline",
+          "vs_baseline": {
+            "mean": {
+              "MAE_diff": -0.1394,
+              "MAE_diff_CI95": [
+                -0.257,
+                -0.0261
+              ],
+              "skill": 0.424
+            },
+            "ridge_physics9": {
+              "MAE_diff": -0.005,
+              "MAE_diff_CI95": [
+                -0.0744,
+                0.0609
+              ],
+              "skill": 0.026
+            }
+          }
+        },
+        "ridge_physics9": {
+          "MAE": 0.1946,
+          "MAE_CI95": [
+            0.1204,
+            0.2803
+          ],
+          "R2": 0.5578,
+          "RMSE": 0.2746,
+          "feature_set": "physics9",
+          "n_repeats": 1,
+          "n_rows": 23,
+          "per_A": {
+            "Ba": 0.2292,
+            "Ca": 0.1694,
+            "Mg": 0.3429,
+            "Sr": 0.0958
+          },
+          "per_B": {
+            "As": 0.221,
+            "Bi": 0.1492,
+            "P": 0.2335,
+            "Sb": 0.165
+          },
+          "role": "baseline",
+          "vs_baseline": {
+            "mean": {
+              "MAE_diff": -0.1344,
+              "MAE_diff_CI95": [
+                -0.2416,
+                -0.0338
+              ],
+              "skill": 0.409
+            }
+          }
+        },
+        "xgb_magpie": {
+          "MAE": 0.2323,
+          "MAE_CI95": [
+            0.1644,
+            0.3045
+          ],
+          "R2": 0.5186,
+          "RMSE": 0.2865,
+          "feature_set": "magpie",
+          "n_repeats": 1,
+          "n_rows": 23,
+          "per_A": {
+            "Ba": 0.4765,
+            "Ca": 0.2056,
+            "Mg": 0.2843,
+            "Sr": 0.0772
+          },
+          "per_B": {
+            "As": 0.2945,
+            "Bi": 0.207,
+            "P": 0.2343,
+            "Sb": 0.1991
+          },
+          "role": "model",
+          "vs_baseline": {
+            "mean": {
+              "MAE_diff": -0.0967,
+              "MAE_diff_CI95": [
+                -0.1889,
+                -0.0141
+              ],
+              "skill": 0.294
+            },
+            "ridge_physics9": {
+              "MAE_diff": 0.0377,
+              "MAE_diff_CI95": [
+                -0.0274,
+                0.0994
+              ],
+              "skill": -0.194
+            }
+          }
+        },
+        "xgb_physics9": {
+          "MAE": 0.223,
+          "MAE_CI95": [
+            0.1369,
+            0.3132
+          ],
+          "R2": 0.4378,
+          "RMSE": 0.3096,
+          "feature_set": "physics9",
+          "n_repeats": 1,
+          "n_rows": 23,
+          "per_A": {
+            "Ba": 0.5288,
+            "Ca": 0.1752,
+            "Mg": 0.3439,
+            "Sr": 0.0158
+          },
+          "per_B": {
+            "As": 0.349,
+            "Bi": 0.1798,
+            "P": 0.227,
+            "Sb": 0.1491
+          },
+          "role": "model",
+          "vs_baseline": {
+            "mean": {
+              "MAE_diff": -0.106,
+              "MAE_diff_CI95": [
+                -0.1736,
+                -0.0382
+              ],
+              "skill": 0.322
+            },
+            "ridge_physics9": {
+              "MAE_diff": 0.0284,
+              "MAE_diff_CI95": [
+                -0.0404,
+                0.097
+              ],
+              "skill": -0.146
+            }
+          }
+        }
+      }
+    },
+    "loo": {
+      "best_baseline": "ridge_magpie",
+      "best_model": "gpr_physics9",
+      "models": {
+        "gpr_physics9": {
+          "MAE": 0.1512,
+          "MAE_CI95": [
+            0.0946,
+            0.2113
+          ],
+          "R2": 0.7396,
+          "RMSE": 0.2107,
+          "feature_set": "physics9",
+          "n_repeats": 1,
+          "n_rows": 23,
+          "per_A": {
+            "Ba": 0.1475,
+            "Ca": 0.1354,
+            "Mg": 0.2714,
+            "Sr": 0.0811
+          },
+          "per_B": {
+            "As": 0.2085,
+            "Bi": 0.0967,
+            "P": 0.217,
+            "Sb": 0.072
+          },
+          "role": "model",
+          "sigma_coverage": {
+            "nominal": [
+              0.6827,
+              0.9545
+            ],
+            "within_1sigma": 0.6522,
+            "within_2sigma": 0.8261
+          },
+          "vs_baseline": {
+            "mean": {
+              "MAE_diff": -0.1731,
+              "MAE_diff_CI95": [
+                -0.2948,
+                -0.0562
+              ],
+              "skill": 0.534
+            },
+            "ridge_physics9": {
+              "MAE_diff": -0.0551,
+              "MAE_diff_CI95": [
+                -0.1276,
+                0.0103
+              ],
+              "skill": 0.267
+            }
+          }
+        },
+        "halide_rule": {
+          "MAE": 0.2692,
+          "MAE_CI95": [
+            0.174,
+            0.3781
+          ],
+          "R2": 0.2194,
+          "RMSE": 0.3648,
+          "feature_set": "physics9",
+          "n_repeats": 1,
+          "n_rows": 23,
+          "per_A": {
+            "Ba": 0.5917,
+            "Ca": 0.2451,
+            "Mg": 0.2883,
+            "Sr": 0.0804
+          },
+          "per_B": {
+            "As": 0.3799,
+            "Bi": 0.1181,
+            "P": 0.3134,
+            "Sb": 0.2512
+          },
+          "role": "baseline",
+          "vs_baseline": {
+            "mean": {
+              "MAE_diff": -0.0551,
+              "MAE_diff_CI95": [
+                -0.1339,
+                0.0317
+              ],
+              "skill": 0.17
+            },
+            "ridge_physics9": {
+              "MAE_diff": 0.0629,
+              "MAE_diff_CI95": [
+                -0.0112,
+                0.1393
+              ],
+              "skill": -0.305
+            }
+          }
+        },
+        "mean": {
+          "MAE": 0.3243,
+          "MAE_CI95": [
+            0.213,
+            0.4492
+          ],
+          "R2": -0.093,
+          "RMSE": 0.4317,
+          "feature_set": "physics9",
+          "n_repeats": 1,
+          "n_rows": 23,
+          "per_A": {
+            "Ba": 0.7561,
+            "Ca": 0.261,
+            "Mg": 0.4051,
+            "Sr": 0.1096
+          },
+          "per_B": {
+            "As": 0.3493,
+            "Bi": 0.2621,
+            "P": 0.3033,
+            "Sb": 0.3798
+          },
+          "role": "baseline",
+          "vs_baseline": {
+            "ridge_physics9": {
+              "MAE_diff": 0.118,
+              "MAE_diff_CI95": [
+                0.0111,
+                0.2242
+              ],
+              "skill": -0.572
+            }
+          }
+        },
+        "rf_magpie": {
+          "MAE": 0.2331,
+          "MAE_CI95": [
+            0.1647,
+            0.3077
+          ],
+          "R2": 0.4982,
+          "RMSE": 0.2925,
+          "feature_set": "magpie",
+          "n_repeats": 1,
+          "n_rows": 23,
+          "per_A": {
+            "Ba": 0.4162,
+            "Ca": 0.1889,
+            "Mg": 0.3828,
+            "Sr": 0.0789
+          },
+          "per_B": {
+            "As": 0.3108,
+            "Bi": 0.2042,
+            "P": 0.2447,
+            "Sb": 0.1791
+          },
+          "role": "model",
+          "vs_baseline": {
+            "mean": {
+              "MAE_diff": -0.0912,
+              "MAE_diff_CI95": [
+                -0.1735,
+                -0.0082
+              ],
+              "skill": 0.281
+            },
+            "ridge_physics9": {
+              "MAE_diff": 0.0268,
+              "MAE_diff_CI95": [
+                -0.0208,
+                0.0769
+              ],
+              "skill": -0.13
+            }
+          }
+        },
+        "rf_physics9": {
+          "MAE": 0.2177,
+          "MAE_CI95": [
+            0.1475,
+            0.2917
+          ],
+          "R2": 0.5403,
+          "RMSE": 0.2799,
+          "feature_set": "physics9",
+          "n_repeats": 1,
+          "n_rows": 23,
+          "per_A": {
+            "Ba": 0.3642,
+            "Ca": 0.1641,
+            "Mg": 0.3299,
+            "Sr": 0.1564
+          },
+          "per_B": {
+            "As": 0.2744,
+            "Bi": 0.1612,
+            "P": 0.2801,
+            "Sb": 0.1448
+          },
+          "role": "model",
+          "vs_baseline": {
+            "mean": {
+              "MAE_diff": -0.1066,
+              "MAE_diff_CI95": [
+                -0.1921,
+                -0.0196
+              ],
+              "skill": 0.329
+            },
+            "ridge_physics9": {
+              "MAE_diff": 0.0114,
+              "MAE_diff_CI95": [
+                -0.034,
+                0.0595
+              ],
+              "skill": -0.055
+            }
+          }
+        },
+        "ridge_magpie": {
+          "MAE": 0.2042,
+          "MAE_CI95": [
+            0.139,
+            0.274
+          ],
+          "R2": 0.5953,
+          "RMSE": 0.2627,
+          "feature_set": "magpie",
+          "n_repeats": 1,
+          "n_rows": 23,
+          "per_A": {
+            "Ba": 0.2912,
+            "Ca": 0.1559,
+            "Mg": 0.336,
+            "Sr": 0.1523
+          },
+          "per_B": {
+            "As": 0.3098,
+            "Bi": 0.1828,
+            "P": 0.2068,
+            "Sb": 0.1312
+          },
+          "role": "baseline",
+          "vs_baseline": {
+            "mean": {
+              "MAE_diff": -0.1201,
+              "MAE_diff_CI95": [
+                -0.2345,
+                -0.0086
+              ],
+              "skill": 0.37
+            },
+            "ridge_physics9": {
+              "MAE_diff": -0.0021,
+              "MAE_diff_CI95": [
+                -0.068,
+                0.0542
+              ],
+              "skill": 0.01
+            }
+          }
+        },
+        "ridge_physics9": {
+          "MAE": 0.2063,
+          "MAE_CI95": [
+            0.1312,
+            0.2952
+          ],
+          "R2": 0.5171,
+          "RMSE": 0.2869,
+          "feature_set": "physics9",
+          "n_repeats": 1,
+          "n_rows": 23,
+          "per_A": {
+            "Ba": 0.2063,
+            "Ca": 0.1567,
+            "Mg": 0.4364,
+            "Sr": 0.1249
+          },
+          "per_B": {
+            "As": 0.2227,
+            "Bi": 0.1884,
+            "P": 0.2608,
+            "Sb": 0.1439
+          },
+          "role": "baseline",
+          "vs_baseline": {
+            "mean": {
+              "MAE_diff": -0.118,
+              "MAE_diff_CI95": [
+                -0.2242,
+                -0.0111
+              ],
+              "skill": 0.364
+            }
+          }
+        },
+        "xgb_magpie": {
+          "MAE": 0.2123,
+          "MAE_CI95": [
+            0.1465,
+            0.2801
+          ],
+          "R2": 0.5713,
+          "RMSE": 0.2703,
+          "feature_set": "magpie",
+          "n_repeats": 1,
+          "n_rows": 23,
+          "per_A": {
+            "Ba": 0.2464,
+            "Ca": 0.1828,
+            "Mg": 0.4018,
+            "Sr": 0.0857
+          },
+          "per_B": {
+            "As": 0.2508,
+            "Bi": 0.2219,
+            "P": 0.2337,
+            "Sb": 0.1474
+          },
+          "role": "model",
+          "vs_baseline": {
+            "mean": {
+              "MAE_diff": -0.112,
+              "MAE_diff_CI95": [
+                -0.2203,
+                -0.0085
+              ],
+              "skill": 0.345
+            },
+            "ridge_physics9": {
+              "MAE_diff": 0.006,
+              "MAE_diff_CI95": [
+                -0.0426,
+                0.057
+              ],
+              "skill": -0.029
+            }
+          }
+        },
+        "xgb_physics9": {
+          "MAE": 0.2597,
+          "MAE_CI95": [
+            0.1907,
+            0.328
+          ],
+          "R2": 0.4345,
+          "RMSE": 0.3105,
+          "feature_set": "physics9",
+          "n_repeats": 1,
+          "n_rows": 23,
+          "per_A": {
+            "Ba": 0.4652,
+            "Ca": 0.1823,
+            "Mg": 0.4507,
+            "Sr": 0.1465
+          },
+          "per_B": {
+            "As": 0.3614,
+            "Bi": 0.2319,
+            "P": 0.2907,
+            "Sb": 0.1619
+          },
+          "role": "model",
+          "vs_baseline": {
+            "mean": {
+              "MAE_diff": -0.0646,
+              "MAE_diff_CI95": [
+                -0.1539,
+                0.029
+              ],
+              "skill": 0.199
+            },
+            "ridge_physics9": {
+              "MAE_diff": 0.0534,
+              "MAE_diff_CI95": [
+                0.0009,
+                0.1072
+              ],
+              "skill": -0.259
+            }
+          }
+        }
+      }
+    }
+  },
+  "splits": {
+    "gkf": {
+      "description": "GroupKFold(5) by formula x10 shuffled repeats; MAE = mean over repeats",
+      "n_folds": 50
+    },
+    "loao": {
+      "description": "leave-one-A-out (Mg/Ca/Sr/Ba)",
+      "n_folds": 4
+    },
+    "lobo": {
+      "description": "leave-one-B-family-out (P/As/Sb/Bi)",
+      "n_folds": 4
+    },
+    "loo": {
+      "description": "leave-one-formula-out; v1 comparison only",
+      "n_folds": 23
+    }
+  },
+  "sr3bix3_holdout": {
+    "models": {
+      "gpr_physics9": {
+        "MAE": 0.1601,
+        "per_compound": {
+          "Sr3BiBr3": {
+            "dft": 1.512,
+            "error": -0.1199,
+            "pred": 1.3921,
+            "sigma": 0.1384
+          },
+          "Sr3BiCl3": {
+            "dft": 1.731,
+            "error": -0.2044,
+            "pred": 1.5266,
+            "sigma": 0.1382
+          },
+          "Sr3BiI3": {
+            "dft": 1.324,
+            "error": -0.1559,
+            "pred": 1.1681,
+            "sigma": 0.1431
+          }
+        },
+        "role": "model"
+      },
+      "halide_rule": {
+        "MAE": 0.1091,
+        "per_compound": {
+          "Sr3BiBr3": {
+            "dft": 1.512,
+            "error": 0.1384,
+            "pred": 1.6504
+          },
+          "Sr3BiCl3": {
+            "dft": 1.731,
+            "error": 0.0353,
+            "pred": 1.7663
+          },
+          "Sr3BiI3": {
+            "dft": 1.324,
+            "error": -0.1537,
+            "pred": 1.1703
+          }
+        },
+        "role": "baseline"
+      },
+      "mean": {
+        "MAE": 0.1568,
+        "per_compound": {
+          "Sr3BiBr3": {
+            "dft": 1.512,
+            "error": 0.0633,
+            "pred": 1.5753
+          },
+          "Sr3BiCl3": {
+            "dft": 1.731,
+            "error": -0.1557,
+            "pred": 1.5753
+          },
+          "Sr3BiI3": {
+            "dft": 1.324,
+            "error": 0.2513,
+            "pred": 1.5753
+          }
+        },
+        "role": "baseline"
+      },
+      "rf_magpie": {
+        "MAE": 0.2172,
+        "per_compound": {
+          "Sr3BiBr3": {
+            "dft": 1.512,
+            "error": -0.2591,
+            "pred": 1.2529
+          },
+          "Sr3BiCl3": {
+            "dft": 1.731,
+            "error": -0.1852,
+            "pred": 1.5458
+          },
+          "Sr3BiI3": {
+            "dft": 1.324,
+            "error": -0.2074,
+            "pred": 1.1166
+          }
+        },
+        "role": "model"
+      },
+      "rf_physics9": {
+        "MAE": 0.0558,
+        "per_compound": {
+          "Sr3BiBr3": {
+            "dft": 1.512,
+            "error": 0.1011,
+            "pred": 1.6131
+          },
+          "Sr3BiCl3": {
+            "dft": 1.731,
+            "error": -0.0067,
+            "pred": 1.7243
+          },
+          "Sr3BiI3": {
+            "dft": 1.324,
+            "error": -0.0597,
+            "pred": 1.2643
+          }
+        },
+        "role": "model"
+      },
+      "ridge_magpie": {
+        "MAE": 0.4214,
+        "per_compound": {
+          "Sr3BiBr3": {
+            "dft": 1.512,
+            "error": -0.3872,
+            "pred": 1.1248
+          },
+          "Sr3BiCl3": {
+            "dft": 1.731,
+            "error": -0.3588,
+            "pred": 1.3722
+          },
+          "Sr3BiI3": {
+            "dft": 1.324,
+            "error": -0.5181,
+            "pred": 0.8059
+          }
+        },
+        "role": "baseline"
+      },
+      "ridge_physics9": {
+        "MAE": 0.1551,
+        "per_compound": {
+          "Sr3BiBr3": {
+            "dft": 1.512,
+            "error": -0.1069,
+            "pred": 1.4051
+          },
+          "Sr3BiCl3": {
+            "dft": 1.731,
+            "error": -0.161,
+            "pred": 1.57
+          },
+          "Sr3BiI3": {
+            "dft": 1.324,
+            "error": -0.1974,
+            "pred": 1.1266
+          }
+        },
+        "role": "baseline"
+      },
+      "xgb_magpie": {
+        "MAE": 0.2685,
+        "per_compound": {
+          "Sr3BiBr3": {
+            "dft": 1.512,
+            "error": -0.4096,
+            "pred": 1.1024
+          },
+          "Sr3BiCl3": {
+            "dft": 1.731,
+            "error": -0.1645,
+            "pred": 1.5665
+          },
+          "Sr3BiI3": {
+            "dft": 1.324,
+            "error": -0.2314,
+            "pred": 1.0926
+          }
+        },
+        "role": "model"
+      },
+      "xgb_physics9": {
+        "MAE": 0.1183,
+        "per_compound": {
+          "Sr3BiBr3": {
+            "dft": 1.512,
+            "error": -0.0594,
+            "pred": 1.4526
+          },
+          "Sr3BiCl3": {
+            "dft": 1.731,
+            "error": -0.1074,
+            "pred": 1.6236
+          },
+          "Sr3BiI3": {
+            "dft": 1.324,
+            "error": -0.188,
+            "pred": 1.136
+          }
+        },
+        "role": "model"
+      }
+    },
+    "note": "n = 3. Scored once per release; cannot rank models. Reference: Islam et al., New J. Chem. 2026, 50, 522 (PBE)."
+  },
+  "target": "GGA-PBE band gap (eV)",
+  "v1_reproduction": {
+    "lobo": {
+      "abs_diff": 0.0,
+      "v1": 0.1458,
+      "v2": 0.1458
+    },
+    "loo": {
+      "abs_diff": 0.0,
+      "v1": 0.1512,
+      "v2": 0.1512
+    },
+    "sr3bix3": {
+      "v1": 0.16,
+      "v2": 0.1601
+    }
+  },
+  "version": "v2.0-dev"
+}
