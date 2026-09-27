@@ -1,4 +1,6 @@
 # sha256  path (relative to repo root). Written by a3bx3.manifest.record.
 0fc16bb337ffffdc469500cdbc3cbe515e9712dc93fa6304f2780b27872a93d7  data/raw/jarvis_a3bx3.json
 b02d96985e18437c2add160044e97b56b0903098408c13e60a13e52fc45a8fd3  data/raw/literature/a3bx3_literature_v1.csv
+178f8f28e7a26955308cbbcd3d7921964d017937d86410e3fdc09df3f61a198a  data/raw/literature/corrections.csv
+93aa03263955243b7884678bd078c118d3a396d836470a44101070c18cf6ae6f  data/raw/literature/literature_harvest_2026-09-27.csv
 393c09acdc98acb7d445f9cf673e6b1124802eb224586fb25296aa412e5e6f7c  data/raw/oqmd_a3bx3.json

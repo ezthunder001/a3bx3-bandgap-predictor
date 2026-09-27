@@ -1,0 +1,20 @@
+formula,field,old,new,action,evidence,doi
+Mg3BiI3,functional,PBE,HSE06,relabel,"RSC Adv 15 (2025) 5766 Table 4: Mg3BiI3 GGA 0.224, HSE06 0.867; v1 stored 0.867 as PBE. Elastic constants 65.09/21.42/15.81 match that paper's Table 2.",10.1039/d4ra09093d
+Mg3BiI3,doi,10.1039/D4RA08680C,10.1039/d4ra09093d,fix_doi,"CrossRef returns 404 for 10.1039/D4RA08680C; the values come from 10.1039/d4ra09093d (checked 2026-09-27).",10.1039/d4ra09093d
+Mg3BiBr3,functional,PBE,HSE06,relabel,"RSC Adv 15 (2025) 5766 Table 4: Mg3BiBr3 GGA 1.071, HSE06 1.626; v1 stored 1.626 as PBE. Elastic constants 76.36/18.58/22.49 match Table 2.",10.1039/d4ra09093d
+Mg3BiBr3,doi,10.1039/D4RA08680C,10.1039/d4ra09093d,fix_doi,"CrossRef returns 404 for 10.1039/D4RA08680C; the values come from 10.1039/d4ra09093d (checked 2026-09-27).",10.1039/d4ra09093d
+Sr3BiI3,doi,"NJC 2026,50,522 Islam",10.1039/d5nj02800k,fix_doi,"CrossRef: Islam et al., New J. Chem. 50 (2026) 522-536, 'First-principles analysis of eco-friendly Sr3BiX3 (X = I, Br, and Cl)'.",10.1039/d5nj02800k
+Sr3BiBr3,doi,"NJC 2026,50,522 Islam",10.1039/d5nj02800k,fix_doi,"CrossRef: Islam et al., New J. Chem. 50 (2026) 522-536 covers Sr3BiX3.",10.1039/d5nj02800k
+Sr3BiCl3,doi,"NJC 2026,50,522 Islam",10.1039/d5nj02800k,fix_doi,"CrossRef: Islam et al., New J. Chem. 50 (2026) 522-536 covers Sr3BiX3.",10.1039/d5nj02800k
+Ca3BiI3,status,,source_unverified,sensitivity_only,"Cited NJC 2026,50,522 (10.1039/d5nj02800k) covers Sr3BiX3 only. Probable source 10.1016/j.mseb.2025.118871 (Ca3BiX3) is paywalled; value not verified.",
+Ca3BiBr3,status,,source_unverified,sensitivity_only,"Cited NJC 2026,50,522 (10.1039/d5nj02800k) covers Sr3BiX3 only. Probable source 10.1016/j.mseb.2025.118871 is paywalled; value not verified.",
+Ca3BiCl3,status,,source_unverified,sensitivity_only,"Cited NJC 2026,50,522 (10.1039/d5nj02800k) covers Sr3BiX3 only. Probable source 10.1016/j.mseb.2025.118871 is paywalled; value not verified.",
+Ca3AsI3,status,,source_mismatch,exclude,"Cited 10.1134/S1063782625603371 is a Ca3AsBr3 paper (CrossRef title; abstract gives Ca3AsBr3 1.58 eV GGA). The value belongs to a different formula.",10.1134/S1063782625603371
+Ca3SbF3,status,,source_unverified,exclude,"Cited 10.1007/s11082-024-07968-2 covers Ca3SbCl3 only (CrossRef title). No verified source for this value.",
+Ca3SbBr3,status,,source_unverified,exclude,"Cited 10.1007/s11082-024-07968-2 covers Ca3SbCl3 only (CrossRef title). No verified source for this value.",
+Ca3SbI3,status,,source_unverified,exclude,"Cited 10.1007/s11082-024-07968-2 covers Ca3SbCl3 only (CrossRef title). No verified source for this value.",
+Ca3SbCl3,Eg_eV,1.83,1.814,correct_value,"Abstract of 10.1007/s11082-024-07968-2: 'direct band gap of 1.814 eV using GGA, while the HSE06 method indicates 2.67 eV'. v1 stored 1.83. The abstract says GGA without naming the flavour.",10.1007/s11082-024-07968-2
+Ca3SbCl3,status,,functional_unconfirmed,flag,"Accessible text says 'GGA' only; v1 recorded it as PBE. Kept in primary, flagged.",10.1007/s11082-024-07968-2
+Sr3PCl3,status,,functional_unconfirmed,flag,"Abstract of 10.1007/s11082-024-07388-2 says 'GGA' only; full text not reachable. v1 recorded it as PBE. Kept in primary, flagged.",10.1007/s11082-024-07388-2
+Sr3PBr3,status,,functional_unconfirmed,flag,"Abstract of 10.1007/s11082-024-07388-2 says 'GGA' only; full text not reachable. v1 recorded it as PBE. Kept in primary, flagged.",10.1007/s11082-024-07388-2
+Ca3AsCl3,status,,source_unverified,sensitivity_only,"DOI field is truncated (10.1016/j.mtcomm.2024); CrossRef search of Mater. Today Commun. found no Ca3AsCl3 paper. Candidates 10.1016/j.ssc.2024.115623 and 10.1016/j.jpcs.2026.113610 are paywalled.",
