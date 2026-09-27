@@ -80,10 +80,17 @@ def read_csv(path) -> list[dict]:
 
 
 def build(paths: Paths | None = None) -> dict:
-    """Write data/processed/features_<set>.csv for family + holdout rows (for inspection;
+    """Write data/processed/features_<set>.csv for every dataset formula + holdout (for inspection;
     the evaluator recomputes from the same functions so the two cannot drift)."""
+    from .config import load_config
     paths = (paths or Paths()).ensure()
-    rows = read_csv(paths.processed / "family.csv") + read_csv(paths.processed / "holdout_sr3bix3.csv")
+    seen, rows = set(), []
+    for name in load_config()["data"]["datasets"]:
+        for r in read_csv(paths.processed / f"family_{name}.csv"):
+            if r["formula"] not in seen:
+                seen.add(r["formula"])
+                rows.append(r)
+    rows = sorted(rows, key=lambda r: r["formula"]) + read_csv(paths.processed / "holdout_sr3bix3.csv")
     out = {}
     for fs in ("physics9", "magpie"):
         M, names = featurize_rows(rows, fs)

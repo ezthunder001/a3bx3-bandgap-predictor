@@ -9,26 +9,34 @@ data:
   raw_dir: data/raw
   literature_dir: data/raw/literature
   manifest: data/raw/MANIFEST.sha256
-  # Trainable label functionals. The target is the GGA-PBE gap.
-  # include_soc = true also admits rows labelled "PBE+SOC" (default off: SOC
-  # shifts Bi/Sb gaps strongly, so mixing it silently would be label noise).
+  # Label policy (coordinator decision 2026-09-27, see DATA_CARD):
+  #   primary target = GGA-PBE WITHOUT spin-orbit coupling (soc no or unknown; unknown is
+  #   flagged). PBE+SOC rows form a separate sensitivity target and are never pooled.
+  #   Several no-SOC PBE values for one formula -> label = their median; spread logged,
+  #   spread > conflict_threshold_eV flagged high_conflict (kept, reported).
   target_functional: PBE
-  include_soc: false
-  # Conflict rule: when two sources give the same formula gaps that differ by
-  # more than this, both rows are logged and one is picked by the rule in curate.py.
+  soc_functional: PBE+SOC
   conflict_threshold_eV: 0.2
-  # Locked final holdout. Absent from every training fold (tests enforce it).
+  # Corrections in data/raw/literature/corrections.csv apply to this file only.
+  corrections_apply_to: a3bx3_literature_v1.csv
+  # Locked final holdout: the v1 reference rows (Islam et al. 2026). Every other row for
+  # these formulas, from any source, is excluded. Absent from every training fold (tested).
   holdout_formulas: [Sr3BiI3, Sr3BiBr3, Sr3BiCl3]
-  # Known provenance defects, reported by tests rather than silently passing.
-  # A row whose 'doi' is not a resolvable DOI string. Do NOT invent DOIs to clear this.
+  # Datasets built by curate.py. `use` = which row classes enter; see corrections actions.
+  datasets:
+    primary:         {functional: PBE,     use: [primary],                   drop_preprint: false}
+    verified_only:   {functional: PBE,     use: [primary],                   drop_preprint: true}
+    plus_unverified: {functional: PBE,     use: [primary, sensitivity_only], drop_preprint: false}
+    soc:             {functional: PBE+SOC, use: [primary],                   drop_preprint: false}
+  # Kill checkpoint K1 (design section 9): unique primary formulas must reach this.
+  k1_min_primary_formulas: 35
+  # Known provenance defects (after corrections), reported by tests rather than silently
+  # passing: rows with neither a well-formed DOI nor an arXiv id. Never invent DOIs.
   known_doi_issues:
-    - {formula: Ca3BiI3, doi: "NJC 2026,50,522 Islam", issue: citation string, no DOI recorded}
-    - {formula: Ca3BiBr3, doi: "NJC 2026,50,522 Islam", issue: citation string, no DOI recorded}
-    - {formula: Ca3BiCl3, doi: "NJC 2026,50,522 Islam", issue: citation string, no DOI recorded}
-    - {formula: Sr3BiI3, doi: "NJC 2026,50,522 Islam", issue: citation string, no DOI recorded}
-    - {formula: Sr3BiBr3, doi: "NJC 2026,50,522 Islam", issue: citation string, no DOI recorded}
-    - {formula: Sr3BiCl3, doi: "NJC 2026,50,522 Islam", issue: citation string, no DOI recorded}
-    - {formula: Ca3AsCl3, doi: "10.1016/j.mtcomm.2024", issue: truncated Elsevier DOI (journal + year only)}
+    - {formula: Ca3BiI3, doi: "NJC 2026,50,522 Islam", issue: citation string for a Sr3BiX3-only paper; sensitivity_only}
+    - {formula: Ca3BiBr3, doi: "NJC 2026,50,522 Islam", issue: citation string for a Sr3BiX3-only paper; sensitivity_only}
+    - {formula: Ca3BiCl3, doi: "NJC 2026,50,522 Islam", issue: citation string for a Sr3BiX3-only paper; sensitivity_only}
+    - {formula: Ca3AsCl3, doi: "10.1016/j.mtcomm.2024", issue: truncated Elsevier DOI; sensitivity_only}
   mp:
     # Filled from the fetch run (MPRester.get_database_version()); null = never fetched.
     db_version: null
@@ -75,3 +83,15 @@ evaluate:
   ci: 0.95
   headline_model: gpr_physics9
   headline_split: lobo
+  headline_dataset: primary
+  # LOO is a v1 comparison only, so it runs on the primary set; sensitivity sets use the
+  # three grouped splits. The locked holdout is scored for the no-SOC sets only (the
+  # holdout label is a no-SOC PBE value).
+  splits_by_dataset:
+    primary: [lobo, loao, gkf, loo]
+    verified_only: [lobo, loao, gkf]
+    plus_unverified: [lobo, loao, gkf]
+    soc: [lobo, loao, gkf]
+  holdout_datasets: [primary, verified_only, plus_unverified]
+  # Label noise floor: code-to-code spread for one formula in the harvest (see MODEL_CARD).
+  label_noise_floor_eV: [0.1, 0.2]

@@ -28,7 +28,13 @@ HARVEST_COLUMNS = ["formula", "A", "B", "X", "Eg_eV", "functional", "soc", "gap_
 
 RECORD_FIELDS = ["formula", "A", "B", "X", "Eg_eV", "functional", "soc", "gap_type",
                  "lattice_a_A", "doi", "doi_verified", "arxiv_id", "year", "note",
-                 "source_file", "source_row", "schema", "parse_error"]
+                 "code", "evidence", "fetch_status", "source_file", "source_row", "schema",
+                 "parse_error", "status", "source_id", "preprint"]
+
+# fetch_status values meaning "the number was read from the source text"
+READ_STATUSES = {"ok", "verified", "fetched", "full_text", "abstract_only"}
+CORRECTIONS_FILE = "corrections.csv"
+CORRECTION_COLUMNS = ["formula", "field", "old", "new", "action", "evidence", "doi"]
 
 
 def detect_schema(header: list[str]) -> str:
@@ -97,19 +103,48 @@ def load_file(path: Path) -> list[dict]:
                 rec["doi_verified"] = True if dv in {"yes", "true", "1", "y"} else (
                     False if dv in {"no", "false", "0", "n"} else None)
                 rec["arxiv_id"] = (r.get("arxiv_id") or "").strip() or None
+                rec["code"] = (r.get("code") or "").strip() or None
+                rec["evidence"] = (r.get("evidence") or "").strip() or None
                 status = (r.get("fetch_status") or "").strip()
-                if status and status.lower() not in {"ok", "verified", "fetched"}:
+                rec["fetch_status"] = status or None
+                if status and status.lower() not in READ_STATUSES:
                     rec["parse_error"] = f"fetch_status={status}"
             if rec["Eg_eV"] is None and not rec["parse_error"]:
                 rec["parse_error"] = "no band gap value"
         except (KeyError, ValueError) as e:
             rec["parse_error"] = f"{type(e).__name__}: {e}"
+        rec["status"] = "ok"
+        set_source_id(rec)
         out.append(rec)
     return out
 
 
+def set_source_id(rec: dict) -> None:
+    """One id per source: the lower-cased DOI when it is a DOI, else arXiv:<id>, else the raw
+    citation string. A row with only an arXiv id is a preprint."""
+    doi = (rec.get("doi") or "").strip()
+    if doi.lower().startswith("10."):
+        rec["source_id"] = doi.lower()
+    elif rec.get("arxiv_id"):
+        rec["source_id"] = f"arXiv:{rec['arxiv_id']}"
+    else:
+        rec["source_id"] = doi or None
+    rec["preprint"] = not doi.lower().startswith("10.") and bool(rec.get("arxiv_id"))
+
+
+def load_corrections(literature_dir: Path) -> list[dict]:
+    p = Path(literature_dir) / CORRECTIONS_FILE
+    if not p.exists():
+        return []
+    with open(p, encoding="utf-8", newline="") as f:
+        reader = csv.DictReader(f)
+        if reader.fieldnames != CORRECTION_COLUMNS:
+            raise ValueError(f"{p.name}: columns must be {CORRECTION_COLUMNS}, got {reader.fieldnames}")
+        return [{k: (v or "").strip() for k, v in r.items()} for r in reader]
+
+
 def load_all(literature_dir: Path) -> list[dict]:
-    files = sorted(Path(literature_dir).glob("*.csv"))
+    files = sorted(p for p in Path(literature_dir).glob("*.csv") if p.name != CORRECTIONS_FILE)
     if not files:
         raise FileNotFoundError(f"no literature CSV in {literature_dir}")
     rows: list[dict] = []
