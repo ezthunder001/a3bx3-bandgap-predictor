@@ -17,12 +17,24 @@ named baselines on the same grouped folds. Full tables, with bootstrap 95 % CIs:
 [`reports/metrics_v2.md`](reports/metrics_v2.md) / `reports/metrics_v2.json`. Data and model
 limits: [DATA_CARD.md](DATA_CARD.md), [MODEL_CARD.md](MODEL_CARD.md).
 
-It reproduces the v1 GPR exactly (LOO 0.1512, LOBO 0.1458 eV). What it adds, held-out only:
-leave-one-B-out GPR MAE **0.146 [0.087, 0.206] eV** vs mean baseline 0.329 and ridge 0.195.
-The GPR-minus-ridge difference is −0.049 [−0.109, +0.009] eV, so at n = 23 the GPR is not
-separable from a linear fit. Repeated GroupKFold gives 0.217 eV, and leave-one-A-out
-0.333 eV (mean baseline 0.376). RF/XGB do not beat the GPR. Materials Project data is not in
-yet (no API key). The v1 results below are unchanged.
+> **Note on v1 data (found 2026-09-27, fixed in v2):** the v1 training set contains two
+> HSE06 band gaps stored as PBE: Mg3BiI3 0.867 eV (PBE is 0.224) and Mg3BiBr3 1.626 eV
+> (PBE is 1.071), from doi 10.1039/d4ra09093d, Table 4. Several other v1 rows cite a
+> source that does not contain their value. The v1 numbers below are kept as a historical
+> record and were computed on those labels. Details: [DATA_CARD.md](DATA_CARD.md)
+> ("v1 label errors found").
+
+v2 adds a literature harvest (37 sources) and a correction file, which gives 39 primary
+formulas. The label is the median no-SOC GGA-PBE gap per formula. Held-out only:
+
+- **Leave-one-B-out:** GPR MAE **0.111 [0.080, 0.144] eV** against 0.526 for the mean
+  baseline and 0.334 for ridge.
+- **Without the preprint rows** (31 formulas): 0.137 [0.098, 0.177] eV.
+- **Leave-one-A-out:** 0.505 eV. New A-sites are not supported.
+
+The label noise floor, the code-to-code spread for one compound, is 0.1–0.2 eV. The
+Materials Project data is not in yet because there is no API key. The v1 results below are
+unchanged.
 
 ---
 
