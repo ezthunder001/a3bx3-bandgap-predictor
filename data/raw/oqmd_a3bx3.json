@@ -1,0 +1,844 @@
+{
+ "api_version": "1.2.0",
+ "doi": "10.1007/s11837-013-0755-4",
+ "endpoint": "https://oqmd.org/optimade/v1/structures",
+ "filter": "chemical_formula_anonymous=\"A3B3C\" AND nelements=3 AND elements HAS ANY \"Mg\",\"Ca\",\"Sr\",\"Ba\" AND elements HAS ANY \"P\",\"As\",\"Sb\",\"Bi\" AND elements HAS ANY \"F\",\"Cl\",\"Br\",\"I\"",
+ "functional": "PBE (qmpy)",
+ "implementation": {
+  "name": "qmpy",
+  "version": "1.6.0"
+ },
+ "n": 23,
+ "records": [
+  {
+   "_oqmd_band_gap": 1.725,
+   "_oqmd_calculation_id": 20581,
+   "_oqmd_delta_e": -1.9341,
+   "_oqmd_entry_id": 1714,
+   "_oqmd_icsd_id": 426,
+   "_oqmd_spacegroup": "Pm-3m",
+   "_oqmd_stability": 0.0,
+   "_oqmd_volume": 207.621,
+   "chemical_formula_reduced": "AsBr3Ca3",
+   "elements": [
+    "As",
+    "Br",
+    "Ca"
+   ],
+   "id": "4076544",
+   "lattice_vectors": [
+    [
+     5.921391,
+     0.0,
+     0.0
+    ],
+    [
+     0.0,
+     5.921391,
+     0.0
+    ],
+    [
+     0.0,
+     0.0,
+     5.921391
+    ]
+   ],
+   "nsites": 7,
+   "space_group_it_number": 221
+  },
+  {
+   "_oqmd_band_gap": 1.938,
+   "_oqmd_calculation_id": 20582,
+   "_oqmd_delta_e": -2.2175,
+   "_oqmd_entry_id": 22746,
+   "_oqmd_icsd_id": 202075,
+   "_oqmd_spacegroup": "Pm-3m",
+   "_oqmd_stability": 0.0,
+   "_oqmd_volume": 183.541,
+   "chemical_formula_reduced": "Ca3Cl3P",
+   "elements": [
+    "Ca",
+    "Cl",
+    "P"
+   ],
+   "id": "4076547",
+   "lattice_vectors": [
+    [
+     5.683,
+     0.0,
+     0.0
+    ],
+    [
+     0.0,
+     5.683,
+     0.0
+    ],
+    [
+     0.0,
+     0.0,
+     5.683
+    ]
+   ],
+   "nsites": 7,
+   "space_group_it_number": 221
+  },
+  {
+   "_oqmd_band_gap": 1.929,
+   "_oqmd_calculation_id": 20763,
+   "_oqmd_delta_e": -2.1717,
+   "_oqmd_entry_id": 6659,
+   "_oqmd_icsd_id": 36002,
+   "_oqmd_spacegroup": "Pm-3m",
+   "_oqmd_stability": 0.0,
+   "_oqmd_volume": 191.099,
+   "chemical_formula_reduced": "AsCa3Cl3",
+   "elements": [
+    "As",
+    "Ca",
+    "Cl"
+   ],
+   "id": "4076694",
+   "lattice_vectors": [
+    [
+     5.759957,
+     0.0,
+     0.0
+    ],
+    [
+     0.0,
+     5.759957,
+     0.0
+    ],
+    [
+     0.0,
+     0.0,
+     5.759957
+    ]
+   ],
+   "nsites": 7,
+   "space_group_it_number": 221
+  },
+  {
+   "_oqmd_band_gap": 1.774,
+   "_oqmd_calculation_id": 3391418,
+   "_oqmd_delta_e": -2.1995,
+   "_oqmd_entry_id": 1345855,
+   "_oqmd_icsd_id": null,
+   "_oqmd_spacegroup": "Pm-3m",
+   "_oqmd_stability": 0.0,
+   "_oqmd_volume": 226.087,
+   "chemical_formula_reduced": "AsCl3Sr3",
+   "elements": [
+    "As",
+    "Cl",
+    "Sr"
+   ],
+   "id": "5735895",
+   "lattice_vectors": [
+    [
+     6.09197734,
+     0.0,
+     0.0
+    ],
+    [
+     0.0,
+     6.09197734,
+     0.0
+    ],
+    [
+     0.0,
+     0.0,
+     6.09197734
+    ]
+   ],
+   "nsites": 7,
+   "space_group_it_number": 221
+  },
+  {
+   "_oqmd_band_gap": 2.321,
+   "_oqmd_calculation_id": 3392268,
+   "_oqmd_delta_e": -2.7739,
+   "_oqmd_entry_id": 1347755,
+   "_oqmd_icsd_id": null,
+   "_oqmd_spacegroup": "Pm-3m",
+   "_oqmd_stability": 0.361,
+   "_oqmd_volume": 148.296,
+   "chemical_formula_reduced": "AsCa3F3",
+   "elements": [
+    "As",
+    "Ca",
+    "F"
+   ],
+   "id": "5736022",
+   "lattice_vectors": [
+    [
+     5.293097686,
+     0.0,
+     0.0
+    ],
+    [
+     0.0,
+     5.293097686,
+     0.0
+    ],
+    [
+     0.0,
+     0.0,
+     5.293097686
+    ]
+   ],
+   "nsites": 7,
+   "space_group_it_number": 221
+  },
+  {
+   "_oqmd_band_gap": 1.083,
+   "_oqmd_calculation_id": 3392327,
+   "_oqmd_delta_e": -2.191,
+   "_oqmd_entry_id": 1348096,
+   "_oqmd_icsd_id": null,
+   "_oqmd_spacegroup": "Pm-3m",
+   "_oqmd_stability": 0.033,
+   "_oqmd_volume": 272.228,
+   "chemical_formula_reduced": "AsBa3Cl3",
+   "elements": [
+    "As",
+    "Ba",
+    "Cl"
+   ],
+   "id": "5736051",
+   "lattice_vectors": [
+    [
+     6.481032537,
+     0.0,
+     0.0
+    ],
+    [
+     0.0,
+     6.481032537,
+     0.0
+    ],
+    [
+     0.0,
+     0.0,
+     6.481032537
+    ]
+   ],
+   "nsites": 7,
+   "space_group_it_number": 221
+  },
+  {
+   "_oqmd_band_gap": 0.964,
+   "_oqmd_calculation_id": 3456182,
+   "_oqmd_delta_e": -2.2087,
+   "_oqmd_entry_id": 1384858,
+   "_oqmd_icsd_id": null,
+   "_oqmd_spacegroup": "Pm-3m",
+   "_oqmd_stability": 0.033,
+   "_oqmd_volume": 262.733,
+   "chemical_formula_reduced": "Ba3Cl3P",
+   "elements": [
+    "Ba",
+    "Cl",
+    "P"
+   ],
+   "id": "5759874",
+   "lattice_vectors": [
+    [
+     6.404792367,
+     0.0,
+     0.0
+    ],
+    [
+     0.0,
+     6.404792367,
+     0.0
+    ],
+    [
+     0.0,
+     0.0,
+     6.404792367
+    ]
+   ],
+   "nsites": 7,
+   "space_group_it_number": 221
+  },
+  {
+   "_oqmd_band_gap": 1.774,
+   "_oqmd_calculation_id": 3469310,
+   "_oqmd_delta_e": -2.232,
+   "_oqmd_entry_id": 1367272,
+   "_oqmd_icsd_id": null,
+   "_oqmd_spacegroup": "Pm-3m",
+   "_oqmd_stability": 0.0,
+   "_oqmd_volume": 219.273,
+   "chemical_formula_reduced": "Cl3PSr3",
+   "elements": [
+    "Cl",
+    "P",
+    "Sr"
+   ],
+   "id": "5763971",
+   "lattice_vectors": [
+    [
+     6.030154931,
+     0.0,
+     0.0
+    ],
+    [
+     0.0,
+     6.030154931,
+     0.0
+    ],
+    [
+     0.0,
+     0.0,
+     6.030154931
+    ]
+   ],
+   "nsites": 7,
+   "space_group_it_number": 221
+  },
+  {
+   "_oqmd_band_gap": 1.721,
+   "_oqmd_calculation_id": 3469438,
+   "_oqmd_delta_e": -1.8425,
+   "_oqmd_entry_id": 1370338,
+   "_oqmd_icsd_id": null,
+   "_oqmd_spacegroup": "Pm-3m",
+   "_oqmd_stability": 0.005,
+   "_oqmd_volume": 227.635,
+   "chemical_formula_reduced": "Br3Ca3Sb",
+   "elements": [
+    "Br",
+    "Ca",
+    "Sb"
+   ],
+   "id": "5764075",
+   "lattice_vectors": [
+    [
+     6.105853801,
+     0.0,
+     0.0
+    ],
+    [
+     0.0,
+     6.105853801,
+     0.0
+    ],
+    [
+     0.0,
+     0.0,
+     6.105853801
+    ]
+   ],
+   "nsites": 7,
+   "space_group_it_number": 221
+  },
+  {
+   "_oqmd_band_gap": 1.624,
+   "_oqmd_calculation_id": 3469742,
+   "_oqmd_delta_e": -1.9833,
+   "_oqmd_entry_id": 1370866,
+   "_oqmd_icsd_id": null,
+   "_oqmd_spacegroup": "Pm-3m",
+   "_oqmd_stability": 0.0,
+   "_oqmd_volume": 246.179,
+   "chemical_formula_reduced": "AsBr3Sr3",
+   "elements": [
+    "As",
+    "Br",
+    "Sr"
+   ],
+   "id": "5764150",
+   "lattice_vectors": [
+    [
+     6.267345377,
+     0.0,
+     0.0
+    ],
+    [
+     0.0,
+     6.267345377,
+     0.0
+    ],
+    [
+     0.0,
+     0.0,
+     6.267345377
+    ]
+   ],
+   "nsites": 7,
+   "space_group_it_number": 221
+  },
+  {
+   "_oqmd_band_gap": 1.619,
+   "_oqmd_calculation_id": 3470212,
+   "_oqmd_delta_e": -1.9146,
+   "_oqmd_entry_id": 1375477,
+   "_oqmd_icsd_id": null,
+   "_oqmd_spacegroup": "Pm-3m",
+   "_oqmd_stability": 0.0,
+   "_oqmd_volume": 267.154,
+   "chemical_formula_reduced": "Br3SbSr3",
+   "elements": [
+    "Br",
+    "Sb",
+    "Sr"
+   ],
+   "id": "5764351",
+   "lattice_vectors": [
+    [
+     6.440518085,
+     0.0,
+     0.0
+    ],
+    [
+     0.0,
+     6.440518085,
+     0.0
+    ],
+    [
+     0.0,
+     0.0,
+     6.440518085
+    ]
+   ],
+   "nsites": 7,
+   "space_group_it_number": 221
+  },
+  {
+   "_oqmd_band_gap": 1.468,
+   "_oqmd_calculation_id": 3470237,
+   "_oqmd_delta_e": -1.5876,
+   "_oqmd_entry_id": 1376224,
+   "_oqmd_icsd_id": null,
+   "_oqmd_spacegroup": "Pm-3m",
+   "_oqmd_stability": 0.0,
+   "_oqmd_volume": 301.32,
+   "chemical_formula_reduced": "I3SbSr3",
+   "elements": [
+    "I",
+    "Sb",
+    "Sr"
+   ],
+   "id": "5764373",
+   "lattice_vectors": [
+    [
+     6.704135059,
+     0.0,
+     0.0
+    ],
+    [
+     0.0,
+     6.704135059,
+     0.0
+    ],
+    [
+     0.0,
+     0.0,
+     6.704135059
+    ]
+   ],
+   "nsites": 7,
+   "space_group_it_number": 221
+  },
+  {
+   "_oqmd_band_gap": 1.762,
+   "_oqmd_calculation_id": 3470286,
+   "_oqmd_delta_e": -1.8482,
+   "_oqmd_entry_id": 1377484,
+   "_oqmd_icsd_id": null,
+   "_oqmd_spacegroup": "Pm-3m",
+   "_oqmd_stability": 0.019,
+   "_oqmd_volume": 272.744,
+   "chemical_formula_reduced": "BiBr3Sr3",
+   "elements": [
+    "Bi",
+    "Br",
+    "Sr"
+   ],
+   "id": "5764413",
+   "lattice_vectors": [
+    [
+     6.485123207,
+     0.0,
+     0.0
+    ],
+    [
+     0.0,
+     6.485123207,
+     0.0
+    ],
+    [
+     0.0,
+     0.0,
+     6.485123207
+    ]
+   ],
+   "nsites": 7,
+   "space_group_it_number": 221
+  },
+  {
+   "_oqmd_band_gap": 1.4189999999999996,
+   "_oqmd_calculation_id": 4477506,
+   "_oqmd_delta_e": -1.5225,
+   "_oqmd_entry_id": 1732247,
+   "_oqmd_icsd_id": null,
+   "_oqmd_spacegroup": "Pm-3m",
+   "_oqmd_stability": 0.069,
+   "_oqmd_volume": 243.145,
+   "chemical_formula_reduced": "AsCa3I3",
+   "elements": [
+    "As",
+    "Ca",
+    "I"
+   ],
+   "id": "6033961",
+   "lattice_vectors": [
+    [
+     4.413399,
+     -4.413399,
+     0.0
+    ],
+    [
+     4.413399,
+     4.413399,
+     0.0
+    ],
+    [
+     -1e-06,
+     0.0,
+     6.241489
+    ]
+   ],
+   "nsites": 7,
+   "space_group_it_number": 221
+  },
+  {
+   "_oqmd_band_gap": 1.7349999999999999,
+   "_oqmd_calculation_id": 4477508,
+   "_oqmd_delta_e": -1.9589,
+   "_oqmd_entry_id": 1732248,
+   "_oqmd_icsd_id": null,
+   "_oqmd_spacegroup": "Pm-3m",
+   "_oqmd_stability": 0.016,
+   "_oqmd_volume": 204.409,
+   "chemical_formula_reduced": "Br3Ca3P",
+   "elements": [
+    "Br",
+    "Ca",
+    "P"
+   ],
+   "id": "6033962",
+   "lattice_vectors": [
+    [
+     5.890698,
+     0.0,
+     0.0
+    ],
+    [
+     0.0,
+     5.890698,
+     0.0
+    ],
+    [
+     0.0,
+     0.0,
+     5.890698
+    ]
+   ],
+   "nsites": 7,
+   "space_group_it_number": 221
+  },
+  {
+   "_oqmd_band_gap": 1.4200000000000004,
+   "_oqmd_calculation_id": 4477510,
+   "_oqmd_delta_e": -1.5182,
+   "_oqmd_entry_id": 1732249,
+   "_oqmd_icsd_id": null,
+   "_oqmd_spacegroup": "Pm-3m",
+   "_oqmd_stability": 0.123,
+   "_oqmd_volume": 237.977,
+   "chemical_formula_reduced": "Ca3I3P",
+   "elements": [
+    "Ca",
+    "I",
+    "P"
+   ],
+   "id": "6033963",
+   "lattice_vectors": [
+    [
+     4.381908,
+     2.529896,
+     3.577813
+    ],
+    [
+     -4.381908,
+     2.529896,
+     3.577813
+    ],
+    [
+     0.0,
+     -5.059791,
+     3.577813
+    ]
+   ],
+   "nsites": 7,
+   "space_group_it_number": 221
+  },
+  {
+   "_oqmd_band_gap": 2.265,
+   "_oqmd_calculation_id": 4509659,
+   "_oqmd_delta_e": -2.8832,
+   "_oqmd_entry_id": 1748337,
+   "_oqmd_icsd_id": null,
+   "_oqmd_spacegroup": "Pm-3m",
+   "_oqmd_stability": 0.278,
+   "_oqmd_volume": 140.64,
+   "chemical_formula_reduced": "Ca3F3P",
+   "elements": [
+    "Ca",
+    "F",
+    "P"
+   ],
+   "id": "6046031",
+   "lattice_vectors": [
+    [
+     3.67723,
+     2.12305,
+     3.002446
+    ],
+    [
+     -3.67723,
+     2.12305,
+     3.002446
+    ],
+    [
+     0.0,
+     -4.2461,
+     3.002446
+    ]
+   ],
+   "nsites": 7,
+   "space_group_it_number": 221
+  },
+  {
+   "_oqmd_band_gap": 1.452,
+   "_oqmd_calculation_id": 4546764,
+   "_oqmd_delta_e": -1.2305,
+   "_oqmd_entry_id": 1765458,
+   "_oqmd_icsd_id": null,
+   "_oqmd_spacegroup": "Pm-3m",
+   "_oqmd_stability": 0.101,
+   "_oqmd_volume": 166.679,
+   "chemical_formula_reduced": "AsBr3Mg3",
+   "elements": [
+    "As",
+    "Br",
+    "Mg"
+   ],
+   "id": "6061611",
+   "lattice_vectors": [
+    [
+     3.891452,
+     2.246731,
+     3.177357
+    ],
+    [
+     -3.891452,
+     2.246731,
+     3.177357
+    ],
+    [
+     0.0,
+     -4.493462,
+     3.177357
+    ]
+   ],
+   "nsites": 7,
+   "space_group_it_number": 221
+  },
+  {
+   "_oqmd_band_gap": 2.3569999999999998,
+   "_oqmd_calculation_id": 4546778,
+   "_oqmd_delta_e": -1.5649,
+   "_oqmd_entry_id": 1765465,
+   "_oqmd_icsd_id": null,
+   "_oqmd_spacegroup": "Pm-3m",
+   "_oqmd_stability": 0.067,
+   "_oqmd_volume": 142.508,
+   "chemical_formula_reduced": "Cl3Mg3P",
+   "elements": [
+    "Cl",
+    "Mg",
+    "P"
+   ],
+   "id": "6061618",
+   "lattice_vectors": [
+    [
+     5.223315,
+     0.0,
+     0.0
+    ],
+    [
+     0.0,
+     5.223315,
+     0.0
+    ],
+    [
+     0.0,
+     0.0,
+     5.223315
+    ]
+   ],
+   "nsites": 7,
+   "space_group_it_number": 221
+  },
+  {
+   "_oqmd_band_gap": 2.252,
+   "_oqmd_calculation_id": 4547529,
+   "_oqmd_delta_e": -1.5067,
+   "_oqmd_entry_id": 1777564,
+   "_oqmd_icsd_id": null,
+   "_oqmd_spacegroup": "Pm-3m",
+   "_oqmd_stability": 0.074,
+   "_oqmd_volume": 149.12,
+   "chemical_formula_reduced": "AsCl3Mg3",
+   "elements": [
+    "As",
+    "Cl",
+    "Mg"
+   ],
+   "id": "6061972",
+   "lattice_vectors": [
+    [
+     5.302881,
+     0.0,
+     0.0
+    ],
+    [
+     0.0,
+     5.302881,
+     0.0
+    ],
+    [
+     0.0,
+     0.0,
+     5.302881
+    ]
+   ],
+   "nsites": 7,
+   "space_group_it_number": 221
+  },
+  {
+   "_oqmd_band_gap": 2.2800000000000002,
+   "_oqmd_calculation_id": 4558940,
+   "_oqmd_delta_e": -1.4767,
+   "_oqmd_entry_id": 1769598,
+   "_oqmd_icsd_id": null,
+   "_oqmd_spacegroup": "P-3m1",
+   "_oqmd_stability": 0.155,
+   "_oqmd_volume": 328.758,
+   "chemical_formula_reduced": "Cl3Mg3P",
+   "elements": [
+    "Cl",
+    "Mg",
+    "P"
+   ],
+   "id": "6066637",
+   "lattice_vectors": [
+    [
+     6.730174,
+     0.0,
+     0.0
+    ],
+    [
+     3.2e-05,
+     7.510327,
+     0.0
+    ],
+    [
+     4.1e-05,
+     3.755123,
+     6.504161
+    ]
+   ],
+   "nsites": 14,
+   "space_group_it_number": 164
+  },
+  {
+   "_oqmd_band_gap": 1.6669999999999998,
+   "_oqmd_calculation_id": 4724087,
+   "_oqmd_delta_e": -1.9769,
+   "_oqmd_entry_id": 1814110,
+   "_oqmd_icsd_id": null,
+   "_oqmd_spacegroup": "P-3",
+   "_oqmd_stability": 0.241,
+   "_oqmd_volume": 411.581,
+   "chemical_formula_reduced": "Ca3Cl3P",
+   "elements": [
+    "Ca",
+    "Cl",
+    "P"
+   ],
+   "id": "6123350",
+   "lattice_vectors": [
+    [
+     8.260297908,
+     0.0,
+     0.0
+    ],
+    [
+     -4.130148954,
+     7.153627831,
+     0.0
+    ],
+    [
+     0.0,
+     0.0,
+     6.965193547
+    ]
+   ],
+   "nsites": 14,
+   "space_group_it_number": 147
+  },
+  {
+   "_oqmd_band_gap": 2.1719999999999997,
+   "_oqmd_calculation_id": 5182009,
+   "_oqmd_delta_e": -1.6412,
+   "_oqmd_entry_id": 2054293,
+   "_oqmd_icsd_id": 9026,
+   "_oqmd_spacegroup": "I4132",
+   "_oqmd_stability": 0.0,
+   "_oqmd_volume": 958.12,
+   "chemical_formula_reduced": "Ca3I3P",
+   "elements": [
+    "Ca",
+    "I",
+    "P"
+   ],
+   "id": "6245732",
+   "lattice_vectors": [
+    [
+     -6.210405702,
+     6.210405702,
+     6.210405702
+    ],
+    [
+     6.210405702,
+     -6.210405702,
+     6.210405702
+    ],
+    [
+     6.210405702,
+     6.210405702,
+     -6.210405702
+    ]
+   ],
+   "nsites": 28,
+   "space_group_it_number": 214
+  }
+ ],
+ "retrieved": "2026-09-27",
+ "source": "OQMD via OPTIMADE"
+}

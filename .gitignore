@@ -3,7 +3,7 @@ __pycache__/
 .pytest_cache/
 *.py[cod]
 
-# Credentials — this repo needs none. If a .env ever appears here, something was copied wrong.
+# Credentials: only `make fetch` needs one (MP_API_KEY), and it lives in this repo's own .env.
 .env
 .env.*
 !.env.example

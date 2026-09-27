@@ -1,0 +1,458 @@
+{
+ "dataset": "dft_3d",
+ "dataset_file": "jdft_3d-9-24-2025.json",
+ "dataset_url": "https://ndownloader.figshare.com/files/64391379",
+ "doi": "10.1038/s41524-020-00440-1",
+ "functional": "OptB88vdW (optb88vdw_bandgap); TBmBJ (mbj_bandgap)",
+ "jarvis_tools_version": "2026.6.12",
+ "n": 10,
+ "n_dataset": 93902,
+ "records": [
+  {
+   "A": "Zn",
+   "B": "P",
+   "X": "Br",
+   "abc": [
+    4.04171,
+    6.609622,
+    6.920643
+   ],
+   "crys": "monoclinic",
+   "density": 4.194,
+   "ehull": 0,
+   "elastic_tensor": "na",
+   "formation_energy_peratom": -0.69417,
+   "formula": "Zn3PBr3",
+   "jid": "JVASP-104903",
+   "mbj_bandgap": "na",
+   "optb88vdw_bandgap": 1.552,
+   "spg_number": "6"
+  },
+  {
+   "A": "Cd",
+   "B": "P",
+   "X": "I",
+   "abc": [
+    4.4823,
+    7.36997,
+    7.71208
+   ],
+   "crys": "monoclinic",
+   "density": 4.882,
+   "ehull": 0,
+   "elastic_tensor": "na",
+   "formation_energy_peratom": -0.422,
+   "formula": "Cd3PI3",
+   "jid": "JVASP-110273",
+   "mbj_bandgap": 2.113,
+   "optb88vdw_bandgap": 1.21,
+   "spg_number": "6"
+  },
+  {
+   "A": "Ca",
+   "B": "Sb",
+   "X": "I",
+   "abc": [
+    10.990997,
+    10.990999,
+    10.991
+   ],
+   "crys": "cubic",
+   "density": 4.047,
+   "ehull": 0,
+   "elastic_tensor": "na",
+   "formation_energy_peratom": -1.5552,
+   "formula": "Ca3SbI3",
+   "jid": "JVASP-112603",
+   "mbj_bandgap": "na",
+   "optb88vdw_bandgap": 1.623,
+   "spg_number": "214"
+  },
+  {
+   "A": "Cd",
+   "B": "P",
+   "X": "Cl",
+   "abc": [
+    7.720111,
+    7.720111,
+    7.18211
+   ],
+   "crys": "trigonal",
+   "density": 4.252,
+   "ehull": 0,
+   "elastic_tensor": [
+    [
+     53.2,
+     30.8,
+     29.1,
+     0.0,
+     1.4,
+     0.0
+    ],
+    [
+     30.8,
+     53.2,
+     29.1,
+     0.0,
+     -1.4,
+     -0.0
+    ],
+    [
+     29.1,
+     29.1,
+     53.9,
+     0.0,
+     -0.0,
+     -0.0
+    ],
+    [
+     0.0,
+     0.0,
+     0.0,
+     11.2,
+     -0.0,
+     1.4
+    ],
+    [
+     1.4,
+     -1.4,
+     -0.0,
+     -0.0,
+     12.1,
+     0.0
+    ],
+    [
+     0.0,
+     -0.0,
+     -0.0,
+     1.4,
+     0.0,
+     12.1
+    ]
+   ],
+   "formation_energy_peratom": -0.76064,
+   "formula": "Cd3PCl3",
+   "jid": "JVASP-13022",
+   "mbj_bandgap": "na",
+   "optb88vdw_bandgap": 1.74,
+   "spg_number": "164"
+  },
+  {
+   "A": "Ba",
+   "B": "Sb",
+   "X": "I",
+   "abc": [
+    12.135268,
+    12.135264,
+    12.13527
+   ],
+   "crys": "cubic",
+   "density": 4.415,
+   "ehull": 0,
+   "elastic_tensor": "na",
+   "formation_energy_peratom": -1.64114,
+   "formula": "Ba3SbI3",
+   "jid": "JVASP-139773",
+   "mbj_bandgap": "na",
+   "optb88vdw_bandgap": 1.253,
+   "spg_number": "214"
+  },
+  {
+   "A": "Ca",
+   "B": "As",
+   "X": "I",
+   "abc": [
+    10.736756,
+    10.73675,
+    10.73675
+   ],
+   "crys": "cubic",
+   "density": 4.015,
+   "ehull": 0,
+   "elastic_tensor": "na",
+   "formation_energy_peratom": -1.65146,
+   "formula": "Ca3AsI3",
+   "jid": "JVASP-169990",
+   "mbj_bandgap": "na",
+   "optb88vdw_bandgap": 1.961,
+   "spg_number": "214"
+  },
+  {
+   "A": "Ca",
+   "B": "As",
+   "X": "Br",
+   "abc": [
+    5.89895,
+    5.89895,
+    5.89895
+   ],
+   "crys": "cubic",
+   "density": 3.518,
+   "ehull": 0,
+   "elastic_tensor": [
+    [
+     92.2,
+     11.6,
+     11.6,
+     0.0,
+     0.0,
+     0.0
+    ],
+    [
+     11.6,
+     92.2,
+     11.6,
+     0.0,
+     0.0,
+     0.0
+    ],
+    [
+     11.6,
+     11.6,
+     92.2,
+     0.0,
+     0.0,
+     0.0
+    ],
+    [
+     0.0,
+     0.0,
+     0.0,
+     18.3,
+     0.0,
+     0.0
+    ],
+    [
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     18.3,
+     0.0
+    ],
+    [
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     18.3
+    ]
+   ],
+   "formation_energy_peratom": -1.90693,
+   "formula": "Ca3AsBr3",
+   "jid": "JVASP-3783",
+   "mbj_bandgap": 2.176,
+   "optb88vdw_bandgap": 1.565,
+   "spg_number": "221"
+  },
+  {
+   "A": "Ca",
+   "B": "As",
+   "X": "Cl",
+   "abc": [
+    5.72825,
+    5.72825,
+    5.72825
+   ],
+   "crys": "cubic",
+   "density": 2.664,
+   "ehull": 0,
+   "elastic_tensor": [
+    [
+     100.3,
+     12.5,
+     12.5,
+     0.0,
+     0.0,
+     0.0
+    ],
+    [
+     12.5,
+     100.3,
+     12.5,
+     0.0,
+     0.0,
+     0.0
+    ],
+    [
+     12.5,
+     12.5,
+     100.3,
+     0.0,
+     0.0,
+     0.0
+    ],
+    [
+     0.0,
+     0.0,
+     0.0,
+     20.3,
+     0.0,
+     0.0
+    ],
+    [
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     20.3,
+     0.0
+    ],
+    [
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     20.3
+    ]
+   ],
+   "formation_energy_peratom": -2.13724,
+   "formula": "Ca3AsCl3",
+   "jid": "JVASP-3945",
+   "mbj_bandgap": 2.469,
+   "optb88vdw_bandgap": 1.713,
+   "spg_number": "221"
+  },
+  {
+   "A": "Ca",
+   "B": "P",
+   "X": "Cl",
+   "abc": [
+    5.66612,
+    5.66612,
+    5.66612
+   ],
+   "crys": "cubic",
+   "density": 2.351,
+   "ehull": 0.0117,
+   "elastic_tensor": [
+    [
+     105.8,
+     13.4,
+     13.4,
+     0.0,
+     0.0,
+     0.0
+    ],
+    [
+     13.4,
+     105.8,
+     13.4,
+     0.0,
+     0.0,
+     0.0
+    ],
+    [
+     13.4,
+     13.4,
+     105.8,
+     0.0,
+     0.0,
+     0.0
+    ],
+    [
+     0.0,
+     0.0,
+     0.0,
+     21.6,
+     0.0,
+     0.0
+    ],
+    [
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     21.6,
+     0.0
+    ],
+    [
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     21.6
+    ]
+   ],
+   "formation_energy_peratom": -2.16317,
+   "formula": "Ca3PCl3",
+   "jid": "JVASP-4062",
+   "mbj_bandgap": 2.564,
+   "optb88vdw_bandgap": 1.701,
+   "spg_number": "221"
+  },
+  {
+   "A": "Cd",
+   "B": "As",
+   "X": "I",
+   "abc": [
+    7.427292,
+    4.5754,
+    7.746949
+   ],
+   "crys": "monoclinic",
+   "density": 5.001,
+   "ehull": 0,
+   "elastic_tensor": [
+    [
+     36.8,
+     11.3,
+     16.4,
+     0.0,
+     0.6,
+     -0.0
+    ],
+    [
+     11.3,
+     36.3,
+     7.9,
+     -0.0,
+     0.4,
+     0.0
+    ],
+    [
+     16.4,
+     7.9,
+     27.0,
+     -0.0,
+     1.1,
+     0.0
+    ],
+    [
+     0.0,
+     -0.0,
+     -0.0,
+     6.5,
+     0.0,
+     0.1
+    ],
+    [
+     0.6,
+     0.4,
+     1.1,
+     0.0,
+     3.0,
+     -0.0
+    ],
+    [
+     -0.0,
+     0.0,
+     0.0,
+     0.1,
+     -0.0,
+     7.2
+    ]
+   ],
+   "formation_energy_peratom": -0.40556,
+   "formula": "Cd3AsI3",
+   "jid": "JVASP-53094",
+   "mbj_bandgap": 1.969,
+   "optb88vdw_bandgap": 0.854,
+   "spg_number": "6"
+  }
+ ],
+ "source": "JARVIS-DFT"
+}

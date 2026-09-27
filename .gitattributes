@@ -3,3 +3,6 @@
 data/raw/** -text
 reports/metrics_v2.json -text
 reports/oof_predictions.csv -text
+# The config is hashed into metrics_v2.json, so its bytes must not change on checkout.
+configs/*.yaml text eol=lf
+Makefile text eol=lf
