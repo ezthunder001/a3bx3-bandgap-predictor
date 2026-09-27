@@ -1,4 +1,4 @@
 formula,A,B,X,Eg_eV,functional,soc,doi,doi_status,year,source_file,source_row
-Sr3BiI3,Sr,Bi,I,1.324,PBE,unknown,"NJC 2026,50,522 Islam",not a DOI (citation string),2026,a3bx3_literature_v1.csv,25
-Sr3BiBr3,Sr,Bi,Br,1.512,PBE,unknown,"NJC 2026,50,522 Islam",not a DOI (citation string),2026,a3bx3_literature_v1.csv,26
-Sr3BiCl3,Sr,Bi,Cl,1.731,PBE,unknown,"NJC 2026,50,522 Islam",not a DOI (citation string),2026,a3bx3_literature_v1.csv,27
+Sr3BiI3,Sr,Bi,I,1.324,PBE,unknown,10.1039/d5nj02800k,ok,2026,a3bx3_literature_v1.csv,25
+Sr3BiBr3,Sr,Bi,Br,1.512,PBE,unknown,10.1039/d5nj02800k,ok,2026,a3bx3_literature_v1.csv,26
+Sr3BiCl3,Sr,Bi,Cl,1.731,PBE,unknown,10.1039/d5nj02800k,ok,2026,a3bx3_literature_v1.csv,27

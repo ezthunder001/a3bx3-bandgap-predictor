@@ -1,19 +1,119 @@
 {
-  "doi_status_counts": {
-    "not a DOI (citation string)": 6,
-    "ok": 19,
-    "truncated DOI": 1
+  "datasets": {
+    "plus_unverified": {
+      "by_A": {
+        "Ba": 12,
+        "Ca": 13,
+        "Mg": 10,
+        "Sr": 7
+      },
+      "by_B": {
+        "As": 9,
+        "Bi": 8,
+        "P": 13,
+        "Sb": 12
+      },
+      "by_X": {
+        "Br": 13,
+        "Cl": 13,
+        "F": 4,
+        "I": 12
+      },
+      "n_formulas": 42,
+      "n_high_conflict": 3,
+      "n_multi_value": 13,
+      "n_preprint_only": 8,
+      "n_soc_unknown": 26,
+      "n_values": 61
+    },
+    "primary": {
+      "by_A": {
+        "Ba": 12,
+        "Ca": 10,
+        "Mg": 10,
+        "Sr": 7
+      },
+      "by_B": {
+        "As": 8,
+        "Bi": 6,
+        "P": 13,
+        "Sb": 12
+      },
+      "by_X": {
+        "Br": 12,
+        "Cl": 11,
+        "F": 4,
+        "I": 12
+      },
+      "n_formulas": 39,
+      "n_high_conflict": 3,
+      "n_multi_value": 12,
+      "n_preprint_only": 8,
+      "n_soc_unknown": 23,
+      "n_values": 57
+    },
+    "soc": {
+      "by_A": {
+        "Ba": 12,
+        "Ca": 3,
+        "Mg": 4,
+        "Sr": 2
+      },
+      "by_B": {
+        "As": 4,
+        "Bi": 3,
+        "P": 7,
+        "Sb": 7
+      },
+      "by_X": {
+        "Br": 6,
+        "Cl": 6,
+        "F": 1,
+        "I": 8
+      },
+      "n_formulas": 21,
+      "n_high_conflict": 1,
+      "n_multi_value": 5,
+      "n_preprint_only": 8,
+      "n_soc_unknown": 0,
+      "n_values": 26
+    },
+    "verified_only": {
+      "by_A": {
+        "Ba": 4,
+        "Ca": 10,
+        "Mg": 10,
+        "Sr": 7
+      },
+      "by_B": {
+        "As": 7,
+        "Bi": 3,
+        "P": 10,
+        "Sb": 11
+      },
+      "by_X": {
+        "Br": 9,
+        "Cl": 8,
+        "F": 4,
+        "I": 10
+      },
+      "n_formulas": 31,
+      "n_high_conflict": 2,
+      "n_multi_value": 10,
+      "n_preprint_only": 0,
+      "n_soc_unknown": 23,
+      "n_values": 45
+    }
   },
-  "n_conflicts": 0,
-  "n_duplicates_within_threshold": 0,
-  "n_excluded": 0,
-  "n_family": 23,
+  "k1": {
+    "pass": true,
+    "primary_formulas": 39,
+    "threshold": 35
+  },
+  "n_corrections": 19,
+  "n_duplicate_rows_dropped": 9,
+  "n_excluded_rows": 86,
   "n_holdout": 3,
-  "n_raw": 26,
-  "oqmd_overlap": 11,
-  "soc_counts": {
-    "no": 0,
-    "unknown": 23,
-    "yes": 0
-  }
+  "n_raw_rows": 185,
+  "oqmd_overlap": 15
 }

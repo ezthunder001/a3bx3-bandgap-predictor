@@ -1,1 +1,10 @@
-formula,A,B,X,Eg_eV,functional,soc,doi,doi_status,year,source_file,source_row,chosen,spread_eV,note
+formula,A,B,X,Eg_eV,functional,soc,code,doi,arxiv_id,source_id,preprint,status,use,source_file,source_row,duplicate_of
+Mg3PCl3,Mg,P,Cl,2.297,PBE,no,CASTEP,10.1039/d5ra01185j,,10.1039/d5ra01185j,False,ok,primary,literature_harvest_2026-09-27.csv,66,a3bx3_literature_v1.csv:22
+Mg3PBr3,Mg,P,Br,1.506,PBE,no,CASTEP,10.1039/d5ra01185j,,10.1039/d5ra01185j,False,ok,primary,literature_harvest_2026-09-27.csv,68,a3bx3_literature_v1.csv:23
+Ca3PI3,Ca,P,I,1.4909,PBE,no,QE,10.1016/j.heliyon.2024.e29144,,10.1016/j.heliyon.2024.e29144,False,ok,primary,literature_harvest_2026-09-27.csv,70,a3bx3_literature_v1.csv:8
+Ca3PBr3,Ca,P,Br,1.9502,PBE,no,QE,10.1016/j.heliyon.2024.e29144,,10.1016/j.heliyon.2024.e29144,False,ok,primary,literature_harvest_2026-09-27.csv,72,a3bx3_literature_v1.csv:9
+Ca3PCl3,Ca,P,Cl,2.2058,PBE,no,QE,10.1016/j.heliyon.2024.e29144,,10.1016/j.heliyon.2024.e29144,False,ok,primary,literature_harvest_2026-09-27.csv,74,a3bx3_literature_v1.csv:10
+Ba3AsI3,Ba,As,I,0.834,PBE,no,CASTEP,10.1016/j.heliyon.2023.e21675,,10.1016/j.heliyon.2023.e21675,False,ok,primary,literature_harvest_2026-09-27.csv,76,a3bx3_literature_v1.csv:7
+Sr3AsCl3,Sr,As,Cl,1.7,PBE,no,QE,10.1016/j.heliyon.2024.e35855,,10.1016/j.heliyon.2024.e35855,False,ok,primary,literature_harvest_2026-09-27.csv,90,a3bx3_literature_v1.csv:20
+Sr3SbCl3,Sr,Sb,Cl,1.72,PBE,no,QE,10.1016/j.heliyon.2024.e35855,,10.1016/j.heliyon.2024.e35855,False,ok,primary,literature_harvest_2026-09-27.csv,91,a3bx3_literature_v1.csv:21
+Ba3AsCl3,Ba,As,Cl,0.942,PBE,unknown,unknown,10.1088/1402-4896/adee54,,10.1088/1402-4896/adee54,False,ok,primary,literature_harvest_2026-09-27.csv,136,a3bx3_literature_v1.csv:19
