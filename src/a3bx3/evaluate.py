@@ -16,6 +16,7 @@ inside each outer training fold, never by a holdout score.
 from __future__ import annotations
 
 import csv
+import hashlib
 import io
 import json
 import sys
@@ -48,6 +49,7 @@ DATASET_DESC = {
 }
 BASELINE_REFS = ["mean", "ridge_physics9"]
 R = 4  # decimals in the JSON
+CRLF, LF = bytes([13, 10]), bytes([10])
 
 
 def _r(x, d=R):
@@ -243,7 +245,9 @@ def evaluate(paths: Paths | None = None, final: bool = True) -> dict:
         "label_noise_floor_eV": ev["label_noise_floor_eV"],
         "data": {"n_holdout": len(cfg["data"]["holdout_formulas"]),
                  "holdout_csv_sha256": sha256(paths.processed / "holdout_sr3bix3.csv"),
-                 "config_sha256": sha256(ROOT / "configs" / "v2.yaml")},
+                 # line endings normalised so a CRLF checkout hashes the same config
+                 "config_sha256": hashlib.sha256((ROOT / "configs" / "v2.yaml").read_bytes()
+                                                 .replace(CRLF, LF)).hexdigest()},
         "splits": SPLIT_DESC,
         "datasets": datasets,
         "models": {s.name: {"role": s.role, "feature_set": s.feature_set,
