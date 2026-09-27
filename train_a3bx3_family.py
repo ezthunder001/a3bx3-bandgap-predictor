@@ -37,6 +37,8 @@ from sklearn.preprocessing import StandardScaler
 from sklearn.pipeline import make_pipeline
 from sklearn.model_selection import LeaveOneOut
 from sklearn.metrics import r2_score, mean_absolute_error
+from sklearn.dummy import DummyRegressor
+from sklearn.linear_model import RidgeCV
 
 DATA = Path(__file__).parent / "data"
 SRC = DATA / "a3bx3_literature.csv"
@@ -75,6 +77,22 @@ def make_gpr(nf):
                                     normalize_y=True, random_state=42)
 
 
+# ── named baselines, scored on exactly the same folds as the GPR ─────────────
+# "mean" answers "does the model learn anything at all"; "ridge" answers "does
+# the GPR beat a linear fit on the same nine descriptors". RidgeCV picks alpha by
+# efficient LOO *inside the training fold only*, so no test row reaches the fit.
+BASELINES = {
+    "mean": lambda: DummyRegressor(strategy="mean"),
+    "ridge": lambda: make_pipeline(StandardScaler(),
+                                   RidgeCV(alphas=np.logspace(-3, 3, 13))),
+}
+
+
+def _scores(y_true, y_pred):
+    return {"MAE": round(float(mean_absolute_error(y_true, y_pred)), 4),
+            "R2": round(float(r2_score(y_true, y_pred)), 4)}
+
+
 def main():
     rows = list(csv.DictReader(SRC.open(encoding="utf-8")))
     train, targets = [], []
@@ -97,13 +115,19 @@ def main():
     # ── LOO cross-validation ─────────────────────────────────────────────────
     loo = LeaveOneOut()
     preds = np.zeros(len(y))
+    base_loo = {k: np.zeros(len(y)) for k in BASELINES}
     for tr, te in loo.split(X):
         m = make_pipeline(StandardScaler(), make_gpr(X.shape[1]))
         m.fit(X[tr], y[tr])
         preds[te] = m.predict(X[te])
+        for k, make in BASELINES.items():
+            base_loo[k][te] = make().fit(X[tr], y[tr]).predict(X[te])
     mae = mean_absolute_error(y, preds)
     r2 = r2_score(y, preds)
     print(f"\n[LOO-CV]  MAE = {mae:.3f} eV   R² = {r2:.3f}   (n={len(y)})")
+    for k, p in base_loo.items():
+        s = _scores(y, p)
+        print(f"          baseline {k:<5}: MAE = {s['MAE']:.3f} eV   R² = {s['R2']:.3f}")
 
     with open(DATA / "a3bx3_family_loo.csv", "w", newline="", encoding="utf-8") as f:
         w = csv.writer(f); w.writerow(["formula", "Eg_PBE", "Eg_LOO_pred", "residual"])
@@ -115,6 +139,8 @@ def main():
     # thinly-anchored Bi corner), so it is the honest extrapolation error bar.
     b_col = [b for _, _, b, _, _ in train]
     lobo_abs, lobo_by_b = [], {}
+    base_lobo_abs = {k: [] for k in BASELINES}
+    base_lobo_by_b = {k: {} for k in BASELINES}
     for Bel in sorted(set(b_col)):
         te = [i for i, b in enumerate(b_col) if b == Bel]
         tr = [i for i in range(len(y)) if i not in te]
@@ -123,9 +149,16 @@ def main():
         errs = np.abs(m.predict(X[te]) - y[te])
         lobo_abs += list(errs)
         lobo_by_b[Bel] = round(float(errs.mean()), 4)
+        for k, make in BASELINES.items():
+            e = np.abs(make().fit(X[tr], y[tr]).predict(X[te]) - y[te])
+            base_lobo_abs[k] += list(e)
+            base_lobo_by_b[k][Bel] = round(float(e.mean()), 4)
     lobo_mae = float(np.mean(lobo_abs))
     print(f"[LOBO-CV] leave-one-B-family-out MAE = {lobo_mae:.3f} eV  "
           f"(per B: {lobo_by_b})")
+    for k in BASELINES:
+        print(f"          baseline {k:<5}: MAE = {np.mean(base_lobo_abs[k]):.3f} eV  "
+              f"(per B: {base_lobo_by_b[k]})")
 
     # ── Fit on all training, predict held-out Sr3BiX3 ────────────────────────
     model = make_pipeline(StandardScaler(), make_gpr(X.shape[1]))
@@ -153,11 +186,40 @@ def main():
         w.writeheader(); w.writerows(val_rows)
 
     val_mae = np.mean([abs(v["error_eV"]) for v in val_rows])
+
+    # Baselines on the held-out Sr3BiX3 targets: fit on all training rows, as the GPR is.
+    Xt = np.array([featurize(a, b, x) for _, a, b, x, _ in targets])
+    yt = np.array([dft for *_, dft in targets])
+    base_val = {k: round(float(np.mean(np.abs(make().fit(X, y).predict(Xt) - yt))), 4)
+                for k, make in BASELINES.items()}
+    print(f"  baselines on Sr3BiX3: " +
+          "  ".join(f"{k} MAE = {v:.3f} eV" for k, v in base_val.items()))
+
+    def _skill(model_mae, base_mae):
+        # fraction of the baseline's error the model removes (1 = perfect, 0 = no better)
+        return round(1.0 - model_mae / base_mae, 3)
+
+    baselines = {
+        "_note": ("Named baselines scored on the same folds as the GPR. 'mean' = "
+                  "DummyRegressor(mean) of the training fold; 'ridge' = StandardScaler + "
+                  "RidgeCV(alphas 1e-3..1e3, alpha chosen inside the training fold) on the "
+                  "same nine descriptors. skill_vs_* = 1 - MAE_GPR / MAE_baseline."),
+        "loo": {k: _scores(y, p) for k, p in base_loo.items()},
+        "lobo": {k: {"MAE": round(float(np.mean(base_lobo_abs[k])), 4),
+                     "per_B": base_lobo_by_b[k]} for k in BASELINES},
+        "sr3bix3_validation": {k: {"MAE": v} for k, v in base_val.items()},
+    }
+    for split, gpr_mae in (("loo", mae), ("lobo", lobo_mae), ("sr3bix3_validation", val_mae)):
+        for k in BASELINES:
+            baselines[split][k]["skill_vs_" + k] = _skill(float(gpr_mae),
+                                                          baselines[split][k]["MAE"])
+
     metrics = {"loo": {"MAE": round(mae, 4), "R2": round(r2, 4), "n": len(y)},
                "lobo": {"MAE": round(lobo_mae, 4), "per_B": lobo_by_b,
                         "cv": "leave-one-B-family-out"},
                "sr3bix3_validation": {"MAE": round(float(val_mae), 4),
-                                      "per_compound": val_rows}}
+                                      "per_compound": val_rows},
+               "baselines": baselines}
 
     # ═════════════════════════════════════════════════════════════════════════
     # ELASTIC family model — predict Sr3BiX3 C11/C12 vs Islam DFT

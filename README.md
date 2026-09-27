@@ -33,15 +33,28 @@ Gaussian process regression, ARD Matérn(ν = 5/2) kernel, crystal-structure des
 ionic radii, electronegativities and atomic masses. Training set: 23 GGA-PBE literature band gaps
 (A = Mg/Ca/Sr/Ba; B = P/As/Sb/Bi; X = F/Cl/Br/I), **every entry traceable to a primary DOI**.
 
-| Test | Result |
-|---|---|
-| Leave-one-out CV (n = 23) | **MAE 0.151 eV, R² 0.740** |
-| Leave-one-B-family-out CV | **MAE 0.146 eV** (As 0.165 · Bi 0.101 · P 0.198 · Sb 0.106) |
-| Held-out Sr₃BiX₃ vs published DFT | **MAE 0.160 eV** |
+Every score sits beside two named baselines, fitted on exactly the same folds: **mean** (predict the
+training-fold average — "does the model learn anything?") and **ridge** (a linear fit on the same nine
+descriptors, alpha chosen inside the training fold — "does the GPR beat a straight line?").
+
+| Test | GPR | Baseline: mean | Baseline: ridge |
+|---|---|---|---|
+| Leave-one-out CV (n = 23) | **MAE 0.151 eV, R² 0.740** | 0.324 eV, R² −0.093 | 0.206 eV, R² 0.517 |
+| Leave-one-B-family-out CV | **MAE 0.146 eV** (As 0.165 · Bi 0.101 · P 0.198 · Sb 0.106) | 0.329 eV | 0.195 eV |
+| Held-out Sr₃BiX₃ vs published DFT (n = 3) | MAE 0.160 eV | 0.157 eV | 0.155 eV |
 
 The leave-one-B-family-out number is the one that matters. It holds out an entire chemistry — every
-Bi compound at once — so the model cannot lean on a near-neighbour of the target. It scores *better*
-than plain LOO, which is the behaviour you want from a family model rather than a memoriser.
+Bi compound at once — so the model cannot lean on a near-neighbour of the target. There the GPR removes
+**56 %** of the mean baseline's error and **25 %** of the linear baseline's, and it scores slightly
+*better* than plain LOO, which is the behaviour you want from a family model rather than a memoriser.
+
+**The Sr₃BiX₃ hold-out does not separate the models.** On those three compounds the GPR is no better
+than predicting the family average (0.160 vs 0.157 eV), and all three GPR errors have the same sign
+(−0.12 to −0.20 eV). Three points cannot rank models, so this number is reported as a check, not as
+evidence of skill. It does support the headline from a different angle: once the training set is the
+right family, even its *mean* lands within 0.16 eV of Sr₃BiX₃ — against ~0.85 eV for the ABX₃-trained
+model. The family choice did most of the work. Baseline scores and `skill_vs_*` ratios are stored under
+`baselines` in `data/a3bx3_family_metrics.json`.
 
 ### Beyond-PBE — TBmBJ delta correction
 

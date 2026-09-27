@@ -40,6 +40,53 @@
       }
     ]
   },
+  "baselines": {
+    "_note": "Named baselines scored on the same folds as the GPR. 'mean' = DummyRegressor(mean) of the training fold; 'ridge' = StandardScaler + RidgeCV(alphas 1e-3..1e3, alpha chosen inside the training fold) on the same nine descriptors. skill_vs_* = 1 - MAE_GPR / MAE_baseline.",
+    "loo": {
+      "mean": {
+        "MAE": 0.3243,
+        "R2": -0.093,
+        "skill_vs_mean": 0.534
+      },
+      "ridge": {
+        "MAE": 0.2063,
+        "R2": 0.5171,
+        "skill_vs_ridge": 0.267
+      }
+    },
+    "lobo": {
+      "mean": {
+        "MAE": 0.329,
+        "per_B": {
+          "As": 0.3442,
+          "Bi": 0.249,
+          "P": 0.3436,
+          "Sb": 0.366
+        },
+        "skill_vs_mean": 0.557
+      },
+      "ridge": {
+        "MAE": 0.1946,
+        "per_B": {
+          "As": 0.221,
+          "Bi": 0.1492,
+          "P": 0.2335,
+          "Sb": 0.165
+        },
+        "skill_vs_ridge": 0.251
+      }
+    },
+    "sr3bix3_validation": {
+      "mean": {
+        "MAE": 0.1568,
+        "skill_vs_mean": -0.02
+      },
+      "ridge": {
+        "MAE": 0.1551,
+        "skill_vs_ridge": -0.032
+      }
+    }
+  },
   "elastic_family": {
     "C11": {
       "MAE": 16.37,

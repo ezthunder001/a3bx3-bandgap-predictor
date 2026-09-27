@@ -44,6 +44,33 @@ class TestFamilyModel(unittest.TestCase):
         self.assertAlmostEqual(val["MAE"], 0.16, places=2)
         self.assertEqual(len(val["per_compound"]), 3)
 
+    def test_named_baselines_are_stored(self) -> None:
+        """Every headline score must travel with a named baseline on the same folds."""
+        b = self.m["baselines"]
+        for split in ("loo", "lobo", "sr3bix3_validation"):
+            self.assertEqual(set(b[split]) - {"_note"}, {"mean", "ridge"}, split)
+        self.assertAlmostEqual(b["loo"]["mean"]["MAE"], 0.3243, places=4)
+        self.assertAlmostEqual(b["loo"]["ridge"]["MAE"], 0.2063, places=4)
+        self.assertAlmostEqual(b["lobo"]["mean"]["MAE"], 0.3290, places=4)
+        self.assertAlmostEqual(b["lobo"]["ridge"]["MAE"], 0.1946, places=4)
+
+    def test_gpr_beats_both_baselines_in_cross_validation(self) -> None:
+        """The README's skill claims (LOBO: 56 % vs mean, 25 % vs ridge)."""
+        b = self.m["baselines"]
+        for split in ("loo", "lobo"):
+            for k in ("mean", "ridge"):
+                self.assertLess(self.m[split]["MAE"], b[split][k]["MAE"], f"{split}/{k}")
+        self.assertAlmostEqual(b["lobo"]["mean"]["skill_vs_mean"], 0.557, places=3)
+        self.assertAlmostEqual(b["lobo"]["ridge"]["skill_vs_ridge"], 0.251, places=3)
+
+    def test_sr3bix3_holdout_does_not_separate_models(self) -> None:
+        """A documented negative: on the 3-compound hold-out the GPR is no better than the
+        family mean. If this ever flips, the README paragraph must be rewritten."""
+        b = self.m["baselines"]["sr3bix3_validation"]
+        gpr = self.m["sr3bix3_validation"]["MAE"]
+        self.assertGreaterEqual(gpr, b["mean"]["MAE"])
+        self.assertGreaterEqual(gpr, b["ridge"]["MAE"])
+
     def test_ba3bii3_conflict_is_still_flagged(self) -> None:
         """The open conflict against the monotonic A-site trend is a documented finding.
         If this prediction ever moves near 1.6 eV, the README section must be rewritten."""
