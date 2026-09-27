@@ -1,0 +1,10 @@
+# conda env create -f environment.yml
+# Exact pins of the environment the committed reports were produced in: requirements.lock.
+name: a3bx3
+channels:
+  - conda-forge
+dependencies:
+  - python=3.11
+  - pip
+  - pip:
+      - -r requirements-v2.txt

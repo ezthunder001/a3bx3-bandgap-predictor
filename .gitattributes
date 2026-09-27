@@ -1,0 +1,5 @@
+# Byte-exact storage for checksummed raw data and the determinism-tested metrics file:
+# no line-ending conversion, or the SHA-256 manifest breaks on the next checkout.
+data/raw/** -text
+reports/metrics_v2.json -text
+reports/oof_predictions.csv -text

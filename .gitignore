@@ -1,10 +1,12 @@
 .venv/
 __pycache__/
+.pytest_cache/
 *.py[cod]
 
 # Credentials — this repo needs none. If a .env ever appears here, something was copied wrong.
 .env
 .env.*
+!.env.example
 
 # Publisher PDFs and extracted text: copyrighted, never redistribute. Cite DOIs instead.
 *.pdf

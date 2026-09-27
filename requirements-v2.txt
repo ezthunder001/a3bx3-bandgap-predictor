@@ -1,0 +1,16 @@
+# v2 pipeline dependencies (ranges). Exact versions used for reports/: requirements.lock.
+numpy>=1.26
+scipy>=1.11
+pandas>=2.1
+scikit-learn>=1.5
+xgboost>=2.0
+matplotlib>=3.8
+pyyaml>=6.0
+pyarrow>=15
+pymatgen>=2024.1.1
+matminer>=0.9
+pytest>=8
+# fetch only (network): Materials Project client, JARVIS, conformal intervals (week 6)
+mp-api>=0.41
+jarvis-tools>=2024.1.1
+mapie>=0.8
