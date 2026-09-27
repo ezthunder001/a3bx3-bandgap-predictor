@@ -1,0 +1,34 @@
+# Offline checks on the committed data. No API key, and the pipeline itself makes no
+# network call (pip install is the only download). The slow full-pipeline determinism
+# test is excluded here to keep the job short; run `python -m pytest -q tests` locally.
+#
+# Status: written 2026-09-27, NOT yet run on GitHub. No badge until a green run exists.
+name: ci
+
+on:
+  push:
+    branches: [main, v2]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Install pinned environment
+        run: python -m pip install -r requirements.lock
+      - name: Raw data checksums
+        run: PYTHONPATH=src python -c "from a3bx3.manifest import verify; p = verify(); print(p or 'manifest ok'); raise SystemExit(1 if p else 0)"
+      - name: Curate + features (offline)
+        run: python run_all.py data features
+      - name: Tests (fast set, incl. the 18 v1 tests)
+        run: python -m pytest -q tests -m "not slow"
