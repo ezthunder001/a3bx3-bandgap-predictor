@@ -9,6 +9,23 @@ number is real rather than leaked.
 
 ---
 
+## v2 in progress (branch `v2`, not released)
+
+A reproducible pipeline (`src/a3bx3/`, `configs/v2.yaml`) now rebuilds every number offline
+from `data/raw/` with `python run_all.py` (or `make all`), and scores every model beside four
+named baselines on the same grouped folds. Full tables, with bootstrap 95 % CIs:
+[`reports/metrics_v2.md`](reports/metrics_v2.md) / `reports/metrics_v2.json`. Data and model
+limits: [DATA_CARD.md](DATA_CARD.md), [MODEL_CARD.md](MODEL_CARD.md).
+
+It reproduces the v1 GPR exactly (LOO 0.1512, LOBO 0.1458 eV). What it adds, held-out only:
+leave-one-B-out GPR MAE **0.146 [0.087, 0.206] eV** vs mean baseline 0.329 and ridge 0.195.
+The GPR-minus-ridge difference is −0.049 [−0.109, +0.009] eV, so at n = 23 the GPR is not
+separable from a linear fit. Repeated GroupKFold gives 0.217 eV, and leave-one-A-out
+0.333 eV (mean baseline 0.376). RF/XGB do not beat the GPR. Materials Project data is not in
+yet (no API key). The v1 results below are unchanged.
+
+---
+
 ## The problem
 
 Sr₃BiX₃ (X = I, Br, Cl) is a candidate lead-free photovoltaic absorber. Getting its band gap from
