@@ -70,9 +70,15 @@ def test_raw_manifest_matches():
 
 def test_literature_raw_copy_is_the_v1_file():
     """v1 scripts read data/a3bx3_literature.csv; v2 reads the raw copy. They must not drift,
-    and v2 fixes go in corrections.csv, never into the v1 file."""
-    assert (ROOT / "data" / "a3bx3_literature.csv").read_bytes() == \
-        (PATHS.literature / "a3bx3_literature_v1.csv").read_bytes()
+    and v2 fixes go in corrections.csv, never into the v1 file.
+
+    Compared with line endings normalised: the v1 file is an ordinary text file that git
+    checks out as CRLF on Windows and LF on Linux, while the raw copy is stored byte-exact
+    (-text) so its SHA-256 holds everywhere. The content is what must not drift."""
+    def content(p):
+        return p.read_bytes().replace(b"\r\n", b"\n")
+    assert content(ROOT / "data" / "a3bx3_literature.csv") == \
+        content(PATHS.literature / "a3bx3_literature_v1.csv")
 
 
 def test_physics9_tables_are_the_v1_tables():
