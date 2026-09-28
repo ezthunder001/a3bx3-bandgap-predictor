@@ -6,3 +6,6 @@ reports/oof_predictions.csv -text
 # The config is hashed into metrics_v2.json, so its bytes must not change on checkout.
 configs/*.yaml text eol=lf
 Makefile text eol=lf
+reports/uncertainty_v2.json -text
+reports/uncertainty_folds.csv -text
+reports/uncertainty_intervals_90.csv -text

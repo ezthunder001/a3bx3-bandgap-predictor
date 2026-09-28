@@ -95,3 +95,21 @@ evaluate:
   holdout_datasets: [primary, verified_only, plus_unverified]
   # Label noise floor: code-to-code spread for one formula in the harvest (see MODEL_CARD).
   label_noise_floor_eV: [0.1, 0.2]
+
+# Week 6: predictive intervals (src/a3bx3/uncertainty.py). Every interval is built from
+# the outer TRAINING fold only (inner grouped CV); the outer test fold is never used to
+# calibrate. Coverage/width are reported on the same outer folds as metrics_v2.
+uncertainty:
+  datasets: [primary, verified_only]
+  splits: [lobo, loao, gkf, loo]
+  report_levels: [0.68, 0.9, 0.95]
+  curve_levels: [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.68, 0.7, 0.8, 0.9, 0.95]
+  inner_n_splits: 5                 # inner GroupKFold (shuffled, seeded) for CV+ and sigma scaling
+  conformal_models: [gpr_physics9, ridge_physics9, mean]
+  bootstrap_n: 2000
+  holdout_dataset: primary
+  # Kill checkpoint K2 (design section 9): on the headline split the best model must beat
+  # the reference baseline by >= min_skill (1 - MAE_model / MAE_baseline) AND the paired
+  # bootstrap CI of the MAE difference must exclude zero. Evaluated against the mean
+  # baseline (design wording) and against the best baseline on that split (stricter).
+  k2: {min_skill: 0.30, split: lobo, datasets: [primary, verified_only]}
