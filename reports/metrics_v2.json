@@ -7,7 +7,7 @@
     "unit": "rows (formulas)"
   },
   "data": {
-    "config_sha256": "10052822030d1ddd17258803f0dfa0346bf404e0790cb0c71482728917308cb5",
+    "config_sha256": "60765ee392038645570372d6a491dad5140e74e4a5cbb49826e12502891747eb",
     "holdout_csv_sha256": "4f1e86d4a6ace65d637aaf5871c74f446021052e56e055fba352066340b0d223",
     "n_holdout": 3
   },
