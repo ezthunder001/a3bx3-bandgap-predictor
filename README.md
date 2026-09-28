@@ -5,15 +5,23 @@
 ## Results (v2, held out only)
 
 Primary set: 39 formulas, label = median no-SOC GGA-PBE gap. MAE in eV with bootstrap 95 % CI.
-Every row uses the same folds.
+Every row uses the same folds. The table is generated from `reports/metrics_v2.json` and
+`reports/mlp_v2.json` by `python -m a3bx3.readme_table`.
 
+<!-- results-table:start -->
 | Model | Leave-one-B-family-out | Leave-one-A-out | Mean baseline (LOBO) | Best baseline (LOBO) | Sr₃BiX₃ locked holdout |
 |---|---|---|---|---|---|
 | **GPR, physics-9 descriptors** | **0.111 [0.080, 0.144]** | 0.505 [0.377, 0.634] | 0.526 | ridge-Magpie 0.198 | **0.060** (n = 3) |
 | XGBoost, Magpie | 0.151 [0.104, 0.220] | 0.434 [0.334, 0.542] | 0.526 | 0.198 | 0.262 |
 | Random forest, Magpie | 0.221 [0.141, 0.322] | 0.431 [0.330, 0.533] | 0.526 | 0.198 | 0.272 |
+| MLP (PyTorch), physics-9 | 0.182 [0.139, 0.239] | 0.652 [0.465, 0.865] | 0.526 | 0.198 | — |
+| MLP (PyTorch), Magpie | 0.204 [0.146, 0.274] | 1.294 [0.829, 1.833] | 0.526 | 0.198 | — |
+<!-- results-table:end -->
 
 - **Without preprint rows** (31 formulas): GPR LOBO 0.137 [0.098, 0.177] eV.
+- **November milestone, MLP vs XGB:** a small PyTorch MLP does **not** beat XGBoost or the GPR
+  on the family held-out splits. This was the pre-registered expectation at n = 39. Details:
+  [reports/mlp_v2.md](reports/mlp_v2.md).
 - **Label noise floor:** 0.1–0.2 eV. That is the spread between DFT codes for one compound.
 - **Kill checkpoint K2 passes:** skill 0.79 against the mean baseline and 0.44 [0.14, 0.63]
   against the best baseline. The lower bound of the second is below the 30 % bar.
