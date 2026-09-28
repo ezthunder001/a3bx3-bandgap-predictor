@@ -1,45 +1,65 @@
 # A₃BX₃ Band-Gap Predictor
 
-Machine-learning prediction of band gaps and elastic constants for **A₃BX₃ pnictogen-halide
-inverse perovskites**, validated against published first-principles DFT.
+**Predicts PBE band gaps of A₃BX₃ inverse-perovskite halides from composition. Small data, honest validation.**
 
-The headline is not the accuracy number. It is that **picking the right structural family matters
-more than picking the right model** — and that most of the work here went into proving the accuracy
-number is real rather than leaked.
+## Results (v2, held out only)
+
+Primary set: 39 formulas, label = median no-SOC GGA-PBE gap. MAE in eV with bootstrap 95 % CI.
+Every row uses the same folds.
+
+| Model | Leave-one-B-family-out | Leave-one-A-out | Mean baseline (LOBO) | Best baseline (LOBO) | Sr₃BiX₃ locked holdout |
+|---|---|---|---|---|---|
+| **GPR, physics-9 descriptors** | **0.111 [0.080, 0.144]** | 0.505 [0.377, 0.634] | 0.526 | ridge-Magpie 0.198 | **0.060** (n = 3) |
+| XGBoost, Magpie | 0.151 [0.104, 0.220] | 0.434 [0.334, 0.542] | 0.526 | 0.198 | 0.262 |
+| Random forest, Magpie | 0.221 [0.141, 0.322] | 0.431 [0.330, 0.533] | 0.526 | 0.198 | 0.272 |
+
+- **Without preprint rows** (31 formulas): GPR LOBO 0.137 [0.098, 0.177] eV.
+- **Label noise floor:** 0.1–0.2 eV. That is the spread between DFT codes for one compound.
+- **Kill checkpoint K2 passes:** skill 0.79 against the mean baseline and 0.44 [0.14, 0.63]
+  against the best baseline. The lower bound of the second is below the 30 % bar.
+- **Intervals:** GPR jackknife+ covers 95 % at nominal 90 % on GroupKFold, but only 21 % on an
+  unseen A-site.
+- **What the model learned:** pre-registered physics trends are confirmed. Details:
+  [uncertainty](reports/uncertainty_v2.md), [explanations](reports/explain_v2.md).
+
+![Leave-one-B-family-out parity plot](reports/figures/parity_lobo_gpr_physics9.png)
+
+> **What went wrong, and how I caught it**
+> - **Wrong structural family.** A model trained on ABX₃ perovskites missed Sr₃BiX₃ by
+>   **~0.85 eV**. Restricting training to the A₃BX₃ family brought that to **~0.16 eV** (v1).
+>   The family choice mattered more than the model.
+> - **Polymorph leakage.** Random K-fold on JARVIS let polymorphs of one formula sit on both
+>   sides of a split: R² **0.749 → 0.631** once folds were grouped by formula. Both numbers are
+>   kept in `data/jarvis_model_metrics.json`.
+> - **HSE labelled as PBE.** Checking every v1 row against its source found that Mg₃BiI₃ and
+>   Mg₃BiBr₃ carried **HSE06 gaps labelled as PBE** (0.867 / 1.626 instead of 0.224 / 1.071 eV).
+>   Several other rows cite a paper that does not hold their value. Fixed in
+>   `corrections.csv` (see [DATA_CARD.md](DATA_CARD.md)). The v1 file is not edited.
+> - **Tests that only passed on Windows.** The first Linux CI runs failed. One test compared
+>   text bytes (CRLF vs LF). Another compared recomputed GPR outputs to Windows-committed
+>   values, and GPR differs by ~0.005 eV across OSes. The fix: normalise line endings, and
+>   compare reruns on the same machine (commits 8ececb2, 45e927c).
+
+```bash
+pip install -r requirements.lock
+python run_all.py            # offline: data → features → train → evaluate → report → uncertainty → explain
+python -m pytest -q tests -m "not slow"
+```
+
+[DATA_CARD.md](DATA_CARD.md) · [MODEL_CARD.md](MODEL_CARD.md) · [notebooks/01_story.ipynb](notebooks/01_story.ipynb) ·
+[reports/metrics_v2.md](reports/metrics_v2.md)
+
+**Limits:** PBE gaps, which underestimate real gaps. n = 39. Not valid outside
+Mg/Ca/Sr/Ba – P/As/Sb/Bi – halides, and not for an A-site absent from training. The Materials
+Project data is not in yet, because there is no API key.
 
 ---
 
-## v2 in progress (branch `v2`, not released)
+# v1 history (public release 2026-08-20)
 
-A reproducible pipeline (`src/a3bx3/`, `configs/v2.yaml`) now rebuilds every number offline
-from `data/raw/` with `python run_all.py` (or `make all`), and scores every model beside four
-named baselines on the same grouped folds. Full tables, with bootstrap 95 % CIs:
-[`reports/metrics_v2.md`](reports/metrics_v2.md) / `reports/metrics_v2.json`. Data and model
-limits: [DATA_CARD.md](DATA_CARD.md), [MODEL_CARD.md](MODEL_CARD.md).
-
-> **Note on v1 data (found 2026-09-27, fixed in v2):** the v1 training set contains two
-> HSE06 band gaps stored as PBE: Mg3BiI3 0.867 eV (PBE is 0.224) and Mg3BiBr3 1.626 eV
-> (PBE is 1.071), from doi 10.1039/d4ra09093d, Table 4. Several other v1 rows cite a
-> source that does not contain their value. The v1 numbers below are kept as a historical
-> record and were computed on those labels. Details: [DATA_CARD.md](DATA_CARD.md)
-> ("v1 label errors found").
-
-v2 adds a literature harvest (37 sources) and a correction file, which gives 39 primary
-formulas. The label is the median no-SOC GGA-PBE gap per formula. Held-out only:
-
-- **Leave-one-B-out:** GPR MAE **0.111 [0.080, 0.144] eV** against 0.526 for the mean
-  baseline and 0.334 for ridge.
-- **Without the preprint rows** (31 formulas): 0.137 [0.098, 0.177] eV.
-- **Leave-one-A-out:** 0.505 eV. New A-sites are not supported.
-- **Prediction intervals** (held-out coverage per split, conformal and recalibrated σ):
-  [`reports/uncertainty_v2.md`](reports/uncertainty_v2.md). GPR jackknife+ covers 95 % at
-  nominal 90 % on GroupKFold, but only 21 % on a held-out A-site.
-
-The label noise floor, the code-to-code spread for one compound, is 0.1–0.2 eV. The
-Materials Project data is not in yet because there is no API key. The v1 results below are
-unchanged.
-
----
+Everything below is the v1 release, kept as a record. Its band-gap numbers were computed on the
+23-row v1 file, which contains the two HSE06-as-PBE labels described above. Do not quote them as
+current results.
 
 ## The problem
 
