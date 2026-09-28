@@ -80,7 +80,11 @@ def test_calibration_rows_never_include_the_fold_test_rows():
 
 def test_test_labels_are_never_read_when_building_intervals():
     """Structural check: replace the outer test labels by NaN. If any method touched them the
-    intervals would be NaN or differ from the committed run."""
+    intervals would be NaN or differ from a run with the real labels.
+
+    Both runs happen here, on the same machine. Comparing against the committed CSV instead
+    made the test platform-dependent: the GPR optimiser lands ~0.005 eV apart on Linux vs
+    Windows BLAS, which says nothing about label leakage."""
     rows = load_dataset(Paths(), "primary")
     X = featurize_rows(rows, "physics9")[0]
     y = np.array([r["Eg_eV"] for r in rows])
@@ -88,17 +92,13 @@ def test_test_labels_are_never_read_when_building_intervals():
     tr, te = make_splits(rows, CFG["splits"], CFG["seed"])["lobo"].folds[0]
     y_blind = y.copy()
     y_blind[te] = np.nan
-    r = U.fold_intervals(CFG, X, y_blind, g, tr, te, [0.9], CFG["seed"] + 0)
-    committed = {(x["method"], x["formula"]): (float(x["lower_90"]), float(x["upper_90"]))
-                 for x in _csv(ROOT / "reports" / "uncertainty_intervals_90.csv")
-                 if x["dataset"] == "primary" and x["split"] == "lobo" and x["fold"] == "0"}
-    assert committed
-    for m, (lo, hi) in r["intervals"].items():
+    blind = U.fold_intervals(CFG, X, y_blind, g, tr, te, [0.9], CFG["seed"] + 0)["intervals"]
+    seen = U.fold_intervals(CFG, X, y, g, tr, te, [0.9], CFG["seed"] + 0)["intervals"]
+    assert set(blind) == set(seen) and blind
+    for m, (lo, hi) in blind.items():
         assert np.isfinite(lo).all() and np.isfinite(hi).all(), m
-        for j, i in enumerate(te):
-            key = (m, rows[i]["formula"])
-            if key in committed:
-                assert (lo[j, 0], hi[j, 0]) == pytest.approx(committed[key], abs=1e-4), key
+        np.testing.assert_allclose(lo, seen[m][0], rtol=0, atol=1e-9, err_msg=m)
+        np.testing.assert_allclose(hi, seen[m][1], rtol=0, atol=1e-9, err_msg=m)
 
 
 def test_k2_recorded_with_ci_and_verdict():
