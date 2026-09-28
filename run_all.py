@@ -5,7 +5,7 @@
     python run_all.py fetch         # = make fetch (network; MP needs MP_API_KEY)
     python run_all.py data features # any subset, run in the order given
 
-Steps: fetch | data | features | train | evaluate | report | uncertainty | test | all
+Steps: fetch | data | features | train | evaluate | report | uncertainty | explain | test | all
 """
 from __future__ import annotations
 
@@ -18,7 +18,7 @@ sys.path.insert(0, str(ROOT / "src"))
 
 from a3bx3 import utf8_stdio  # noqa: E402
 
-OFFLINE = ["data", "features", "train", "evaluate", "report", "uncertainty"]
+OFFLINE = ["data", "features", "train", "evaluate", "report", "uncertainty", "explain"]
 
 
 def step(name: str) -> int:
@@ -42,9 +42,12 @@ def step(name: str) -> int:
     if name == "uncertainty":
         from a3bx3 import uncertainty
         return uncertainty.main([])
+    if name == "explain":
+        from a3bx3 import explain
+        return explain.main([])
     if name == "test":
         return subprocess.call([sys.executable, "-m", "pytest", "-q", "tests"], cwd=ROOT)
-    raise SystemExit(f"unknown step {name!r}; choose from fetch data features train evaluate report uncertainty test all")
+    raise SystemExit(f"unknown step {name!r}; choose from fetch data features train evaluate report uncertainty explain test all")
 
 
 def main(argv: list[str]) -> int:

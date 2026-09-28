@@ -5,9 +5,9 @@
 PY ?= python
 export PYTHONPATH := src
 
-.PHONY: all fetch data features train evaluate report uncertainty test
+.PHONY: all fetch data features train evaluate report uncertainty explain test
 
-all: data features train evaluate report uncertainty
+all: data features train evaluate report uncertainty explain
 
 fetch:
 	$(PY) -m a3bx3.fetch.oqmd
@@ -31,6 +31,9 @@ report:
 
 uncertainty: evaluate
 	$(PY) -m a3bx3.uncertainty
+
+explain: evaluate
+	$(PY) -m a3bx3.explain
 
 test:
 	$(PY) -m pytest -q tests

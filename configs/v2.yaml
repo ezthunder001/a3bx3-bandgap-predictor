@@ -113,3 +113,15 @@ uncertainty:
   # bootstrap CI of the MAE difference must exclude zero. Evaluated against the mean
   # baseline (design wording) and against the best baseline on that split (stricter).
   k2: {min_skill: 0.30, split: lobo, datasets: [primary, verified_only]}
+
+# Week 7: explanations (src/a3bx3/explain.py). Physics expectations were pre-registered in
+# reports/explain_expectations.md before any result existed; its commit hash is recorded
+# in reports/explain_v2.json.
+explain:
+  dataset: primary
+  splits: [lobo, gkf]            # verdicts use the 50 GKF fold-models; LOBO is a supplement
+  models: [gpr_physics9, rf_magpie, xgb_magpie]
+  background_n: 20               # SHAP background: seeded sample of TRAINING-fold rows only
+  kernel_nsamples: 512           # >= 2^9 - 2 coalitions: KernelExplainer is exact for physics-9
+  permutation_repeats: 10
+  expectations_file: reports/explain_expectations.md
