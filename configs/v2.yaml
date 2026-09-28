@@ -125,3 +125,30 @@ explain:
   kernel_nsamples: 512           # >= 2^9 - 2 coalitions: KernelExplainer is exact for physics-9
   permutation_repeats: 10
   expectations_file: reports/explain_expectations.md
+
+# Week 8: small PyTorch MLP vs XGB / GPR (src/a3bx3/mlp.py). Decision rule pre-registered in
+# reports/mlp_expectations.md before any MLP was trained; its commit hash is in mlp_v2.json.
+mlp:
+  datasets: [primary, verified_only]
+  splits: [lobo, loao, gkf, loo]   # intersected with evaluate.splits_by_dataset (LOO: primary only)
+  feature_sets: [physics9, magpie]
+  grid:                          # chosen by inner GroupKFold(5) on the outer training fold
+    mlp__hidden: [16, 64]
+    mlp__depth: [1, 2]
+    mlp__weight_decay: [0.001, 0.1]
+    mlp__dropout: [0.0, 0.2]
+  fixed: {lr: 0.01, max_epochs: 1000, patience: 100, val_fraction: 0.2}
+  inner_search_seeds: 1          # grid search uses 1 seed per fit (cost); final refit averages:
+  final_seeds: 5
+  pairs:                         # predefined comparisons (Delta = MAE(mlp) - MAE(other))
+    mlp_physics9: [xgb_physics9, gpr_physics9, mean]
+    mlp_magpie: [xgb_magpie, gpr_physics9, mean]
+  verdict_splits: [lobo, loao]
+  verdict_dataset: primary
+  bootstrap_n: 2000
+  learning_curve:
+    split: gkf
+    dataset: primary
+    fractions: [0.5, 0.75, 1.0]
+    models: [mlp_physics9, gpr_physics9, xgb_physics9, xgb_magpie]
+  expectations_file: reports/mlp_expectations.md
