@@ -19,3 +19,5 @@ shap>=0.45
 nbformat>=5.9
 nbconvert>=7.0
 ipykernel>=6.0
+# week 8 (optional, not installed by CI): CPU-only torch -> requirements-torch.lock
+# torch==2.14.0+cpu  --extra-index-url https://download.pytorch.org/whl/cpu

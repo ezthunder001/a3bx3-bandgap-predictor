@@ -11,3 +11,7 @@ reports/uncertainty_folds.csv -text
 reports/uncertainty_intervals_90.csv -text
 reports/explain_v2.json -text
 reports/explain_folds.csv -text
+requirements-torch.lock text eol=lf
+requirements.lock text eol=lf
+reports/mlp_v2.json -text
+reports/mlp_folds.csv -text

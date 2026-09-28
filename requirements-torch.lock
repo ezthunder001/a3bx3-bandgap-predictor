@@ -1,0 +1,9 @@
+# Optional CPU-only PyTorch for the week-8 MLP (src/a3bx3/mlp.py). Kept OUT of requirements.lock
+# on purpose: the Linux CPU wheel is ~185 MB, and CI does not need it (MLP tests skip without
+# torch; mlp_v2.json is committed). Install on top of the main lock:
+#   pip install -r requirements.lock -r requirements-torch.lock
+# Checked 2026-09-28: torch-2.14.0+cpu has cp311 wheels for manylinux_2_28_x86_64 and win_amd64.
+--extra-index-url https://download.pytorch.org/whl/cpu
+torch==2.14.0+cpu
+filelock==3.32.3
+fsspec==2026.7.0
