@@ -28,6 +28,32 @@ DFT calculation. It is a triage aid, not a substitute for DFT.
 - **Family only.** Not valid outside the 4 × 4 × 4 space above, for mixed-halide or
   mixed-cation compositions, or for non-cubic polymorphs. The descriptors are compositional
   and cannot tell polymorphs apart.
+- **Prediction intervals (week 6, `reports/uncertainty_v2.md`).** Held-out coverage and mean
+  width (eV) at nominal 90 %, primary set. Every interval is fitted on the outer training fold
+  only:
+
+  | Method | LOBO | LOAO | GKF×10 | LOO |
+  |---|---|---|---|---|
+  | GPR ±zσ (raw) | 0.67 · 0.34 | 0.77 · 1.91 | 0.78 · 0.35 | 0.85 · 0.33 |
+  | GPR ±z·c·σ (c from inner CV) | **0.90 · 0.75** | 1.00 · 2.79 | 0.93 · 0.66 | 0.92 · 0.46 |
+  | GPR jackknife+ (MAPIE 1.5.0) | 0.87 · 0.52 | **0.21** · 0.42 | **0.95 · 0.48** | 0.92 · 0.46 |
+  | GPR CV+ | 0.92 · 0.79 | 0.36 · 0.54 | 0.97 · 0.68 | 0.95 · 0.55 |
+  | ridge CV+ (baseline) | 0.97 · 2.21 | 0.69 · 1.67 | 0.92 · 1.78 | 0.90 · 1.79 |
+  | mean CV+ (baseline) | 0.90 · 2.39 | 0.85 · 2.34 | 0.91 · 2.30 | 0.92 · 2.41 |
+
+  - **Use:** for compositions inside the training chemistry (GKF, LOO), GPR jackknife+ reaches
+    about nominal coverage. Its intervals are 4–5× narrower than the conformal intervals
+    around the named baselines at the same coverage.
+  - **For a B-site family held out entirely:** use the scaled σ (0.90 coverage, 0.75 eV wide).
+    Jackknife+ gives 0.87.
+  - **Never use the raw σ.** It undercovers on every split.
+  - **The conformal guarantee** (marginal coverage ≥ 1 − 2α) needs exchangeable test and
+    training rows. That holds only for GKF, and approximately for LOO. It is **violated** for
+    LOBO and LOAO, where the numbers above are measured, not guaranteed. Per-compound
+    coverage is never guaranteed.
+  - **On a new A-site, conformal intervals collapse** to 21–36 % coverage. Under the design's
+    rule (coverage < 80 % at nominal 90 %), they must not be published for that use. The
+    scaled σ over-covers there (1.00) only by being 2.8 eV wide, which is uninformative.
 - **The Sr3BiX3 holdout (n = 3) cannot rank models.** Its own literature spread is at least
   0.16 eV: Sr3BiI3 is 1.164 (CASTEP), 1.30 (WIEN2k) and 1.324 (target).
 - **MAE is not comparable with v1.** The label range grew from 0.78–2.30 to 0.11–3.18 eV,
@@ -93,8 +119,14 @@ Reading it honestly:
 - RF and XGB do not beat the GPR except on leave-one-A-out and on the SOC target, where
   every model is weak. This matches the pre-registered expectation.
 - GPR σ calibration on primary LOBO (out-of-fold): 49 % of points fall within ±1σ against a
-  nominal 68 %, and 72 % within ±2σ against 95 %. The intervals are **too narrow**; do not
-  use them as confidence intervals. Conformal intervals are week-6 work.
+  nominal 68 %, and 72 % within ±2σ against 95 %. The raw intervals are **too narrow**; see
+  the prediction-interval limits above for the calibrated alternatives. The inner-CV scale
+  factor c averages 2.1 on LOBO and 1.4 on LOO.
+- **Kill checkpoint K2 (design §9): PASS.** On primary LOBO the GPR's skill vs the mean
+  baseline is 0.79 [0.72, 0.84]. Against the best baseline, ridge_magpie at 0.198 eV, it is
+  0.44 [0.14, 0.63]. Verified-only gives 0.74 [0.63, 0.82] and 0.53 [0.26, 0.70]. Both
+  paired-difference CIs exclude 0. Against the best baseline, the lower CI bound of the skill
+  (0.14 on primary) is below the 30 % bar, so the margin is not secure.
 
 ## Reproduction
 

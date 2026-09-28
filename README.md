@@ -31,6 +31,9 @@ formulas. The label is the median no-SOC GGA-PBE gap per formula. Held-out only:
   baseline and 0.334 for ridge.
 - **Without the preprint rows** (31 formulas): 0.137 [0.098, 0.177] eV.
 - **Leave-one-A-out:** 0.505 eV. New A-sites are not supported.
+- **Prediction intervals** (held-out coverage per split, conformal and recalibrated σ):
+  [`reports/uncertainty_v2.md`](reports/uncertainty_v2.md). GPR jackknife+ covers 95 % at
+  nominal 90 % on GroupKFold, but only 21 % on a held-out A-site.
 
 The label noise floor, the code-to-code spread for one compound, is 0.1–0.2 eV. The
 Materials Project data is not in yet because there is no API key. The v1 results below are
