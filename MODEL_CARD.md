@@ -17,7 +17,7 @@ The narrative is in `notebooks/01_story.ipynb`.
 | Headline model | `gpr_physics9`: StandardScaler, then Gaussian process regression. The kernel is ARD Matérn(ν = 5/2) plus a white-noise term, `normalize_y`, 8 optimiser restarts, seed 42. It is the v1 kernel. |
 | Input | Composition only. There are 9 crystal-chemistry descriptors: the radii rA, rB, rX; the electronegativities chiA, chiB, chiX; the differences dchi_BX and dchi_AX; and the ratio rB/rX. |
 | Output | Predicted GGA-PBE band gap without SOC, in eV, with a predictive σ. Do not use raw σ as an interval (§6). |
-| Compared against | Four named baselines on the same folds: mean, per-halide mean, ridge on physics-9, and ridge on Magpie. Also random forest and XGBoost on physics-9 and Magpie features. Every transform sits inside a `Pipeline`, and hyperparameters are chosen by nested grouped CV. |
+| Compared against | Four named baselines on the same folds: mean, per-halide mean, ridge on physics-9, and ridge on Magpie. Also random forest and XGBoost on physics-9 and Magpie features, and (week 8) a small PyTorch MLP on both feature sets. Every transform sits inside a `Pipeline`, and hyperparameters are chosen by nested grouped CV. |
 
 ## 2. Intended use
 
@@ -94,6 +94,39 @@ The best baseline on primary LOBO is ridge_magpie, at 0.198 eV.
   baseline is below the 30 % bar.** The pass is secure against the mean and not secure
   against ridge_magpie.
 
+**November milestone: MLP vs XGB (week 8, `reports/mlp_v2.md`).**
+
+A small PyTorch MLP was tested with 1–2 hidden layers of width 16 or 64, weight decay and
+dropout, trained on the same folds. The grid is chosen by an inner GroupKFold, training uses
+early stopping on an inner validation split of the training fold, and the result is an average
+of 5 seeds. The decision rule was pre-registered in `reports/mlp_expectations.md`
+(commit e153c25).
+
+| Primary, MAE (eV) [95 % CI] | LOBO | LOAO |
+|---|---|---|
+| mlp_physics9 | 0.182 [0.139, 0.239] | 0.652 [0.465, 0.865] |
+| mlp_magpie | 0.204 [0.146, 0.274] | 1.294 [0.829, 1.833] |
+| xgb_physics9 / xgb_magpie | 0.170 / 0.151 | 0.489 / 0.434 |
+| gpr_physics9 | 0.111 | 0.505 |
+
+**Verdict: the MLP beats XGB — NO. The MLP beats the GPR — NO.**
+
+- mlp_physics9 **TIEs** xgb_physics9 on LOBO and **LOSES** on LOAO.
+- mlp_magpie **LOSES** to xgb_magpie on both splits.
+- Against the GPR, every pairing LOSES except mlp_physics9 on LOAO, which is a TIE.
+- On the verified-only set the ordering is the same.
+
+This is the pre-registered expectation, not a failure. With about 31 training rows per fold, a
+network whose parameters outnumber the rows cannot beat a kernel method with a physics prior.
+The MLP is not recommended for this family.
+
+**Learning curve** (GKF, subsampling the training fold to 50 %, 75 % and 100 %, about 16, 23
+and 31 rows):
+
+- Every model improves, and the MLP improves most (0.32 → 0.14 eV).
+- The GPR stays best at every size (0.21 → 0.09 eV).
+- The set is data-limited, not model-limited.
+
 ## 6. Uncertainty
 
 Coverage is measured on held-out folds; every interval is fitted on the training fold only.
@@ -168,12 +201,12 @@ one element of a composition and records how the prediction moves:
 ```bash
 python -m venv .venv
 .venv/Scripts/python -m pip install -r requirements.lock   # use bin/ on Linux
-python run_all.py            # data → features → train → evaluate → report → uncertainty → explain
+python run_all.py            # data → features → train → evaluate → report → uncertainty → explain → mlp (mlp needs: pip install -r requirements-torch.lock)
 python -m pytest -q tests -m "not slow"   # what CI runs
 ```
 
 - **Rebuild time.** Offline, about 6.5 minutes for metrics, 8.5 minutes for uncertainty and
-  3 minutes for explanations, on a 16-core Windows machine. Only `run_all.py fetch` uses the
+  3 minutes for explanations and 11 minutes for the MLP, on a 16-core Windows machine. Only `run_all.py fetch` uses the
   network.
 - **Determinism.** Two runs on the same machine give byte-identical JSON; this is tested.
 - **Across machines.** GPR outputs differ by about 0.005 eV between Linux and Windows. That is

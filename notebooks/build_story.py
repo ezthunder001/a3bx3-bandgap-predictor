@@ -26,6 +26,7 @@ report that `python run_all.py` regenerates:
 - `reports/metrics_v2.json`
 - `reports/uncertainty_v2.json`
 - `reports/explain_v2.json`
+- `reports/mlp_v2.json`
 - `data/a3bx3_family_metrics.json` (v1)"""),
     code("""import json
 from pathlib import Path
@@ -37,6 +38,7 @@ def load(rel):
 M = load("reports/metrics_v2.json")
 U = load("reports/uncertainty_v2.json")
 E = load("reports/explain_v2.json")
+N = load("reports/mlp_v2.json")
 V1 = load("data/a3bx3_family_metrics.json")
 
 def ci(e):
@@ -155,7 +157,33 @@ print("Mg - Ca substitution (no prior):", g["substitution"]["A:Mg-Ca"]["mean"], 
   is a hypothesis for DFT, not a result.
 
 ![beeswarm](../reports/figures/explain_beeswarm_gpr_physics9.png)"""),
-    md("""## 7. Limits (the binding list is MODEL_CARD.md §7)
+    md("""## 7. Does a neural network help? (the November milestone)
+
+A small PyTorch MLP was trained on the same features and the same folds. It uses a nested grid,
+early stopping on an inner validation split and an average of 5 seeds. The decision rule, and
+the expected answer of "no", were committed before training
+(`reports/mlp_expectations.md`).
+
+![learning curve](../reports/figures/mlp_learning_curve.png)"""),
+    code("""v = N["verdict"]
+print("MLP beats XGB:", v["MLP beats XGB"], "| MLP beats GPR:", v["MLP beats GPR"], "| rule commit:", N["expectations"]["commit"][:7])
+for pair, o in v["outcomes"].items():
+    print(f"  {pair:<30} {o}")
+P = N["datasets"]["primary"]
+for s in ("lobo", "loao"):
+    m = P[s]["models"]
+    print(f"{s}: " + "  ".join(f"{k} {m[k]['MAE']:.3f}" for k in ("mlp_physics9", "mlp_magpie", "xgb_physics9", "xgb_magpie", "gpr_physics9", "mean")))
+lc = N["learning_curve"]["models"]
+print("learning curve (MAE at 50/75/100 % of each training fold):")
+for k, v_ in lc.items():
+    print(f"  {k:<14}", " -> ".join(f"{v_[f]['MAE']:.3f}" for f in sorted(v_)))"""),
+    md("""**What it shows:**
+
+- With about 31 training rows per fold, the MLP ties XGBoost at best and loses to the GPR.
+- The learning curve slopes down for every model. More compounds would help all of them.
+- A different architecture would not change the answer: the set is data-limited, not
+  model-limited."""),
+    md("""## 8. Limits (the binding list is MODEL_CARD.md §7)
 
 - These are PBE gaps without SOC, not experimental ones.
 - The label noise floor is 0.1–0.2 eV.
