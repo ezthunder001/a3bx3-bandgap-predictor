@@ -16,7 +16,6 @@ inside each outer training fold, never by a holdout score.
 from __future__ import annotations
 
 import csv
-import hashlib
 import io
 import json
 import sys
@@ -32,7 +31,7 @@ from . import utf8_stdio
 from .config import ROOT, Paths, load_config
 from .features import featurize_rows, read_csv
 from .fetch.literature import load_file
-from .manifest import sha256, write_atomic
+from .manifest import sha256_text, write_atomic
 from .models import ModelSpec, fit, model_specs, predict
 from .splits import assert_holdout_excluded, check_folds, make_splits
 
@@ -49,7 +48,6 @@ DATASET_DESC = {
 }
 BASELINE_REFS = ["mean", "ridge_physics9"]
 R = 4  # decimals in the JSON
-CRLF, LF = bytes([13, 10]), bytes([10])
 
 
 def _r(x, d=R):
@@ -225,7 +223,7 @@ def evaluate(paths: Paths | None = None, final: bool = True) -> dict:
             "description": DATASET_DESC.get(ds, ds),
             "n_formulas": len(fam),
             "curate": summary["datasets"][ds],
-            "family_csv_sha256": sha256(paths.processed / f"family_{ds}.csv"),
+            "family_csv_sha256": sha256_text(paths.processed / f"family_{ds}.csv"),
             "results": {s: _split_metrics(fam, [r for r in oof if r["split"] == s], s, specs,
                                           boot, lo, hi) for s in split_names},
             "sr3bix3_holdout": (final_holdout(paths, cfg, ds)
@@ -244,10 +242,8 @@ def evaluate(paths: Paths | None = None, final: bool = True) -> dict:
         "k1": summary["k1"],
         "label_noise_floor_eV": ev["label_noise_floor_eV"],
         "data": {"n_holdout": len(cfg["data"]["holdout_formulas"]),
-                 "holdout_csv_sha256": sha256(paths.processed / "holdout_sr3bix3.csv"),
-                 # line endings normalised so a CRLF checkout hashes the same config
-                 "config_sha256": hashlib.sha256((ROOT / "configs" / "v2.yaml").read_bytes()
-                                                 .replace(CRLF, LF)).hexdigest()},
+                 "holdout_csv_sha256": sha256_text(paths.processed / "holdout_sr3bix3.csv"),
+                 "config_sha256": sha256_text(ROOT / "configs" / "v2.yaml")},
         "splits": SPLIT_DESC,
         "datasets": datasets,
         "models": {s.name: {"role": s.role, "feature_set": s.feature_set,

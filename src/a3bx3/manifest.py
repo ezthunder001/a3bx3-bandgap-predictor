@@ -18,6 +18,12 @@ def sha256(path: Path) -> str:
     return h.hexdigest()
 
 
+def sha256_text(path: Path) -> str:
+    """SHA-256 of a text file with CRLF normalised to LF, so a Windows checkout
+    (core.autocrlf) and a Linux checkout hash the same content."""
+    return hashlib.sha256(Path(path).read_bytes().replace(bytes([13, 10]), bytes([10]))).hexdigest()
+
+
 def _rel(path: Path) -> str:
     return Path(path).resolve().relative_to(ROOT).as_posix()
 
