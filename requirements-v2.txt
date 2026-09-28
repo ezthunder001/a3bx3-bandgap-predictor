@@ -14,3 +14,8 @@ pytest>=8
 mp-api>=0.41
 jarvis-tools>=2024.1.1
 mapie>=0.8
+# week 7: explanations and the story notebook
+shap>=0.45
+nbformat>=5.9
+nbconvert>=7.0
+ipykernel>=6.0

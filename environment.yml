@@ -1,5 +1,6 @@
 # conda env create -f environment.yml
 # Exact pins of the environment the committed reports were produced in: requirements.lock.
+# (requirements-v2.txt includes shap + nbformat/nbconvert/ipykernel since week 7.)
 name: a3bx3
 channels:
   - conda-forge
