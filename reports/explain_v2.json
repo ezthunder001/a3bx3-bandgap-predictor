@@ -1,0 +1,1876 @@
+{
+  "_readme": "SHAP / permutation importance / element-substitution effects on HELD-OUT rows of each outer fold; SHAP backgrounds are training-fold rows only. Verdicts follow the pre-registered rule over the 50 GKF fold-models.",
+  "dataset": "primary",
+  "environment": {
+    "matminer": "0.10.1",
+    "numpy": "2.4.6",
+    "scikit-learn": "1.9.1",
+    "shap": "0.51.0",
+    "xgboost": "3.2.0"
+  },
+  "expectations": {
+    "commit": "76f6425f6a40e0dd779c5ff0b298b24c8bdd6194",
+    "file": "reports/explain_expectations.md",
+    "sha256_lf": "a93e4236091d68ea17049eb1cd809362efa95c3f6863fa63e2a93251f835f3c4"
+  },
+  "models": {
+    "gpr_physics9": {
+      "explainer": "KernelExplainer (exact)",
+      "feature_set": "physics9",
+      "splits": {
+        "gkf": {
+          "mean_abs_shap": {
+            "chiA": {
+              "mean": 0.0736,
+              "mean_rank": 4.12,
+              "p2_5": 0.0,
+              "p97_5": 0.2366
+            },
+            "chiB": {
+              "mean": 0.0279,
+              "mean_rank": 4.84,
+              "p2_5": 0.0,
+              "p97_5": 0.1086
+            },
+            "chiX": {
+              "mean": 0.0085,
+              "mean_rank": 6.98,
+              "p2_5": 0.0,
+              "p97_5": 0.0
+            },
+            "dchi_AX": {
+              "mean": 0.1611,
+              "mean_rank": 5.22,
+              "p2_5": 0.0,
+              "p97_5": 0.5134
+            },
+            "dchi_BX": {
+              "mean": 0.0,
+              "mean_rank": 6.72,
+              "p2_5": 0.0,
+              "p97_5": 0.0
+            },
+            "rA": {
+              "mean": 0.3331,
+              "mean_rank": 1.54,
+              "p2_5": 0.2099,
+              "p97_5": 0.5225
+            },
+            "rB": {
+              "mean": 0.0843,
+              "mean_rank": 3.5,
+              "p2_5": 0.0055,
+              "p97_5": 0.1628
+            },
+            "rB_over_rX": {
+              "mean": 0.0035,
+              "mean_rank": 8.24,
+              "p2_5": 0.0,
+              "p97_5": 0.031
+            },
+            "rX": {
+              "mean": 0.1557,
+              "mean_rank": 3.84,
+              "p2_5": 0.0,
+              "p97_5": 0.3891
+            }
+          },
+          "n_folds": 50,
+          "permutation_importance_top10": {
+            "chiA": 0.0775,
+            "chiB": 0.0093,
+            "chiX": 0.0103,
+            "dchi_AX": 0.1677,
+            "dchi_BX": -0.0,
+            "rA": 0.3695,
+            "rB": 0.0485,
+            "rB_over_rX": 0.0041,
+            "rX": 0.1621
+          },
+          "rank_stability": {
+            "kendall_tau_all_features": {
+              "mean": 0.476,
+              "min": -0.216
+            },
+            "kendall_tau_top10": {
+              "mean": 0.476,
+              "min": -0.216
+            },
+            "top3_same_as_aggregate_share": 0.0
+          },
+          "shap_slopes": {
+            "chiA": {
+              "expectation": "E3 reported",
+              "expected_sign": 0,
+              "mean": -0.3623,
+              "n": 50,
+              "n_folds_constant_feature": 0,
+              "p2_5": -1.4251,
+              "p97_5": 0.0571,
+              "share_expected_sign": null,
+              "verdict": "REPORTED"
+            },
+            "chiB": {
+              "expectation": "E2",
+              "expected_sign": 1,
+              "mean": -0.3321,
+              "n": 50,
+              "n_folds_constant_feature": 0,
+              "p2_5": -1.4428,
+              "p97_5": 0.3141,
+              "share_expected_sign": 0.04,
+              "verdict": "UNCLEAR"
+            },
+            "chiX": {
+              "expectation": "E1",
+              "expected_sign": 1,
+              "mean": 0.0233,
+              "n": 50,
+              "n_folds_constant_feature": 0,
+              "p2_5": 0.0,
+              "p97_5": 0.0001,
+              "share_expected_sign": 0.34,
+              "verdict": "UNCLEAR"
+            },
+            "dchi_AX": {
+              "expectation": "E5",
+              "expected_sign": 0,
+              "mean": 0.4713,
+              "n": 50,
+              "n_folds_constant_feature": 0,
+              "p2_5": 0.0,
+              "p97_5": 1.6532,
+              "share_expected_sign": null,
+              "verdict": "REPORTED"
+            },
+            "dchi_BX": {
+              "expectation": "E4",
+              "expected_sign": 1,
+              "mean": 0.0,
+              "n": 50,
+              "n_folds_constant_feature": 0,
+              "p2_5": 0.0,
+              "p97_5": 0.0002,
+              "share_expected_sign": 0.56,
+              "verdict": "UNCLEAR"
+            },
+            "rA": {
+              "expectation": "E3",
+              "expected_sign": -1,
+              "mean": -1.0913,
+              "n": 50,
+              "n_folds_constant_feature": 0,
+              "p2_5": -2.5221,
+              "p97_5": -0.0886,
+              "share_expected_sign": 0.98,
+              "verdict": "CONFIRMED"
+            },
+            "rB": {
+              "expectation": "E2",
+              "expected_sign": -1,
+              "mean": -0.5509,
+              "n": 50,
+              "n_folds_constant_feature": 0,
+              "p2_5": -1.0045,
+              "p97_5": -0.028,
+              "share_expected_sign": 1.0,
+              "verdict": "CONFIRMED"
+            },
+            "rB_over_rX": {
+              "expectation": "E5",
+              "expected_sign": 0,
+              "mean": -0.0329,
+              "n": 50,
+              "n_folds_constant_feature": 0,
+              "p2_5": -0.3575,
+              "p97_5": 0.0,
+              "share_expected_sign": null,
+              "verdict": "REPORTED"
+            },
+            "rX": {
+              "expectation": "E1",
+              "expected_sign": -1,
+              "mean": -0.8552,
+              "n": 50,
+              "n_folds_constant_feature": 0,
+              "p2_5": -1.9511,
+              "p97_5": 0.0,
+              "share_expected_sign": 0.82,
+              "verdict": "UNCLEAR"
+            }
+          },
+          "shap_vs_permutation_kendall_tau": 0.889,
+          "site_groups": {
+            "mean_group_abs_shap": {
+              "A": 0.4067,
+              "B": 0.1123,
+              "X": 0.1642
+            },
+            "mean_group_permutation": {
+              "A": 0.3898,
+              "B": 0.0331,
+              "X": 0.1651
+            },
+            "perm_A_minus_B": {
+              "mean": 0.3567,
+              "n": 50,
+              "p2_5": 0.2435,
+              "p97_5": 0.6005,
+              "share_expected_sign": 1.0,
+              "verdict": "CONFIRMED"
+            },
+            "perm_X_minus_B": {
+              "mean": 0.132,
+              "n": 50,
+              "p2_5": -0.0563,
+              "p97_5": 0.4357,
+              "share_expected_sign": 0.62,
+              "verdict": "UNCLEAR"
+            },
+            "shap_A_minus_B": {
+              "mean": 0.2944,
+              "n": 50,
+              "p2_5": 0.0966,
+              "p97_5": 0.5452,
+              "share_expected_sign": 1.0,
+              "verdict": "CONFIRMED"
+            },
+            "shap_X_minus_B": {
+              "mean": 0.052,
+              "n": 50,
+              "p2_5": -0.2198,
+              "p97_5": 0.3004,
+              "share_expected_sign": 0.56,
+              "verdict": "UNCLEAR"
+            }
+          },
+          "substitution": {
+            "A:Ca-Ba": {
+              "expected_sign": 1,
+              "mean": 0.8112,
+              "n": 50,
+              "p2_5": 0.6664,
+              "p97_5": 0.9361,
+              "role": "E3 decisive",
+              "share_expected_sign": 1.0,
+              "verdict": "CONFIRMED"
+            },
+            "A:Ca-Sr": {
+              "expected_sign": 1,
+              "mean": 0.2216,
+              "n": 50,
+              "p2_5": 0.1511,
+              "p97_5": 0.3053,
+              "role": "E3",
+              "share_expected_sign": 1.0,
+              "verdict": "CONFIRMED"
+            },
+            "A:Mg-Ca": {
+              "expected_sign": 0,
+              "mean": -0.3958,
+              "n": 50,
+              "p2_5": -0.8058,
+              "p97_5": 0.1293,
+              "role": "E3 reported",
+              "share_expected_sign": null,
+              "verdict": "REPORTED"
+            },
+            "A:Sr-Ba": {
+              "expected_sign": 1,
+              "mean": 0.5895,
+              "n": 50,
+              "p2_5": 0.5099,
+              "p97_5": 0.6539,
+              "role": "E3",
+              "share_expected_sign": 1.0,
+              "verdict": "CONFIRMED"
+            },
+            "B:As-Sb": {
+              "expected_sign": 1,
+              "mean": 0.0681,
+              "n": 50,
+              "p2_5": -0.0375,
+              "p97_5": 0.1312,
+              "role": "E2",
+              "share_expected_sign": 0.88,
+              "verdict": "UNCLEAR"
+            },
+            "B:P-As": {
+              "expected_sign": 1,
+              "mean": 0.064,
+              "n": 50,
+              "p2_5": 0.0082,
+              "p97_5": 0.1116,
+              "role": "E2",
+              "share_expected_sign": 0.98,
+              "verdict": "CONFIRMED"
+            },
+            "B:P-Bi": {
+              "expected_sign": 1,
+              "mean": 0.1746,
+              "n": 50,
+              "p2_5": 0.057,
+              "p97_5": 0.2861,
+              "role": "E2 decisive",
+              "share_expected_sign": 1.0,
+              "verdict": "CONFIRMED"
+            },
+            "B:Sb-Bi": {
+              "expected_sign": 1,
+              "mean": 0.0424,
+              "n": 50,
+              "p2_5": 0.0103,
+              "p97_5": 0.065,
+              "role": "E2",
+              "share_expected_sign": 0.98,
+              "verdict": "CONFIRMED"
+            },
+            "X:Br-I": {
+              "expected_sign": 1,
+              "mean": 0.4229,
+              "n": 50,
+              "p2_5": 0.2572,
+              "p97_5": 0.5854,
+              "role": "E1",
+              "share_expected_sign": 1.0,
+              "verdict": "CONFIRMED"
+            },
+            "X:Cl-Br": {
+              "expected_sign": 1,
+              "mean": 0.2533,
+              "n": 50,
+              "p2_5": 0.1091,
+              "p97_5": 0.3818,
+              "role": "E1",
+              "share_expected_sign": 1.0,
+              "verdict": "CONFIRMED"
+            },
+            "X:F-Cl": {
+              "expected_sign": 1,
+              "mean": 0.572,
+              "n": 50,
+              "p2_5": 0.2672,
+              "p97_5": 0.8501,
+              "role": "E1",
+              "share_expected_sign": 1.0,
+              "verdict": "CONFIRMED"
+            }
+          },
+          "top10": [
+            "rA",
+            "dchi_AX",
+            "rX",
+            "rB",
+            "chiA",
+            "chiB",
+            "chiX",
+            "rB_over_rX",
+            "dchi_BX"
+          ]
+        },
+        "lobo": {
+          "mean_abs_shap": {
+            "chiA": {
+              "mean": 0.1046,
+              "mean_rank": 3.25,
+              "p2_5": 0.0551,
+              "p97_5": 0.1891
+            },
+            "chiB": {
+              "mean": 0.0409,
+              "mean_rank": 4.5,
+              "p2_5": 0.0024,
+              "p97_5": 0.0839
+            },
+            "chiX": {
+              "mean": 0.0,
+              "mean_rank": 6.75,
+              "p2_5": 0.0,
+              "p97_5": 0.0
+            },
+            "dchi_AX": {
+              "mean": 0.1034,
+              "mean_rank": 5.75,
+              "p2_5": 0.0,
+              "p97_5": 0.3825
+            },
+            "dchi_BX": {
+              "mean": 0.0,
+              "mean_rank": 7.75,
+              "p2_5": 0.0,
+              "p97_5": 0.0
+            },
+            "rA": {
+              "mean": 0.3129,
+              "mean_rank": 1.0,
+              "p2_5": 0.2658,
+              "p97_5": 0.4112
+            },
+            "rB": {
+              "mean": 0.0705,
+              "mean_rank": 4.75,
+              "p2_5": 0.0,
+              "p97_5": 0.1502
+            },
+            "rB_over_rX": {
+              "mean": 0.0,
+              "mean_rank": 7.5,
+              "p2_5": 0.0,
+              "p97_5": 0.0
+            },
+            "rX": {
+              "mean": 0.1997,
+              "mean_rank": 3.75,
+              "p2_5": 0.0185,
+              "p97_5": 0.2876
+            }
+          },
+          "n_folds": 4,
+          "permutation_importance_top10": {
+            "chiA": 0.1187,
+            "chiB": 0.0,
+            "chiX": 0.0,
+            "dchi_AX": 0.128,
+            "dchi_BX": 0.0,
+            "rA": 0.301,
+            "rB": 0.0,
+            "rB_over_rX": 0.0,
+            "rX": 0.17
+          },
+          "rank_stability": {
+            "kendall_tau_all_features": {
+              "mean": 0.484,
+              "min": 0.141
+            },
+            "kendall_tau_top10": {
+              "mean": 0.484,
+              "min": 0.141
+            },
+            "top3_same_as_aggregate_share": 0.75
+          },
+          "shap_slopes": {
+            "chiA": {
+              "expectation": "E3 reported",
+              "expected_sign": 0,
+              "mean": -0.5271,
+              "n": 4,
+              "n_folds_constant_feature": 0,
+              "p2_5": -1.103,
+              "p97_5": -0.0587,
+              "share_expected_sign": null,
+              "verdict": "REPORTED"
+            },
+            "chiB": {
+              "expectation": "E2",
+              "expected_sign": 1,
+              "n": 0,
+              "n_folds_constant_feature": 4,
+              "verdict": "UNCLEAR"
+            },
+            "chiX": {
+              "expectation": "E1",
+              "expected_sign": 1,
+              "mean": 0.0,
+              "n": 4,
+              "n_folds_constant_feature": 0,
+              "p2_5": 0.0,
+              "p97_5": 0.0,
+              "share_expected_sign": null,
+              "verdict": "REPORTED"
+            },
+            "dchi_AX": {
+              "expectation": "E5",
+              "expected_sign": 0,
+              "mean": 0.2817,
+              "n": 4,
+              "n_folds_constant_feature": 0,
+              "p2_5": 0.0,
+              "p97_5": 1.0422,
+              "share_expected_sign": null,
+              "verdict": "REPORTED"
+            },
+            "dchi_BX": {
+              "expectation": "E4",
+              "expected_sign": 1,
+              "mean": 0.0,
+              "n": 4,
+              "n_folds_constant_feature": 0,
+              "p2_5": 0.0,
+              "p97_5": 0.0001,
+              "share_expected_sign": null,
+              "verdict": "REPORTED"
+            },
+            "rA": {
+              "expectation": "E3",
+              "expected_sign": -1,
+              "mean": -0.887,
+              "n": 4,
+              "n_folds_constant_feature": 0,
+              "p2_5": -1.4497,
+              "p97_5": -0.3045,
+              "share_expected_sign": null,
+              "verdict": "REPORTED"
+            },
+            "rB": {
+              "expectation": "E2",
+              "expected_sign": -1,
+              "n": 0,
+              "n_folds_constant_feature": 4,
+              "verdict": "UNCLEAR"
+            },
+            "rB_over_rX": {
+              "expectation": "E5",
+              "expected_sign": 0,
+              "mean": -0.0001,
+              "n": 4,
+              "n_folds_constant_feature": 0,
+              "p2_5": -0.0004,
+              "p97_5": 0.0,
+              "share_expected_sign": null,
+              "verdict": "REPORTED"
+            },
+            "rX": {
+              "expectation": "E1",
+              "expected_sign": -1,
+              "mean": -1.0629,
+              "n": 4,
+              "n_folds_constant_feature": 0,
+              "p2_5": -1.6272,
+              "p97_5": -0.0933,
+              "share_expected_sign": null,
+              "verdict": "REPORTED"
+            }
+          },
+          "shap_vs_permutation_kendall_tau": 0.535,
+          "site_groups": {
+            "mean_group_abs_shap": {
+              "A": 0.4175,
+              "B": 0.1114,
+              "X": 0.1997
+            },
+            "mean_group_permutation": {
+              "A": 0.3693,
+              "B": 0.0,
+              "X": 0.1721
+            },
+            "perm_A_minus_B": {
+              "mean": 0.3693,
+              "n": 4,
+              "p2_5": 0.2917,
+              "p97_5": 0.4865,
+              "share_expected_sign": null,
+              "verdict": "REPORTED"
+            },
+            "perm_X_minus_B": {
+              "mean": 0.1721,
+              "n": 4,
+              "p2_5": 0.0145,
+              "p97_5": 0.2766,
+              "share_expected_sign": null,
+              "verdict": "REPORTED"
+            },
+            "shap_A_minus_B": {
+              "mean": 0.3061,
+              "n": 4,
+              "p2_5": 0.2881,
+              "p97_5": 0.332,
+              "share_expected_sign": null,
+              "verdict": "REPORTED"
+            },
+            "shap_X_minus_B": {
+              "mean": 0.0883,
+              "n": 4,
+              "p2_5": -0.132,
+              "p97_5": 0.2266,
+              "share_expected_sign": null,
+              "verdict": "REPORTED"
+            }
+          },
+          "substitution": {
+            "A:Ca-Ba": {
+              "expected_sign": 1,
+              "max": 0.9335,
+              "mean": 0.769,
+              "min": 0.6174,
+              "n": 4,
+              "p2_5": 0.6276,
+              "p97_5": 0.9214,
+              "role": "E3 decisive",
+              "share_expected_sign": null,
+              "verdict": "SUPPLEMENT (4 folds, no verdict)"
+            },
+            "A:Ca-Sr": {
+              "expected_sign": 1,
+              "max": 0.2922,
+              "mean": 0.1994,
+              "min": 0.1186,
+              "n": 4,
+              "p2_5": 0.1215,
+              "p97_5": 0.2875,
+              "role": "E3",
+              "share_expected_sign": null,
+              "verdict": "SUPPLEMENT (4 folds, no verdict)"
+            },
+            "A:Mg-Ca": {
+              "expected_sign": 0,
+              "max": -0.2048,
+              "mean": -0.4597,
+              "min": -1.0124,
+              "n": 4,
+              "p2_5": -0.9663,
+              "p97_5": -0.2062,
+              "role": "E3 reported",
+              "share_expected_sign": null,
+              "verdict": "SUPPLEMENT (4 folds, no verdict)"
+            },
+            "A:Sr-Ba": {
+              "expected_sign": 1,
+              "max": 0.6413,
+              "mean": 0.5696,
+              "min": 0.4988,
+              "n": 4,
+              "p2_5": 0.5007,
+              "p97_5": 0.6393,
+              "role": "E3",
+              "share_expected_sign": null,
+              "verdict": "SUPPLEMENT (4 folds, no verdict)"
+            },
+            "B:As-Sb": {
+              "expected_sign": 1,
+              "max": 0.1534,
+              "mean": 0.0834,
+              "min": 0.032,
+              "n": 4,
+              "p2_5": 0.0333,
+              "p97_5": 0.1493,
+              "role": "E2",
+              "share_expected_sign": null,
+              "verdict": "SUPPLEMENT (4 folds, no verdict)"
+            },
+            "B:P-As": {
+              "expected_sign": 1,
+              "max": 0.0996,
+              "mean": 0.0423,
+              "min": 0.0024,
+              "n": 4,
+              "p2_5": 0.0026,
+              "p97_5": 0.0968,
+              "role": "E2",
+              "share_expected_sign": null,
+              "verdict": "SUPPLEMENT (4 folds, no verdict)"
+            },
+            "B:P-Bi": {
+              "expected_sign": 1,
+              "max": 0.3155,
+              "mean": 0.1589,
+              "min": 0.0422,
+              "n": 4,
+              "p2_5": 0.0494,
+              "p97_5": 0.3024,
+              "role": "E2 decisive",
+              "share_expected_sign": null,
+              "verdict": "SUPPLEMENT (4 folds, no verdict)"
+            },
+            "B:Sb-Bi": {
+              "expected_sign": 1,
+              "max": 0.0625,
+              "mean": 0.0333,
+              "min": 0.0078,
+              "n": 4,
+              "p2_5": 0.0094,
+              "p97_5": 0.0603,
+              "role": "E2",
+              "share_expected_sign": null,
+              "verdict": "SUPPLEMENT (4 folds, no verdict)"
+            },
+            "X:Br-I": {
+              "expected_sign": 1,
+              "max": 0.44,
+              "mean": 0.4072,
+              "min": 0.3747,
+              "n": 4,
+              "p2_5": 0.3767,
+              "p97_5": 0.438,
+              "role": "E1",
+              "share_expected_sign": null,
+              "verdict": "SUPPLEMENT (4 folds, no verdict)"
+            },
+            "X:Cl-Br": {
+              "expected_sign": 1,
+              "max": 0.2909,
+              "mean": 0.2406,
+              "min": 0.1809,
+              "n": 4,
+              "p2_5": 0.1849,
+              "p97_5": 0.2884,
+              "role": "E1",
+              "share_expected_sign": null,
+              "verdict": "SUPPLEMENT (4 folds, no verdict)"
+            },
+            "X:F-Cl": {
+              "expected_sign": 1,
+              "max": 0.6367,
+              "mean": 0.5446,
+              "min": 0.4837,
+              "n": 4,
+              "p2_5": 0.4866,
+              "p97_5": 0.6291,
+              "role": "E1",
+              "share_expected_sign": null,
+              "verdict": "SUPPLEMENT (4 folds, no verdict)"
+            }
+          },
+          "top10": [
+            "rA",
+            "rX",
+            "chiA",
+            "dchi_AX",
+            "rB",
+            "chiB",
+            "rB_over_rX",
+            "dchi_BX",
+            "chiX"
+          ]
+        }
+      }
+    },
+    "rf_magpie": {
+      "explainer": "TreeExplainer (interventional)",
+      "feature_set": "magpie",
+      "splits": {
+        "gkf": {
+          "mean_abs_shap": {
+            "MagpieData avg_dev AtomicWeight": {
+              "mean": 0.0097,
+              "mean_rank": 19.22,
+              "p2_5": 0.0027,
+              "p97_5": 0.0285
+            },
+            "MagpieData avg_dev Electronegativity": {
+              "mean": 0.0101,
+              "mean_rank": 18.1,
+              "p2_5": 0.003,
+              "p97_5": 0.0219
+            },
+            "MagpieData avg_dev MeltingT": {
+              "mean": 0.0339,
+              "mean_rank": 6.06,
+              "p2_5": 0.0113,
+              "p97_5": 0.0652
+            },
+            "MagpieData maximum AtomicWeight": {
+              "mean": 0.0702,
+              "mean_rank": 1.84,
+              "p2_5": 0.0427,
+              "p97_5": 0.1239
+            },
+            "MagpieData maximum Number": {
+              "mean": 0.0628,
+              "mean_rank": 2.62,
+              "p2_5": 0.0341,
+              "p97_5": 0.1114
+            },
+            "MagpieData mean AtomicWeight": {
+              "mean": 0.0488,
+              "mean_rank": 3.36,
+              "p2_5": 0.0307,
+              "p97_5": 0.0752
+            },
+            "MagpieData mean CovalentRadius": {
+              "mean": 0.0134,
+              "mean_rank": 13.28,
+              "p2_5": 0.0052,
+              "p97_5": 0.0227
+            },
+            "MagpieData mean Electronegativity": {
+              "mean": 0.0172,
+              "mean_rank": 11.0,
+              "p2_5": 0.005,
+              "p97_5": 0.0316
+            },
+            "MagpieData mean MendeleevNumber": {
+              "mean": 0.026,
+              "mean_rank": 7.5,
+              "p2_5": 0.0111,
+              "p97_5": 0.0462
+            },
+            "MagpieData mean Number": {
+              "mean": 0.0398,
+              "mean_rank": 4.7,
+              "p2_5": 0.0187,
+              "p97_5": 0.065
+            },
+            "MagpieData mean Row": {
+              "mean": 0.0154,
+              "mean_rank": 12.68,
+              "p2_5": 0.0057,
+              "p97_5": 0.029
+            },
+            "MagpieData minimum MendeleevNumber": {
+              "mean": 0.0301,
+              "mean_rank": 6.18,
+              "p2_5": 0.0136,
+              "p97_5": 0.0538
+            },
+            "MagpieData mode MendeleevNumber": {
+              "mean": 0.0272,
+              "mean_rank": 6.98,
+              "p2_5": 0.0146,
+              "p97_5": 0.0404
+            },
+            "MagpieData range Electronegativity": {
+              "mean": 0.0099,
+              "mean_rank": 17.86,
+              "p2_5": 0.0027,
+              "p97_5": 0.0189
+            },
+            "MagpieData range MeltingT": {
+              "mean": 0.0222,
+              "mean_rank": 10.26,
+              "p2_5": 0.0066,
+              "p97_5": 0.0588
+            }
+          },
+          "n_folds": 50,
+          "permutation_importance_top10": {
+            "MagpieData avg_dev Electronegativity": 0.0044,
+            "MagpieData avg_dev MeltingT": 0.0109,
+            "MagpieData maximum AtomicWeight": 0.0273,
+            "MagpieData maximum Number": 0.0239,
+            "MagpieData mean AtomicWeight": 0.0202,
+            "MagpieData mean MendeleevNumber": 0.0092,
+            "MagpieData mean Number": 0.0137,
+            "MagpieData minimum MendeleevNumber": 0.0163,
+            "MagpieData mode MendeleevNumber": 0.0149,
+            "MagpieData range MeltingT": 0.0055
+          },
+          "rank_stability": {
+            "kendall_tau_all_features": {
+              "mean": 0.868,
+              "min": 0.795
+            },
+            "kendall_tau_top10": {
+              "mean": 0.485,
+              "min": -0.289
+            },
+            "top3_same_as_aggregate_share": 0.5
+          },
+          "shap_vs_permutation_kendall_tau": 0.509,
+          "substitution": {
+            "A:Ca-Ba": {
+              "expected_sign": 1,
+              "mean": 0.6649,
+              "n": 50,
+              "p2_5": 0.4795,
+              "p97_5": 0.8042,
+              "role": "E3 decisive",
+              "share_expected_sign": 1.0,
+              "verdict": "CONFIRMED"
+            },
+            "A:Ca-Sr": {
+              "expected_sign": 1,
+              "mean": 0.1642,
+              "n": 50,
+              "p2_5": 0.0824,
+              "p97_5": 0.2287,
+              "role": "E3",
+              "share_expected_sign": 1.0,
+              "verdict": "CONFIRMED"
+            },
+            "A:Mg-Ca": {
+              "expected_sign": 0,
+              "mean": -0.319,
+              "n": 50,
+              "p2_5": -0.5162,
+              "p97_5": -0.1102,
+              "role": "E3 reported",
+              "share_expected_sign": null,
+              "verdict": "REPORTED"
+            },
+            "A:Sr-Ba": {
+              "expected_sign": 1,
+              "mean": 0.5006,
+              "n": 50,
+              "p2_5": 0.3625,
+              "p97_5": 0.5989,
+              "role": "E3",
+              "share_expected_sign": 1.0,
+              "verdict": "CONFIRMED"
+            },
+            "B:As-Sb": {
+              "expected_sign": 1,
+              "mean": 0.0833,
+              "n": 50,
+              "p2_5": 0.0176,
+              "p97_5": 0.1512,
+              "role": "E2",
+              "share_expected_sign": 1.0,
+              "verdict": "CONFIRMED"
+            },
+            "B:P-As": {
+              "expected_sign": 1,
+              "mean": 0.0229,
+              "n": 50,
+              "p2_5": -0.0774,
+              "p97_5": 0.094,
+              "role": "E2",
+              "share_expected_sign": 0.74,
+              "verdict": "UNCLEAR"
+            },
+            "B:P-Bi": {
+              "expected_sign": 1,
+              "mean": 0.3258,
+              "n": 50,
+              "p2_5": 0.149,
+              "p97_5": 0.5067,
+              "role": "E2 decisive",
+              "share_expected_sign": 1.0,
+              "verdict": "CONFIRMED"
+            },
+            "B:Sb-Bi": {
+              "expected_sign": 1,
+              "mean": 0.2196,
+              "n": 50,
+              "p2_5": 0.1022,
+              "p97_5": 0.3772,
+              "role": "E2",
+              "share_expected_sign": 1.0,
+              "verdict": "CONFIRMED"
+            },
+            "X:Br-I": {
+              "expected_sign": 1,
+              "mean": 0.3595,
+              "n": 50,
+              "p2_5": 0.1791,
+              "p97_5": 0.5444,
+              "role": "E1",
+              "share_expected_sign": 1.0,
+              "verdict": "CONFIRMED"
+            },
+            "X:Cl-Br": {
+              "expected_sign": 1,
+              "mean": 0.2123,
+              "n": 50,
+              "p2_5": 0.1178,
+              "p97_5": 0.329,
+              "role": "E1",
+              "share_expected_sign": 1.0,
+              "verdict": "CONFIRMED"
+            },
+            "X:F-Cl": {
+              "expected_sign": 1,
+              "mean": 0.3957,
+              "n": 50,
+              "p2_5": 0.1544,
+              "p97_5": 0.7021,
+              "role": "E1",
+              "share_expected_sign": 1.0,
+              "verdict": "CONFIRMED"
+            }
+          },
+          "top10": [
+            "MagpieData maximum AtomicWeight",
+            "MagpieData maximum Number",
+            "MagpieData mean AtomicWeight",
+            "MagpieData mean Number",
+            "MagpieData avg_dev MeltingT",
+            "MagpieData minimum MendeleevNumber",
+            "MagpieData mode MendeleevNumber",
+            "MagpieData mean MendeleevNumber",
+            "MagpieData range MeltingT",
+            "MagpieData mean Electronegativity"
+          ]
+        },
+        "lobo": {
+          "mean_abs_shap": {
+            "MagpieData avg_dev MeltingT": {
+              "mean": 0.0296,
+              "mean_rank": 6.5,
+              "p2_5": 0.0222,
+              "p97_5": 0.0353
+            },
+            "MagpieData avg_dev Number": {
+              "mean": 0.0115,
+              "mean_rank": 18.75,
+              "p2_5": 0.0038,
+              "p97_5": 0.0247
+            },
+            "MagpieData maximum AtomicWeight": {
+              "mean": 0.0636,
+              "mean_rank": 1.5,
+              "p2_5": 0.055,
+              "p97_5": 0.0715
+            },
+            "MagpieData maximum MeltingT": {
+              "mean": 0.0127,
+              "mean_rank": 18.75,
+              "p2_5": 0.0047,
+              "p97_5": 0.0298
+            },
+            "MagpieData maximum Number": {
+              "mean": 0.0602,
+              "mean_rank": 1.5,
+              "p2_5": 0.0398,
+              "p97_5": 0.0855
+            },
+            "MagpieData mean AtomicWeight": {
+              "mean": 0.0436,
+              "mean_rank": 3.75,
+              "p2_5": 0.0299,
+              "p97_5": 0.0546
+            },
+            "MagpieData mean CovalentRadius": {
+              "mean": 0.0119,
+              "mean_rank": 15.0,
+              "p2_5": 0.0067,
+              "p97_5": 0.0185
+            },
+            "MagpieData mean Electronegativity": {
+              "mean": 0.0158,
+              "mean_rank": 11.25,
+              "p2_5": 0.0107,
+              "p97_5": 0.0256
+            },
+            "MagpieData mean MendeleevNumber": {
+              "mean": 0.0249,
+              "mean_rank": 8.5,
+              "p2_5": 0.0121,
+              "p97_5": 0.0392
+            },
+            "MagpieData mean Number": {
+              "mean": 0.0345,
+              "mean_rank": 5.25,
+              "p2_5": 0.0302,
+              "p97_5": 0.0401
+            },
+            "MagpieData mean Row": {
+              "mean": 0.012,
+              "mean_rank": 14.0,
+              "p2_5": 0.0083,
+              "p97_5": 0.0158
+            },
+            "MagpieData minimum MendeleevNumber": {
+              "mean": 0.0298,
+              "mean_rank": 6.75,
+              "p2_5": 0.0263,
+              "p97_5": 0.0323
+            },
+            "MagpieData mode MendeleevNumber": {
+              "mean": 0.0294,
+              "mean_rank": 6.5,
+              "p2_5": 0.0204,
+              "p97_5": 0.0388
+            },
+            "MagpieData range AtomicWeight": {
+              "mean": 0.0123,
+              "mean_rank": 22.75,
+              "p2_5": 0.0027,
+              "p97_5": 0.0281
+            },
+            "MagpieData range MeltingT": {
+              "mean": 0.0225,
+              "mean_rank": 9.0,
+              "p2_5": 0.0132,
+              "p97_5": 0.0295
+            }
+          },
+          "n_folds": 4,
+          "permutation_importance_top10": {
+            "MagpieData avg_dev MeltingT": 0.0141,
+            "MagpieData maximum AtomicWeight": 0.0159,
+            "MagpieData maximum Number": 0.0152,
+            "MagpieData mean AtomicWeight": 0.0146,
+            "MagpieData mean MendeleevNumber": 0.0106,
+            "MagpieData mean Number": 0.0107,
+            "MagpieData minimum MendeleevNumber": 0.0169,
+            "MagpieData mode MendeleevNumber": 0.0166,
+            "MagpieData range Electronegativity": 0.0086,
+            "MagpieData range MeltingT": 0.0081
+          },
+          "rank_stability": {
+            "kendall_tau_all_features": {
+              "mean": 0.853,
+              "min": 0.833
+            },
+            "kendall_tau_top10": {
+              "mean": 0.526,
+              "min": 0.333
+            },
+            "top3_same_as_aggregate_share": 0.75
+          },
+          "shap_vs_permutation_kendall_tau": 0.661,
+          "substitution": {
+            "A:Ca-Ba": {
+              "expected_sign": 1,
+              "max": 0.6797,
+              "mean": 0.5453,
+              "min": 0.3368,
+              "n": 4,
+              "p2_5": 0.3483,
+              "p97_5": 0.6794,
+              "role": "E3 decisive",
+              "share_expected_sign": null,
+              "verdict": "SUPPLEMENT (4 folds, no verdict)"
+            },
+            "A:Ca-Sr": {
+              "expected_sign": 1,
+              "max": 0.1852,
+              "mean": 0.1223,
+              "min": 0.0396,
+              "n": 4,
+              "p2_5": 0.0447,
+              "p97_5": 0.1831,
+              "role": "E3",
+              "share_expected_sign": null,
+              "verdict": "SUPPLEMENT (4 folds, no verdict)"
+            },
+            "A:Mg-Ca": {
+              "expected_sign": 0,
+              "max": -0.1623,
+              "mean": -0.3528,
+              "min": -0.5826,
+              "n": 4,
+              "p2_5": -0.5668,
+              "p97_5": -0.1722,
+              "role": "E3 reported",
+              "share_expected_sign": null,
+              "verdict": "SUPPLEMENT (4 folds, no verdict)"
+            },
+            "A:Sr-Ba": {
+              "expected_sign": 1,
+              "max": 0.519,
+              "mean": 0.4231,
+              "min": 0.2973,
+              "n": 4,
+              "p2_5": 0.3036,
+              "p97_5": 0.5172,
+              "role": "E3",
+              "share_expected_sign": null,
+              "verdict": "SUPPLEMENT (4 folds, no verdict)"
+            },
+            "B:As-Sb": {
+              "expected_sign": 1,
+              "max": 0.2816,
+              "mean": 0.1365,
+              "min": 0.0508,
+              "n": 4,
+              "p2_5": 0.0546,
+              "p97_5": 0.2689,
+              "role": "E2",
+              "share_expected_sign": null,
+              "verdict": "SUPPLEMENT (4 folds, no verdict)"
+            },
+            "B:P-As": {
+              "expected_sign": 1,
+              "max": 0.0434,
+              "mean": 0.0166,
+              "min": -0.0287,
+              "n": 4,
+              "p2_5": -0.0256,
+              "p97_5": 0.043,
+              "role": "E2",
+              "share_expected_sign": null,
+              "verdict": "SUPPLEMENT (4 folds, no verdict)"
+            },
+            "B:P-Bi": {
+              "expected_sign": 1,
+              "max": 0.4685,
+              "mean": 0.3146,
+              "min": 0.2132,
+              "n": 4,
+              "p2_5": 0.2174,
+              "p97_5": 0.4565,
+              "role": "E2 decisive",
+              "share_expected_sign": null,
+              "verdict": "SUPPLEMENT (4 folds, no verdict)"
+            },
+            "B:Sb-Bi": {
+              "expected_sign": 1,
+              "max": 0.224,
+              "mean": 0.1615,
+              "min": 0.0981,
+              "n": 4,
+              "p2_5": 0.1019,
+              "p97_5": 0.2203,
+              "role": "E2",
+              "share_expected_sign": null,
+              "verdict": "SUPPLEMENT (4 folds, no verdict)"
+            },
+            "X:Br-I": {
+              "expected_sign": 1,
+              "max": 0.3492,
+              "mean": 0.2694,
+              "min": 0.2123,
+              "n": 4,
+              "p2_5": 0.2139,
+              "p97_5": 0.3442,
+              "role": "E1",
+              "share_expected_sign": null,
+              "verdict": "SUPPLEMENT (4 folds, no verdict)"
+            },
+            "X:Cl-Br": {
+              "expected_sign": 1,
+              "max": 0.1839,
+              "mean": 0.1399,
+              "min": 0.087,
+              "n": 4,
+              "p2_5": 0.0893,
+              "p97_5": 0.1829,
+              "role": "E1",
+              "share_expected_sign": null,
+              "verdict": "SUPPLEMENT (4 folds, no verdict)"
+            },
+            "X:F-Cl": {
+              "expected_sign": 1,
+              "max": 0.6472,
+              "mean": 0.3776,
+              "min": 0.0931,
+              "n": 4,
+              "p2_5": 0.1081,
+              "p97_5": 0.6344,
+              "role": "E1",
+              "share_expected_sign": null,
+              "verdict": "SUPPLEMENT (4 folds, no verdict)"
+            }
+          },
+          "top10": [
+            "MagpieData maximum AtomicWeight",
+            "MagpieData maximum Number",
+            "MagpieData mean AtomicWeight",
+            "MagpieData mean Number",
+            "MagpieData minimum MendeleevNumber",
+            "MagpieData avg_dev MeltingT",
+            "MagpieData mode MendeleevNumber",
+            "MagpieData mean MendeleevNumber",
+            "MagpieData range MeltingT",
+            "MagpieData mean Electronegativity"
+          ]
+        }
+      }
+    },
+    "xgb_magpie": {
+      "explainer": "TreeExplainer (interventional)",
+      "feature_set": "magpie",
+      "splits": {
+        "gkf": {
+          "mean_abs_shap": {
+            "MagpieData avg_dev CovalentRadius": {
+              "mean": 0.0164,
+              "mean_rank": 13.64,
+              "p2_5": 0.0018,
+              "p97_5": 0.0466
+            },
+            "MagpieData avg_dev GSvolume_pa": {
+              "mean": 0.0102,
+              "mean_rank": 17.62,
+              "p2_5": 0.0005,
+              "p97_5": 0.0289
+            },
+            "MagpieData avg_dev MeltingT": {
+              "mean": 0.0298,
+              "mean_rank": 9.02,
+              "p2_5": 0.0056,
+              "p97_5": 0.0696
+            },
+            "MagpieData avg_dev Number": {
+              "mean": 0.0221,
+              "mean_rank": 11.1,
+              "p2_5": 0.0046,
+              "p97_5": 0.0621
+            },
+            "MagpieData maximum AtomicWeight": {
+              "mean": 0.0154,
+              "mean_rank": 15.9,
+              "p2_5": 0.0,
+              "p97_5": 0.0368
+            },
+            "MagpieData maximum Number": {
+              "mean": 0.1302,
+              "mean_rank": 1.62,
+              "p2_5": 0.0658,
+              "p97_5": 0.2307
+            },
+            "MagpieData mean AtomicWeight": {
+              "mean": 0.0596,
+              "mean_rank": 4.72,
+              "p2_5": 0.0227,
+              "p97_5": 0.1192
+            },
+            "MagpieData mean CovalentRadius": {
+              "mean": 0.0137,
+              "mean_rank": 16.58,
+              "p2_5": 0.0009,
+              "p97_5": 0.049
+            },
+            "MagpieData mean MendeleevNumber": {
+              "mean": 0.0551,
+              "mean_rank": 5.24,
+              "p2_5": 0.0204,
+              "p97_5": 0.115
+            },
+            "MagpieData mean Number": {
+              "mean": 0.0967,
+              "mean_rank": 2.52,
+              "p2_5": 0.0332,
+              "p97_5": 0.1636
+            },
+            "MagpieData minimum MendeleevNumber": {
+              "mean": 0.0747,
+              "mean_rank": 3.46,
+              "p2_5": 0.0495,
+              "p97_5": 0.1017
+            },
+            "MagpieData minimum Number": {
+              "mean": 0.0163,
+              "mean_rank": 13.9,
+              "p2_5": 0.0024,
+              "p97_5": 0.0501
+            },
+            "MagpieData mode MendeleevNumber": {
+              "mean": 0.0106,
+              "mean_rank": 18.74,
+              "p2_5": 0.0,
+              "p97_5": 0.0293
+            },
+            "MagpieData range MeltingT": {
+              "mean": 0.0455,
+              "mean_rank": 6.02,
+              "p2_5": 0.0173,
+              "p97_5": 0.1053
+            },
+            "MagpieData range MendeleevNumber": {
+              "mean": 0.017,
+              "mean_rank": 13.28,
+              "p2_5": 0.0027,
+              "p97_5": 0.0714
+            }
+          },
+          "n_folds": 50,
+          "permutation_importance_top10": {
+            "MagpieData avg_dev CovalentRadius": 0.0103,
+            "MagpieData avg_dev MeltingT": 0.0071,
+            "MagpieData maximum Number": 0.0595,
+            "MagpieData mean AtomicWeight": 0.0218,
+            "MagpieData mean MendeleevNumber": 0.0231,
+            "MagpieData mean Number": 0.0509,
+            "MagpieData minimum MendeleevNumber": 0.0408,
+            "MagpieData minimum Number": 0.0049,
+            "MagpieData range MeltingT": 0.0184,
+            "MagpieData range MendeleevNumber": 0.0068
+          },
+          "rank_stability": {
+            "kendall_tau_all_features": {
+              "mean": 0.8,
+              "min": 0.658
+            },
+            "kendall_tau_top10": {
+              "mean": 0.559,
+              "min": -0.067
+            },
+            "top3_same_as_aggregate_share": 0.36
+          },
+          "shap_vs_permutation_kendall_tau": 0.536,
+          "substitution": {
+            "A:Ca-Ba": {
+              "expected_sign": 1,
+              "mean": 0.769,
+              "n": 50,
+              "p2_5": 0.5858,
+              "p97_5": 0.9206,
+              "role": "E3 decisive",
+              "share_expected_sign": 1.0,
+              "verdict": "CONFIRMED"
+            },
+            "A:Ca-Sr": {
+              "expected_sign": 1,
+              "mean": 0.2314,
+              "n": 50,
+              "p2_5": 0.1181,
+              "p97_5": 0.3848,
+              "role": "E3",
+              "share_expected_sign": 1.0,
+              "verdict": "CONFIRMED"
+            },
+            "A:Mg-Ca": {
+              "expected_sign": 0,
+              "mean": -0.3775,
+              "n": 50,
+              "p2_5": -0.7327,
+              "p97_5": -0.117,
+              "role": "E3 reported",
+              "share_expected_sign": null,
+              "verdict": "REPORTED"
+            },
+            "A:Sr-Ba": {
+              "expected_sign": 1,
+              "mean": 0.5376,
+              "n": 50,
+              "p2_5": 0.409,
+              "p97_5": 0.6405,
+              "role": "E3",
+              "share_expected_sign": 1.0,
+              "verdict": "CONFIRMED"
+            },
+            "B:As-Sb": {
+              "expected_sign": 1,
+              "mean": 0.0949,
+              "n": 50,
+              "p2_5": 0.0078,
+              "p97_5": 0.2201,
+              "role": "E2",
+              "share_expected_sign": 0.98,
+              "verdict": "CONFIRMED"
+            },
+            "B:P-As": {
+              "expected_sign": 1,
+              "mean": 0.0465,
+              "n": 50,
+              "p2_5": -0.0708,
+              "p97_5": 0.1276,
+              "role": "E2",
+              "share_expected_sign": 0.88,
+              "verdict": "UNCLEAR"
+            },
+            "B:P-Bi": {
+              "expected_sign": 1,
+              "mean": 0.3504,
+              "n": 50,
+              "p2_5": 0.1471,
+              "p97_5": 0.5386,
+              "role": "E2 decisive",
+              "share_expected_sign": 1.0,
+              "verdict": "CONFIRMED"
+            },
+            "B:Sb-Bi": {
+              "expected_sign": 1,
+              "mean": 0.2089,
+              "n": 50,
+              "p2_5": 0.0597,
+              "p97_5": 0.4376,
+              "role": "E2",
+              "share_expected_sign": 1.0,
+              "verdict": "CONFIRMED"
+            },
+            "X:Br-I": {
+              "expected_sign": 1,
+              "mean": 0.3749,
+              "n": 50,
+              "p2_5": 0.2148,
+              "p97_5": 0.5731,
+              "role": "E1",
+              "share_expected_sign": 1.0,
+              "verdict": "CONFIRMED"
+            },
+            "X:Cl-Br": {
+              "expected_sign": 1,
+              "mean": 0.256,
+              "n": 50,
+              "p2_5": 0.1053,
+              "p97_5": 0.4053,
+              "role": "E1",
+              "share_expected_sign": 1.0,
+              "verdict": "CONFIRMED"
+            },
+            "X:F-Cl": {
+              "expected_sign": 1,
+              "mean": 0.3112,
+              "n": 50,
+              "p2_5": 0.0676,
+              "p97_5": 0.5738,
+              "role": "E1",
+              "share_expected_sign": 1.0,
+              "verdict": "CONFIRMED"
+            }
+          },
+          "top10": [
+            "MagpieData maximum Number",
+            "MagpieData mean Number",
+            "MagpieData minimum MendeleevNumber",
+            "MagpieData mean AtomicWeight",
+            "MagpieData mean MendeleevNumber",
+            "MagpieData range MeltingT",
+            "MagpieData avg_dev MeltingT",
+            "MagpieData avg_dev Number",
+            "MagpieData range MendeleevNumber",
+            "MagpieData avg_dev CovalentRadius"
+          ]
+        },
+        "lobo": {
+          "mean_abs_shap": {
+            "MagpieData avg_dev CovalentRadius": {
+              "mean": 0.0126,
+              "mean_rank": 14.0,
+              "p2_5": 0.0055,
+              "p97_5": 0.0259
+            },
+            "MagpieData avg_dev MeltingT": {
+              "mean": 0.0252,
+              "mean_rank": 9.25,
+              "p2_5": 0.014,
+              "p97_5": 0.0339
+            },
+            "MagpieData avg_dev Number": {
+              "mean": 0.0503,
+              "mean_rank": 7.75,
+              "p2_5": 0.0126,
+              "p97_5": 0.1182
+            },
+            "MagpieData maximum AtomicWeight": {
+              "mean": 0.013,
+              "mean_rank": 15.5,
+              "p2_5": 0.0027,
+              "p97_5": 0.0236
+            },
+            "MagpieData maximum Number": {
+              "mean": 0.1348,
+              "mean_rank": 1.25,
+              "p2_5": 0.1126,
+              "p97_5": 0.1585
+            },
+            "MagpieData mean AtomicWeight": {
+              "mean": 0.0445,
+              "mean_rank": 6.25,
+              "p2_5": 0.0257,
+              "p97_5": 0.0747
+            },
+            "MagpieData mean CovalentRadius": {
+              "mean": 0.0147,
+              "mean_rank": 16.75,
+              "p2_5": 0.002,
+              "p97_5": 0.0359
+            },
+            "MagpieData mean MendeleevNumber": {
+              "mean": 0.0527,
+              "mean_rank": 5.0,
+              "p2_5": 0.0257,
+              "p97_5": 0.0955
+            },
+            "MagpieData mean Number": {
+              "mean": 0.0999,
+              "mean_rank": 2.75,
+              "p2_5": 0.0566,
+              "p97_5": 0.1724
+            },
+            "MagpieData mean SpaceGroupNumber": {
+              "mean": 0.0097,
+              "mean_rank": 22.0,
+              "p2_5": 0.0007,
+              "p97_5": 0.0274
+            },
+            "MagpieData minimum MendeleevNumber": {
+              "mean": 0.0824,
+              "mean_rank": 3.0,
+              "p2_5": 0.0759,
+              "p97_5": 0.0922
+            },
+            "MagpieData minimum Number": {
+              "mean": 0.0258,
+              "mean_rank": 9.5,
+              "p2_5": 0.0098,
+              "p97_5": 0.0551
+            },
+            "MagpieData range MeltingT": {
+              "mean": 0.0394,
+              "mean_rank": 6.5,
+              "p2_5": 0.0279,
+              "p97_5": 0.0473
+            },
+            "MagpieData range MendeleevNumber": {
+              "mean": 0.0115,
+              "mean_rank": 12.5,
+              "p2_5": 0.0076,
+              "p97_5": 0.0172
+            },
+            "MagpieData range Number": {
+              "mean": 0.0171,
+              "mean_rank": 15.5,
+              "p2_5": 0.0041,
+              "p97_5": 0.0407
+            }
+          },
+          "n_folds": 4,
+          "permutation_importance_top10": {
+            "MagpieData avg_dev CovalentRadius": 0.0054,
+            "MagpieData avg_dev MeltingT": 0.0103,
+            "MagpieData avg_dev Number": 0.0262,
+            "MagpieData maximum Number": 0.0616,
+            "MagpieData mean AtomicWeight": 0.007,
+            "MagpieData mean MendeleevNumber": 0.0331,
+            "MagpieData mean Number": 0.0649,
+            "MagpieData minimum MendeleevNumber": 0.0504,
+            "MagpieData range MeltingT": 0.0225,
+            "MagpieData range MendeleevNumber": 0.0056
+          },
+          "rank_stability": {
+            "kendall_tau_all_features": {
+              "mean": 0.768,
+              "min": 0.695
+            },
+            "kendall_tau_top10": {
+              "mean": 0.422,
+              "min": 0.111
+            },
+            "top3_same_as_aggregate_share": 0.75
+          },
+          "shap_vs_permutation_kendall_tau": 0.447,
+          "substitution": {
+            "A:Ca-Ba": {
+              "expected_sign": 1,
+              "max": 0.7802,
+              "mean": 0.689,
+              "min": 0.4776,
+              "n": 4,
+              "p2_5": 0.4958,
+              "p97_5": 0.7801,
+              "role": "E3 decisive",
+              "share_expected_sign": null,
+              "verdict": "SUPPLEMENT (4 folds, no verdict)"
+            },
+            "A:Ca-Sr": {
+              "expected_sign": 1,
+              "max": 0.28,
+              "mean": 0.1771,
+              "min": 0.0287,
+              "n": 4,
+              "p2_5": 0.0394,
+              "p97_5": 0.2761,
+              "role": "E3",
+              "share_expected_sign": null,
+              "verdict": "SUPPLEMENT (4 folds, no verdict)"
+            },
+            "A:Mg-Ca": {
+              "expected_sign": 0,
+              "max": -0.1581,
+              "mean": -0.3494,
+              "min": -0.7389,
+              "n": 4,
+              "p2_5": -0.7077,
+              "p97_5": -0.1596,
+              "role": "E3 reported",
+              "share_expected_sign": null,
+              "verdict": "SUPPLEMENT (4 folds, no verdict)"
+            },
+            "A:Sr-Ba": {
+              "expected_sign": 1,
+              "max": 0.6066,
+              "mean": 0.512,
+              "min": 0.4489,
+              "n": 4,
+              "p2_5": 0.4522,
+              "p97_5": 0.5987,
+              "role": "E3",
+              "share_expected_sign": null,
+              "verdict": "SUPPLEMENT (4 folds, no verdict)"
+            },
+            "B:As-Sb": {
+              "expected_sign": 1,
+              "max": 0.1715,
+              "mean": 0.1078,
+              "min": 0.0521,
+              "n": 4,
+              "p2_5": 0.0555,
+              "p97_5": 0.1669,
+              "role": "E2",
+              "share_expected_sign": null,
+              "verdict": "SUPPLEMENT (4 folds, no verdict)"
+            },
+            "B:P-As": {
+              "expected_sign": 1,
+              "max": 0.1322,
+              "mean": 0.0421,
+              "min": -0.0171,
+              "n": 4,
+              "p2_5": -0.0149,
+              "p97_5": 0.1254,
+              "role": "E2",
+              "share_expected_sign": null,
+              "verdict": "SUPPLEMENT (4 folds, no verdict)"
+            },
+            "B:P-Bi": {
+              "expected_sign": 1,
+              "max": 0.478,
+              "mean": 0.3414,
+              "min": 0.2216,
+              "n": 4,
+              "p2_5": 0.2272,
+              "p97_5": 0.4698,
+              "role": "E2 decisive",
+              "share_expected_sign": null,
+              "verdict": "SUPPLEMENT (4 folds, no verdict)"
+            },
+            "B:Sb-Bi": {
+              "expected_sign": 1,
+              "max": 0.2654,
+              "mean": 0.1915,
+              "min": 0.112,
+              "n": 4,
+              "p2_5": 0.1175,
+              "p97_5": 0.2608,
+              "role": "E2",
+              "share_expected_sign": null,
+              "verdict": "SUPPLEMENT (4 folds, no verdict)"
+            },
+            "X:Br-I": {
+              "expected_sign": 1,
+              "max": 0.4417,
+              "mean": 0.3611,
+              "min": 0.2813,
+              "n": 4,
+              "p2_5": 0.2833,
+              "p97_5": 0.4396,
+              "role": "E1",
+              "share_expected_sign": null,
+              "verdict": "SUPPLEMENT (4 folds, no verdict)"
+            },
+            "X:Cl-Br": {
+              "expected_sign": 1,
+              "max": 0.2484,
+              "mean": 0.1862,
+              "min": 0.0882,
+              "n": 4,
+              "p2_5": 0.096,
+              "p97_5": 0.246,
+              "role": "E1",
+              "share_expected_sign": null,
+              "verdict": "SUPPLEMENT (4 folds, no verdict)"
+            },
+            "X:F-Cl": {
+              "expected_sign": 1,
+              "max": 0.5493,
+              "mean": 0.3116,
+              "min": 0.1404,
+              "n": 4,
+              "p2_5": 0.1505,
+              "p97_5": 0.5293,
+              "role": "E1",
+              "share_expected_sign": null,
+              "verdict": "SUPPLEMENT (4 folds, no verdict)"
+            }
+          },
+          "top10": [
+            "MagpieData maximum Number",
+            "MagpieData mean Number",
+            "MagpieData minimum MendeleevNumber",
+            "MagpieData mean MendeleevNumber",
+            "MagpieData avg_dev Number",
+            "MagpieData mean AtomicWeight",
+            "MagpieData range MeltingT",
+            "MagpieData minimum Number",
+            "MagpieData avg_dev MeltingT",
+            "MagpieData range Number"
+          ]
+        }
+      }
+    }
+  },
+  "physics_check": {
+    "gpr_physics9": {
+      "E1 halide I<Br<Cl<F": {
+        "pairs": {
+          "X:Br-I": "CONFIRMED",
+          "X:Cl-Br": "CONFIRMED",
+          "X:F-Cl": "CONFIRMED"
+        },
+        "verdict": "CONFIRMED"
+      },
+      "E1 secondary SHAP slopes": {
+        "chiX>0": "UNCLEAR",
+        "rX<0": "UNCLEAR"
+      },
+      "E2 pnictogen P>...>Bi (decisive P-Bi)": {
+        "pairs": {
+          "B:As-Sb": "UNCLEAR",
+          "B:P-As": "CONFIRMED",
+          "B:P-Bi": "CONFIRMED",
+          "B:Sb-Bi": "CONFIRMED"
+        },
+        "verdict": "CONFIRMED"
+      },
+      "E2 secondary SHAP slopes": {
+        "chiB>0": "UNCLEAR",
+        "rB<0": "CONFIRMED"
+      },
+      "E3 A-site Ca>Sr>Ba (decisive Ca-Ba)": {
+        "Mg-Ca (reported)": -0.3958,
+        "pairs": {
+          "A:Ca-Ba": "CONFIRMED",
+          "A:Ca-Sr": "CONFIRMED",
+          "A:Sr-Ba": "CONFIRMED"
+        },
+        "verdict": "CONFIRMED"
+      },
+      "E3 secondary SHAP slopes": {
+        "chiA (reported)": -0.3623,
+        "rA<0": "CONFIRMED"
+      },
+      "E4 dchi_BX slope>0": {
+        "verdict": "UNCLEAR"
+      },
+      "E6 A and X groups > B group (SHAP)": {
+        "A-B": "CONFIRMED",
+        "X-B": "UNCLEAR",
+        "permutation cross-check": {
+          "A-B": "CONFIRMED",
+          "X-B": "UNCLEAR"
+        },
+        "verdict": "UNCLEAR"
+      }
+    },
+    "rf_magpie": {
+      "E1 halide I<Br<Cl<F": {
+        "pairs": {
+          "X:Br-I": "CONFIRMED",
+          "X:Cl-Br": "CONFIRMED",
+          "X:F-Cl": "CONFIRMED"
+        },
+        "verdict": "CONFIRMED"
+      },
+      "E2 pnictogen P>...>Bi (decisive P-Bi)": {
+        "pairs": {
+          "B:As-Sb": "CONFIRMED",
+          "B:P-As": "UNCLEAR",
+          "B:P-Bi": "CONFIRMED",
+          "B:Sb-Bi": "CONFIRMED"
+        },
+        "verdict": "CONFIRMED"
+      },
+      "E3 A-site Ca>Sr>Ba (decisive Ca-Ba)": {
+        "Mg-Ca (reported)": -0.319,
+        "pairs": {
+          "A:Ca-Ba": "CONFIRMED",
+          "A:Ca-Sr": "CONFIRMED",
+          "A:Sr-Ba": "CONFIRMED"
+        },
+        "verdict": "CONFIRMED"
+      }
+    },
+    "xgb_magpie": {
+      "E1 halide I<Br<Cl<F": {
+        "pairs": {
+          "X:Br-I": "CONFIRMED",
+          "X:Cl-Br": "CONFIRMED",
+          "X:F-Cl": "CONFIRMED"
+        },
+        "verdict": "CONFIRMED"
+      },
+      "E2 pnictogen P>...>Bi (decisive P-Bi)": {
+        "pairs": {
+          "B:As-Sb": "CONFIRMED",
+          "B:P-As": "UNCLEAR",
+          "B:P-Bi": "CONFIRMED",
+          "B:Sb-Bi": "CONFIRMED"
+        },
+        "verdict": "CONFIRMED"
+      },
+      "E3 A-site Ca>Sr>Ba (decisive Ca-Ba)": {
+        "Mg-Ca (reported)": -0.3775,
+        "pairs": {
+          "A:Ca-Ba": "CONFIRMED",
+          "A:Ca-Sr": "CONFIRMED",
+          "A:Sr-Ba": "CONFIRMED"
+        },
+        "verdict": "CONFIRMED"
+      }
+    }
+  }
+}
