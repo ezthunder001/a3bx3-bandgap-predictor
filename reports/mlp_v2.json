@@ -1,0 +1,1186 @@
+{
+  "_readme": "Small PyTorch MLP on the same outer folds as metrics_v2; other models' out-of-fold predictions are read from reports/oof_predictions.csv, not recomputed. MAE in eV with paired bootstrap 95 % CIs over formulas. Verdict per the rule pre-registered in reports/mlp_expectations.md.",
+  "chosen_params": {
+    "primary/mlp_magpie": {
+      "{\"mlp__depth\": 1, \"mlp__dropout\": 0.0, \"mlp__hidden\": 16, \"mlp__weight_decay\": 0.001}": 8,
+      "{\"mlp__depth\": 1, \"mlp__dropout\": 0.0, \"mlp__hidden\": 16, \"mlp__weight_decay\": 0.1}": 3,
+      "{\"mlp__depth\": 1, \"mlp__dropout\": 0.0, \"mlp__hidden\": 64, \"mlp__weight_decay\": 0.001}": 9,
+      "{\"mlp__depth\": 1, \"mlp__dropout\": 0.0, \"mlp__hidden\": 64, \"mlp__weight_decay\": 0.1}": 2,
+      "{\"mlp__depth\": 1, \"mlp__dropout\": 0.2, \"mlp__hidden\": 16, \"mlp__weight_decay\": 0.001}": 8,
+      "{\"mlp__depth\": 1, \"mlp__dropout\": 0.2, \"mlp__hidden\": 16, \"mlp__weight_decay\": 0.1}": 3,
+      "{\"mlp__depth\": 1, \"mlp__dropout\": 0.2, \"mlp__hidden\": 64, \"mlp__weight_decay\": 0.001}": 14,
+      "{\"mlp__depth\": 1, \"mlp__dropout\": 0.2, \"mlp__hidden\": 64, \"mlp__weight_decay\": 0.1}": 6,
+      "{\"mlp__depth\": 2, \"mlp__dropout\": 0.0, \"mlp__hidden\": 16, \"mlp__weight_decay\": 0.001}": 8,
+      "{\"mlp__depth\": 2, \"mlp__dropout\": 0.0, \"mlp__hidden\": 16, \"mlp__weight_decay\": 0.1}": 3,
+      "{\"mlp__depth\": 2, \"mlp__dropout\": 0.0, \"mlp__hidden\": 64, \"mlp__weight_decay\": 0.001}": 10,
+      "{\"mlp__depth\": 2, \"mlp__dropout\": 0.0, \"mlp__hidden\": 64, \"mlp__weight_decay\": 0.1}": 4,
+      "{\"mlp__depth\": 2, \"mlp__dropout\": 0.2, \"mlp__hidden\": 16, \"mlp__weight_decay\": 0.001}": 5,
+      "{\"mlp__depth\": 2, \"mlp__dropout\": 0.2, \"mlp__hidden\": 16, \"mlp__weight_decay\": 0.1}": 3,
+      "{\"mlp__depth\": 2, \"mlp__dropout\": 0.2, \"mlp__hidden\": 64, \"mlp__weight_decay\": 0.001}": 10,
+      "{\"mlp__depth\": 2, \"mlp__dropout\": 0.2, \"mlp__hidden\": 64, \"mlp__weight_decay\": 0.1}": 1
+    },
+    "primary/mlp_physics9": {
+      "{\"mlp__depth\": 1, \"mlp__dropout\": 0.0, \"mlp__hidden\": 16, \"mlp__weight_decay\": 0.001}": 19,
+      "{\"mlp__depth\": 1, \"mlp__dropout\": 0.0, \"mlp__hidden\": 64, \"mlp__weight_decay\": 0.001}": 37,
+      "{\"mlp__depth\": 1, \"mlp__dropout\": 0.2, \"mlp__hidden\": 64, \"mlp__weight_decay\": 0.001}": 7,
+      "{\"mlp__depth\": 2, \"mlp__dropout\": 0.0, \"mlp__hidden\": 16, \"mlp__weight_decay\": 0.001}": 4,
+      "{\"mlp__depth\": 2, \"mlp__dropout\": 0.0, \"mlp__hidden\": 64, \"mlp__weight_decay\": 0.001}": 25,
+      "{\"mlp__depth\": 2, \"mlp__dropout\": 0.2, \"mlp__hidden\": 16, \"mlp__weight_decay\": 0.001}": 1,
+      "{\"mlp__depth\": 2, \"mlp__dropout\": 0.2, \"mlp__hidden\": 64, \"mlp__weight_decay\": 0.001}": 4
+    },
+    "verified_only/mlp_magpie": {
+      "{\"mlp__depth\": 1, \"mlp__dropout\": 0.0, \"mlp__hidden\": 16, \"mlp__weight_decay\": 0.001}": 2,
+      "{\"mlp__depth\": 1, \"mlp__dropout\": 0.0, \"mlp__hidden\": 16, \"mlp__weight_decay\": 0.1}": 2,
+      "{\"mlp__depth\": 1, \"mlp__dropout\": 0.0, \"mlp__hidden\": 64, \"mlp__weight_decay\": 0.001}": 5,
+      "{\"mlp__depth\": 1, \"mlp__dropout\": 0.0, \"mlp__hidden\": 64, \"mlp__weight_decay\": 0.1}": 1,
+      "{\"mlp__depth\": 1, \"mlp__dropout\": 0.2, \"mlp__hidden\": 16, \"mlp__weight_decay\": 0.001}": 3,
+      "{\"mlp__depth\": 1, \"mlp__dropout\": 0.2, \"mlp__hidden\": 16, \"mlp__weight_decay\": 0.1}": 6,
+      "{\"mlp__depth\": 1, \"mlp__dropout\": 0.2, \"mlp__hidden\": 64, \"mlp__weight_decay\": 0.001}": 4,
+      "{\"mlp__depth\": 1, \"mlp__dropout\": 0.2, \"mlp__hidden\": 64, \"mlp__weight_decay\": 0.1}": 3,
+      "{\"mlp__depth\": 2, \"mlp__dropout\": 0.0, \"mlp__hidden\": 16, \"mlp__weight_decay\": 0.001}": 2,
+      "{\"mlp__depth\": 2, \"mlp__dropout\": 0.0, \"mlp__hidden\": 16, \"mlp__weight_decay\": 0.1}": 8,
+      "{\"mlp__depth\": 2, \"mlp__dropout\": 0.0, \"mlp__hidden\": 64, \"mlp__weight_decay\": 0.001}": 2,
+      "{\"mlp__depth\": 2, \"mlp__dropout\": 0.0, \"mlp__hidden\": 64, \"mlp__weight_decay\": 0.1}": 4,
+      "{\"mlp__depth\": 2, \"mlp__dropout\": 0.2, \"mlp__hidden\": 16, \"mlp__weight_decay\": 0.001}": 5,
+      "{\"mlp__depth\": 2, \"mlp__dropout\": 0.2, \"mlp__hidden\": 16, \"mlp__weight_decay\": 0.1}": 1,
+      "{\"mlp__depth\": 2, \"mlp__dropout\": 0.2, \"mlp__hidden\": 64, \"mlp__weight_decay\": 0.001}": 7,
+      "{\"mlp__depth\": 2, \"mlp__dropout\": 0.2, \"mlp__hidden\": 64, \"mlp__weight_decay\": 0.1}": 3
+    },
+    "verified_only/mlp_physics9": {
+      "{\"mlp__depth\": 1, \"mlp__dropout\": 0.0, \"mlp__hidden\": 16, \"mlp__weight_decay\": 0.001}": 15,
+      "{\"mlp__depth\": 1, \"mlp__dropout\": 0.0, \"mlp__hidden\": 64, \"mlp__weight_decay\": 0.001}": 18,
+      "{\"mlp__depth\": 1, \"mlp__dropout\": 0.2, \"mlp__hidden\": 16, \"mlp__weight_decay\": 0.1}": 2,
+      "{\"mlp__depth\": 1, \"mlp__dropout\": 0.2, \"mlp__hidden\": 64, \"mlp__weight_decay\": 0.001}": 3,
+      "{\"mlp__depth\": 2, \"mlp__dropout\": 0.0, \"mlp__hidden\": 16, \"mlp__weight_decay\": 0.001}": 12,
+      "{\"mlp__depth\": 2, \"mlp__dropout\": 0.0, \"mlp__hidden\": 16, \"mlp__weight_decay\": 0.1}": 1,
+      "{\"mlp__depth\": 2, \"mlp__dropout\": 0.0, \"mlp__hidden\": 64, \"mlp__weight_decay\": 0.001}": 6,
+      "{\"mlp__depth\": 2, \"mlp__dropout\": 0.2, \"mlp__hidden\": 64, \"mlp__weight_decay\": 0.1}": 1
+    }
+  },
+  "datasets": {
+    "primary": {
+      "gkf": {
+        "models": {
+          "gpr_physics9": {
+            "MAE": 0.0938,
+            "MAE_CI95": [
+              0.0762,
+              0.113
+            ],
+            "MAE_repeat_sd": 0.0086
+          },
+          "halide_rule": {
+            "MAE": 0.4091,
+            "MAE_CI95": [
+              0.3388,
+              0.4763
+            ],
+            "MAE_repeat_sd": 0.0124
+          },
+          "mean": {
+            "MAE": 0.5224,
+            "MAE_CI95": [
+              0.4067,
+              0.6442
+            ],
+            "MAE_repeat_sd": 0.0109
+          },
+          "mlp_magpie": {
+            "MAE": 0.1732,
+            "MAE_CI95": [
+              0.1331,
+              0.2325
+            ],
+            "MAE_repeat_sd": 0.0108
+          },
+          "mlp_physics9": {
+            "MAE": 0.1417,
+            "MAE_CI95": [
+              0.1148,
+              0.1704
+            ],
+            "MAE_repeat_sd": 0.0203
+          },
+          "rf_magpie": {
+            "MAE": 0.1954,
+            "MAE_CI95": [
+              0.1357,
+              0.2725
+            ],
+            "MAE_repeat_sd": 0.0137
+          },
+          "rf_physics9": {
+            "MAE": 0.1906,
+            "MAE_CI95": [
+              0.1419,
+              0.2534
+            ],
+            "MAE_repeat_sd": 0.0092
+          },
+          "ridge_magpie": {
+            "MAE": 0.2382,
+            "MAE_CI95": [
+              0.1836,
+              0.3095
+            ],
+            "MAE_repeat_sd": 0.0191
+          },
+          "ridge_physics9": {
+            "MAE": 0.3593,
+            "MAE_CI95": [
+              0.2782,
+              0.4551
+            ],
+            "MAE_repeat_sd": 0.0099
+          },
+          "xgb_magpie": {
+            "MAE": 0.1666,
+            "MAE_CI95": [
+              0.1171,
+              0.2325
+            ],
+            "MAE_repeat_sd": 0.0169
+          },
+          "xgb_physics9": {
+            "MAE": 0.1902,
+            "MAE_CI95": [
+              0.1371,
+              0.2551
+            ],
+            "MAE_repeat_sd": 0.0261
+          }
+        },
+        "pairs": {
+          "mlp_magpie vs gpr_physics9": {
+            "CI95": [
+              0.0345,
+              0.1363
+            ],
+            "delta_MAE": 0.0795,
+            "outcome": "LOSS"
+          },
+          "mlp_magpie vs mean": {
+            "CI95": [
+              -0.4514,
+              -0.2483
+            ],
+            "delta_MAE": -0.3491,
+            "outcome": "WIN"
+          },
+          "mlp_magpie vs xgb_magpie": {
+            "CI95": [
+              -0.0203,
+              0.0315
+            ],
+            "delta_MAE": 0.0066,
+            "outcome": "TIE"
+          },
+          "mlp_physics9 vs gpr_physics9": {
+            "CI95": [
+              0.0215,
+              0.0758
+            ],
+            "delta_MAE": 0.0479,
+            "outcome": "LOSS"
+          },
+          "mlp_physics9 vs mean": {
+            "CI95": [
+              -0.4948,
+              -0.2678
+            ],
+            "delta_MAE": -0.3806,
+            "outcome": "WIN"
+          },
+          "mlp_physics9 vs xgb_physics9": {
+            "CI95": [
+              -0.1032,
+              0.0015
+            ],
+            "delta_MAE": -0.0485,
+            "outcome": "TIE"
+          }
+        }
+      },
+      "loao": {
+        "models": {
+          "gpr_physics9": {
+            "MAE": 0.5049,
+            "MAE_CI95": [
+              0.3791,
+              0.6362
+            ]
+          },
+          "halide_rule": {
+            "MAE": 0.5367,
+            "MAE_CI95": [
+              0.4476,
+              0.6212
+            ]
+          },
+          "mean": {
+            "MAE": 0.6192,
+            "MAE_CI95": [
+              0.5011,
+              0.7376
+            ]
+          },
+          "mlp_magpie": {
+            "MAE": 1.2937,
+            "MAE_CI95": [
+              0.8287,
+              1.8333
+            ]
+          },
+          "mlp_physics9": {
+            "MAE": 0.6525,
+            "MAE_CI95": [
+              0.4647,
+              0.8649
+            ]
+          },
+          "rf_magpie": {
+            "MAE": 0.4312,
+            "MAE_CI95": [
+              0.3369,
+              0.5329
+            ]
+          },
+          "rf_physics9": {
+            "MAE": 0.4724,
+            "MAE_CI95": [
+              0.3761,
+              0.5704
+            ]
+          },
+          "ridge_magpie": {
+            "MAE": 0.4964,
+            "MAE_CI95": [
+              0.3941,
+              0.6026
+            ]
+          },
+          "ridge_physics9": {
+            "MAE": 0.5981,
+            "MAE_CI95": [
+              0.4691,
+              0.7409
+            ]
+          },
+          "xgb_magpie": {
+            "MAE": 0.434,
+            "MAE_CI95": [
+              0.3396,
+              0.539
+            ]
+          },
+          "xgb_physics9": {
+            "MAE": 0.4894,
+            "MAE_CI95": [
+              0.3902,
+              0.5886
+            ]
+          }
+        },
+        "pairs": {
+          "mlp_magpie vs gpr_physics9": {
+            "CI95": [
+              0.3539,
+              1.3034
+            ],
+            "delta_MAE": 0.7887,
+            "outcome": "LOSS"
+          },
+          "mlp_magpie vs mean": {
+            "CI95": [
+              0.2269,
+              1.1932
+            ],
+            "delta_MAE": 0.6744,
+            "outcome": "LOSS"
+          },
+          "mlp_magpie vs xgb_magpie": {
+            "CI95": [
+              0.4414,
+              1.357
+            ],
+            "delta_MAE": 0.8597,
+            "outcome": "LOSS"
+          },
+          "mlp_physics9 vs gpr_physics9": {
+            "CI95": [
+              -0.0351,
+              0.3373
+            ],
+            "delta_MAE": 0.1476,
+            "outcome": "TIE"
+          },
+          "mlp_physics9 vs mean": {
+            "CI95": [
+              -0.1687,
+              0.2543
+            ],
+            "delta_MAE": 0.0333,
+            "outcome": "TIE"
+          },
+          "mlp_physics9 vs xgb_physics9": {
+            "CI95": [
+              0.0196,
+              0.3191
+            ],
+            "delta_MAE": 0.1631,
+            "outcome": "LOSS"
+          }
+        }
+      },
+      "lobo": {
+        "models": {
+          "gpr_physics9": {
+            "MAE": 0.1114,
+            "MAE_CI95": [
+              0.0824,
+              0.1447
+            ]
+          },
+          "halide_rule": {
+            "MAE": 0.3867,
+            "MAE_CI95": [
+              0.3163,
+              0.457
+            ]
+          },
+          "mean": {
+            "MAE": 0.5259,
+            "MAE_CI95": [
+              0.4107,
+              0.6458
+            ]
+          },
+          "mlp_magpie": {
+            "MAE": 0.2038,
+            "MAE_CI95": [
+              0.1464,
+              0.2737
+            ]
+          },
+          "mlp_physics9": {
+            "MAE": 0.1817,
+            "MAE_CI95": [
+              0.1387,
+              0.2392
+            ]
+          },
+          "rf_magpie": {
+            "MAE": 0.2207,
+            "MAE_CI95": [
+              0.1431,
+              0.3256
+            ]
+          },
+          "rf_physics9": {
+            "MAE": 0.1582,
+            "MAE_CI95": [
+              0.1055,
+              0.2253
+            ]
+          },
+          "ridge_magpie": {
+            "MAE": 0.1983,
+            "MAE_CI95": [
+              0.1392,
+              0.2807
+            ]
+          },
+          "ridge_physics9": {
+            "MAE": 0.334,
+            "MAE_CI95": [
+              0.2487,
+              0.4323
+            ]
+          },
+          "xgb_magpie": {
+            "MAE": 0.1513,
+            "MAE_CI95": [
+              0.1022,
+              0.2207
+            ]
+          },
+          "xgb_physics9": {
+            "MAE": 0.1695,
+            "MAE_CI95": [
+              0.1148,
+              0.2381
+            ]
+          }
+        },
+        "pairs": {
+          "mlp_magpie vs gpr_physics9": {
+            "CI95": [
+              0.0243,
+              0.168
+            ],
+            "delta_MAE": 0.0924,
+            "outcome": "LOSS"
+          },
+          "mlp_magpie vs mean": {
+            "CI95": [
+              -0.4272,
+              -0.2218
+            ],
+            "delta_MAE": -0.3221,
+            "outcome": "WIN"
+          },
+          "mlp_magpie vs xgb_magpie": {
+            "CI95": [
+              0.0117,
+              0.0967
+            ],
+            "delta_MAE": 0.0525,
+            "outcome": "LOSS"
+          },
+          "mlp_physics9 vs gpr_physics9": {
+            "CI95": [
+              0.0299,
+              0.12
+            ],
+            "delta_MAE": 0.0704,
+            "outcome": "LOSS"
+          },
+          "mlp_physics9 vs mean": {
+            "CI95": [
+              -0.4467,
+              -0.2468
+            ],
+            "delta_MAE": -0.3441,
+            "outcome": "WIN"
+          },
+          "mlp_physics9 vs xgb_physics9": {
+            "CI95": [
+              -0.0303,
+              0.055
+            ],
+            "delta_MAE": 0.0123,
+            "outcome": "TIE"
+          }
+        }
+      },
+      "loo": {
+        "models": {
+          "gpr_physics9": {
+            "MAE": 0.0904,
+            "MAE_CI95": [
+              0.0698,
+              0.1132
+            ]
+          },
+          "halide_rule": {
+            "MAE": 0.4075,
+            "MAE_CI95": [
+              0.3356,
+              0.4782
+            ]
+          },
+          "mean": {
+            "MAE": 0.5207,
+            "MAE_CI95": [
+              0.4048,
+              0.6433
+            ]
+          },
+          "mlp_magpie": {
+            "MAE": 0.1515,
+            "MAE_CI95": [
+              0.1058,
+              0.2151
+            ]
+          },
+          "mlp_physics9": {
+            "MAE": 0.1129,
+            "MAE_CI95": [
+              0.0833,
+              0.146
+            ]
+          },
+          "rf_magpie": {
+            "MAE": 0.1796,
+            "MAE_CI95": [
+              0.1216,
+              0.2529
+            ]
+          },
+          "rf_physics9": {
+            "MAE": 0.1679,
+            "MAE_CI95": [
+              0.1184,
+              0.2272
+            ]
+          },
+          "ridge_magpie": {
+            "MAE": 0.2249,
+            "MAE_CI95": [
+              0.1672,
+              0.2965
+            ]
+          },
+          "ridge_physics9": {
+            "MAE": 0.35,
+            "MAE_CI95": [
+              0.2652,
+              0.4481
+            ]
+          },
+          "xgb_magpie": {
+            "MAE": 0.1449,
+            "MAE_CI95": [
+              0.0971,
+              0.208
+            ]
+          },
+          "xgb_physics9": {
+            "MAE": 0.1563,
+            "MAE_CI95": [
+              0.1011,
+              0.2273
+            ]
+          }
+        },
+        "pairs": {
+          "mlp_magpie vs gpr_physics9": {
+            "CI95": [
+              0.0157,
+              0.1159
+            ],
+            "delta_MAE": 0.0611,
+            "outcome": "LOSS"
+          },
+          "mlp_magpie vs mean": {
+            "CI95": [
+              -0.4701,
+              -0.2697
+            ],
+            "delta_MAE": -0.3692,
+            "outcome": "WIN"
+          },
+          "mlp_magpie vs xgb_magpie": {
+            "CI95": [
+              -0.029,
+              0.0398
+            ],
+            "delta_MAE": 0.0066,
+            "outcome": "TIE"
+          },
+          "mlp_physics9 vs gpr_physics9": {
+            "CI95": [
+              -0.0054,
+              0.0503
+            ],
+            "delta_MAE": 0.0225,
+            "outcome": "TIE"
+          },
+          "mlp_physics9 vs mean": {
+            "CI95": [
+              -0.5222,
+              -0.2986
+            ],
+            "delta_MAE": -0.4078,
+            "outcome": "WIN"
+          },
+          "mlp_physics9 vs xgb_physics9": {
+            "CI95": [
+              -0.1011,
+              0.0053
+            ],
+            "delta_MAE": -0.0434,
+            "outcome": "TIE"
+          }
+        }
+      }
+    },
+    "verified_only": {
+      "gkf": {
+        "models": {
+          "gpr_physics9": {
+            "MAE": 0.1269,
+            "MAE_CI95": [
+              0.1023,
+              0.1537
+            ],
+            "MAE_repeat_sd": 0.009
+          },
+          "halide_rule": {
+            "MAE": 0.3789,
+            "MAE_CI95": [
+              0.2847,
+              0.4707
+            ],
+            "MAE_repeat_sd": 0.0126
+          },
+          "mean": {
+            "MAE": 0.5198,
+            "MAE_CI95": [
+              0.3773,
+              0.6852
+            ],
+            "MAE_repeat_sd": 0.011
+          },
+          "mlp_magpie": {
+            "MAE": 0.2026,
+            "MAE_CI95": [
+              0.1466,
+              0.2831
+            ],
+            "MAE_repeat_sd": 0.0112
+          },
+          "mlp_physics9": {
+            "MAE": 0.1705,
+            "MAE_CI95": [
+              0.132,
+              0.2188
+            ],
+            "MAE_repeat_sd": 0.0241
+          },
+          "rf_magpie": {
+            "MAE": 0.2511,
+            "MAE_CI95": [
+              0.1736,
+              0.3458
+            ],
+            "MAE_repeat_sd": 0.0158
+          },
+          "rf_physics9": {
+            "MAE": 0.2455,
+            "MAE_CI95": [
+              0.1828,
+              0.3226
+            ],
+            "MAE_repeat_sd": 0.0281
+          },
+          "ridge_magpie": {
+            "MAE": 0.3186,
+            "MAE_CI95": [
+              0.2391,
+              0.4207
+            ],
+            "MAE_repeat_sd": 0.0334
+          },
+          "ridge_physics9": {
+            "MAE": 0.3703,
+            "MAE_CI95": [
+              0.2739,
+              0.4829
+            ],
+            "MAE_repeat_sd": 0.016
+          },
+          "xgb_magpie": {
+            "MAE": 0.2351,
+            "MAE_CI95": [
+              0.1724,
+              0.3146
+            ],
+            "MAE_repeat_sd": 0.0207
+          },
+          "xgb_physics9": {
+            "MAE": 0.2759,
+            "MAE_CI95": [
+              0.2095,
+              0.3576
+            ],
+            "MAE_repeat_sd": 0.0247
+          }
+        },
+        "pairs": {
+          "mlp_magpie vs gpr_physics9": {
+            "CI95": [
+              0.0243,
+              0.148
+            ],
+            "delta_MAE": 0.0758,
+            "outcome": "LOSS"
+          },
+          "mlp_magpie vs mean": {
+            "CI95": [
+              -0.4466,
+              -0.1989
+            ],
+            "delta_MAE": -0.3172,
+            "outcome": "WIN"
+          },
+          "mlp_magpie vs xgb_magpie": {
+            "CI95": [
+              -0.0639,
+              -0.001
+            ],
+            "delta_MAE": -0.0324,
+            "outcome": "WIN"
+          },
+          "mlp_physics9 vs gpr_physics9": {
+            "CI95": [
+              0.0084,
+              0.0859
+            ],
+            "delta_MAE": 0.0437,
+            "outcome": "LOSS"
+          },
+          "mlp_physics9 vs mean": {
+            "CI95": [
+              -0.4929,
+              -0.2241
+            ],
+            "delta_MAE": -0.3493,
+            "outcome": "WIN"
+          },
+          "mlp_physics9 vs xgb_physics9": {
+            "CI95": [
+              -0.16,
+              -0.0593
+            ],
+            "delta_MAE": -0.1053,
+            "outcome": "WIN"
+          }
+        }
+      },
+      "loao": {
+        "models": {
+          "gpr_physics9": {
+            "MAE": 0.3708,
+            "MAE_CI95": [
+              0.2327,
+              0.5388
+            ]
+          },
+          "halide_rule": {
+            "MAE": 0.4993,
+            "MAE_CI95": [
+              0.3872,
+              0.6114
+            ]
+          },
+          "mean": {
+            "MAE": 0.5844,
+            "MAE_CI95": [
+              0.4452,
+              0.746
+            ]
+          },
+          "mlp_magpie": {
+            "MAE": 1.0706,
+            "MAE_CI95": [
+              0.6413,
+              1.5519
+            ]
+          },
+          "mlp_physics9": {
+            "MAE": 0.5466,
+            "MAE_CI95": [
+              0.3729,
+              0.761
+            ]
+          },
+          "rf_magpie": {
+            "MAE": 0.395,
+            "MAE_CI95": [
+              0.275,
+              0.5308
+            ]
+          },
+          "rf_physics9": {
+            "MAE": 0.4184,
+            "MAE_CI95": [
+              0.3053,
+              0.5435
+            ]
+          },
+          "ridge_magpie": {
+            "MAE": 0.8845,
+            "MAE_CI95": [
+              0.6124,
+              1.1837
+            ]
+          },
+          "ridge_physics9": {
+            "MAE": 0.7414,
+            "MAE_CI95": [
+              0.5287,
+              0.9787
+            ]
+          },
+          "xgb_magpie": {
+            "MAE": 0.4044,
+            "MAE_CI95": [
+              0.2888,
+              0.5355
+            ]
+          },
+          "xgb_physics9": {
+            "MAE": 0.454,
+            "MAE_CI95": [
+              0.3359,
+              0.5791
+            ]
+          }
+        },
+        "pairs": {
+          "mlp_magpie vs gpr_physics9": {
+            "CI95": [
+              0.3474,
+              1.1087
+            ],
+            "delta_MAE": 0.6998,
+            "outcome": "LOSS"
+          },
+          "mlp_magpie vs mean": {
+            "CI95": [
+              0.0784,
+              0.9367
+            ],
+            "delta_MAE": 0.4862,
+            "outcome": "LOSS"
+          },
+          "mlp_magpie vs xgb_magpie": {
+            "CI95": [
+              0.2995,
+              1.0806
+            ],
+            "delta_MAE": 0.6662,
+            "outcome": "LOSS"
+          },
+          "mlp_physics9 vs gpr_physics9": {
+            "CI95": [
+              0.0715,
+              0.2674
+            ],
+            "delta_MAE": 0.1757,
+            "outcome": "LOSS"
+          },
+          "mlp_physics9 vs mean": {
+            "CI95": [
+              -0.2209,
+              0.1379
+            ],
+            "delta_MAE": -0.0379,
+            "outcome": "TIE"
+          },
+          "mlp_physics9 vs xgb_physics9": {
+            "CI95": [
+              -0.0321,
+              0.2213
+            ],
+            "delta_MAE": 0.0926,
+            "outcome": "TIE"
+          }
+        }
+      },
+      "lobo": {
+        "models": {
+          "gpr_physics9": {
+            "MAE": 0.1367,
+            "MAE_CI95": [
+              0.0994,
+              0.1776
+            ]
+          },
+          "halide_rule": {
+            "MAE": 0.3663,
+            "MAE_CI95": [
+              0.275,
+              0.4585
+            ]
+          },
+          "mean": {
+            "MAE": 0.5302,
+            "MAE_CI95": [
+              0.3925,
+              0.6859
+            ]
+          },
+          "mlp_magpie": {
+            "MAE": 0.2095,
+            "MAE_CI95": [
+              0.1378,
+              0.3096
+            ]
+          },
+          "mlp_physics9": {
+            "MAE": 0.222,
+            "MAE_CI95": [
+              0.1642,
+              0.2916
+            ]
+          },
+          "rf_magpie": {
+            "MAE": 0.2454,
+            "MAE_CI95": [
+              0.157,
+              0.3654
+            ]
+          },
+          "rf_physics9": {
+            "MAE": 0.2217,
+            "MAE_CI95": [
+              0.1496,
+              0.3112
+            ]
+          },
+          "ridge_magpie": {
+            "MAE": 0.2885,
+            "MAE_CI95": [
+              0.1969,
+              0.4118
+            ]
+          },
+          "ridge_physics9": {
+            "MAE": 0.4274,
+            "MAE_CI95": [
+              0.3166,
+              0.5716
+            ]
+          },
+          "xgb_magpie": {
+            "MAE": 0.2112,
+            "MAE_CI95": [
+              0.1448,
+              0.3018
+            ]
+          },
+          "xgb_physics9": {
+            "MAE": 0.2069,
+            "MAE_CI95": [
+              0.1428,
+              0.2895
+            ]
+          }
+        },
+        "pairs": {
+          "mlp_magpie vs gpr_physics9": {
+            "CI95": [
+              -0.0164,
+              0.1832
+            ],
+            "delta_MAE": 0.0728,
+            "outcome": "TIE"
+          },
+          "mlp_magpie vs mean": {
+            "CI95": [
+              -0.4494,
+              -0.2021
+            ],
+            "delta_MAE": -0.3206,
+            "outcome": "WIN"
+          },
+          "mlp_magpie vs xgb_magpie": {
+            "CI95": [
+              -0.0465,
+              0.0424
+            ],
+            "delta_MAE": -0.0016,
+            "outcome": "TIE"
+          },
+          "mlp_physics9 vs gpr_physics9": {
+            "CI95": [
+              0.0205,
+              0.1587
+            ],
+            "delta_MAE": 0.0852,
+            "outcome": "LOSS"
+          },
+          "mlp_physics9 vs mean": {
+            "CI95": [
+              -0.4381,
+              -0.1939
+            ],
+            "delta_MAE": -0.3082,
+            "outcome": "WIN"
+          },
+          "mlp_physics9 vs xgb_physics9": {
+            "CI95": [
+              -0.0358,
+              0.068
+            ],
+            "delta_MAE": 0.0151,
+            "outcome": "TIE"
+          }
+        }
+      }
+    }
+  },
+  "environment": {
+    "numpy": "2.4.6",
+    "scikit-learn": "1.9.1",
+    "torch": "2.14.0+cpu",
+    "xgboost": "3.2.0"
+  },
+  "expectations": {
+    "commit": "e153c25170fcb9da264ce9f12d3fd35ed5a49b56",
+    "file": "reports/mlp_expectations.md",
+    "sha256_lf": "9448968b70b395555417665b4b5629e094469de93a93cb300a227f16d3e9f12c"
+  },
+  "learning_curve": {
+    "dataset": "primary",
+    "fractions": [
+      0.5,
+      0.75,
+      1.0
+    ],
+    "models": {
+      "gpr_physics9": {
+        "0.50": {
+          "MAE": 0.209,
+          "mean_n_train": 16.0,
+          "repeat_MAE_p2_5": 0.1071,
+          "repeat_MAE_p97_5": 0.2836
+        },
+        "0.75": {
+          "MAE": 0.1149,
+          "mean_n_train": 23.2,
+          "repeat_MAE_p2_5": 0.1016,
+          "repeat_MAE_p97_5": 0.1572
+        },
+        "1.00": {
+          "MAE": 0.0938,
+          "mean_n_train": 31.2,
+          "repeat_MAE_p2_5": 0.0816,
+          "repeat_MAE_p97_5": 0.1055
+        }
+      },
+      "mlp_physics9": {
+        "0.50": {
+          "MAE": 0.3198,
+          "mean_n_train": 16.0,
+          "repeat_MAE_p2_5": 0.2412,
+          "repeat_MAE_p97_5": 0.3833
+        },
+        "0.75": {
+          "MAE": 0.1988,
+          "mean_n_train": 23.2,
+          "repeat_MAE_p2_5": 0.1454,
+          "repeat_MAE_p97_5": 0.2506
+        },
+        "1.00": {
+          "MAE": 0.1378,
+          "mean_n_train": 31.2,
+          "repeat_MAE_p2_5": 0.1111,
+          "repeat_MAE_p97_5": 0.1566
+        }
+      },
+      "xgb_magpie": {
+        "0.50": {
+          "MAE": 0.2712,
+          "mean_n_train": 16.0,
+          "repeat_MAE_p2_5": 0.2356,
+          "repeat_MAE_p97_5": 0.3242
+        },
+        "0.75": {
+          "MAE": 0.2101,
+          "mean_n_train": 23.2,
+          "repeat_MAE_p2_5": 0.1819,
+          "repeat_MAE_p97_5": 0.2395
+        },
+        "1.00": {
+          "MAE": 0.1666,
+          "mean_n_train": 31.2,
+          "repeat_MAE_p2_5": 0.1448,
+          "repeat_MAE_p97_5": 0.1962
+        }
+      },
+      "xgb_physics9": {
+        "0.50": {
+          "MAE": 0.2869,
+          "mean_n_train": 16.0,
+          "repeat_MAE_p2_5": 0.247,
+          "repeat_MAE_p97_5": 0.3374
+        },
+        "0.75": {
+          "MAE": 0.2325,
+          "mean_n_train": 23.2,
+          "repeat_MAE_p2_5": 0.1835,
+          "repeat_MAE_p97_5": 0.2647
+        },
+        "1.00": {
+          "MAE": 0.1902,
+          "mean_n_train": 31.2,
+          "repeat_MAE_p2_5": 0.1611,
+          "repeat_MAE_p97_5": 0.2403
+        }
+      }
+    },
+    "split": "gkf"
+  },
+  "mlp_spec": {
+    "final_seeds": 5,
+    "fixed": {
+      "lr": 0.01,
+      "max_epochs": 1000,
+      "patience": 100,
+      "val_fraction": 0.2
+    },
+    "grid": {
+      "mlp__depth": [
+        1,
+        2
+      ],
+      "mlp__dropout": [
+        0.0,
+        0.2
+      ],
+      "mlp__hidden": [
+        16,
+        64
+      ],
+      "mlp__weight_decay": [
+        0.001,
+        0.1
+      ]
+    },
+    "inner_search_seeds": 1,
+    "note": "n ~ 39: the 2x64 network has more weights than rows by two orders of magnitude",
+    "preprocessing": "VarianceThreshold -> StandardScaler (features); y standardised inside fit"
+  },
+  "verdict": {
+    "MLP beats GPR": "NO",
+    "MLP beats XGB": "NO",
+    "dataset": "primary",
+    "outcomes": {
+      "mlp_magpie vs gpr_physics9": {
+        "loao": "LOSS",
+        "lobo": "LOSS"
+      },
+      "mlp_magpie vs mean": {
+        "loao": "LOSS",
+        "lobo": "WIN"
+      },
+      "mlp_magpie vs xgb_magpie": {
+        "loao": "LOSS",
+        "lobo": "LOSS"
+      },
+      "mlp_physics9 vs gpr_physics9": {
+        "loao": "TIE",
+        "lobo": "LOSS"
+      },
+      "mlp_physics9 vs mean": {
+        "loao": "TIE",
+        "lobo": "WIN"
+      },
+      "mlp_physics9 vs xgb_physics9": {
+        "loao": "LOSS",
+        "lobo": "TIE"
+      }
+    },
+    "pre_registered_expectation": {
+      "milestone": "NO / NO",
+      "mlp vs gpr_physics9": {
+        "loao": "TIE or LOSS",
+        "lobo": "LOSS"
+      },
+      "mlp vs mean": {
+        "lobo": "WIN"
+      },
+      "mlp vs xgb": {
+        "loao": "TIE",
+        "lobo": "TIE"
+      }
+    },
+    "splits": [
+      "lobo",
+      "loao"
+    ]
+  }
+}
